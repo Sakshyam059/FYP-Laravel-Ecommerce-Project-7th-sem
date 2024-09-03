@@ -1,0 +1,42 @@
+<?php
+
+use App\Http\Controllers\Admin\BannerController;
+use App\Http\Controllers\Admin\BrandController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ColorController;
+use App\Http\Controllers\Admin\NewsletterController;
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\SitesettingController;
+use App\Http\Controllers\Admin\SizeController;
+use App\Http\Controllers\Admin\SubcategoryController;
+use Illuminate\Support\Facades\Route;
+
+
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('admin.dashboard.dashboard');
+    })->name('dashboard');
+
+    Route::post('product/description/image',[ProductController::class,'storeDescriptionImage'])->name('product.description.image');
+    Route::get('product/removeall',[ProductController::class,'bulkDelete'])->name('product.bulk-delete');
+    Route::resource('product', ProductController::class);
+    
+    Route::name('product.')->group(function(){
+        Route::resource('category', CategoryController::class);
+        Route::resource('subcategory', SubcategoryController::class);   
+        Route::resource('color', ColorController::class);   
+        Route::resource('size', SizeController::class);   
+        Route::resource('brand', BrandController::class);   
+        
+    });
+    Route::name('marketing.')->group(function(){
+        Route::resource('banner', BannerController::class);
+    });
+    Route::resource('newsletter', NewsletterController::class);
+
+    Route::get('profile/setting', [ProfileController::class, 'edit'])->name('profile.edit');
+    
+    Route::get('site/setting', [SitesettingController::class, 'edit'])->name('site_setting.edit');
+    Route::post('site/description', [SiteSettingController::class, 'upload'])->name('site_setting.description');
+});

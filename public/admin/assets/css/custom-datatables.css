@@ -1,0 +1,90 @@
+.buttons-csv {
+    border: 1px solid rgb(224, 224, 224);
+    border-radius: 4px;
+    padding: 3px 12px;
+}
+
+.dt-search {
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+}
+
+.dt-search input {
+    padding: 8px 0px 8px 40px !important;
+    border: 1px solid #a4a4a4 !important;
+    border-radius: 5px;
+    margin: 0 !important;
+}
+
+@media (min-width: 1024px) {
+    th,
+    td {
+        padding: 1em 0em !important;
+        border-bottom: 1px solid rgb(230, 230, 230) !important;
+    }
+
+    .buttons-csv {
+        padding: 6px 12px;
+    }
+
+    .dt-column-order {
+        font-size: 0.6em !important;
+        padding-top: 0.12em !important;
+    }
+    .dt-search input {
+        width: 320px;
+    }
+}
+
+.dt-paging {
+    color: rgb(255, 255, 255) !important;
+}
+
+div.dt-container .dt-paging .dt-paging-button.disabled,
+div.dt-container .dt-paging .dt-paging-button.disabled:hover,
+div.dt-container .dt-paging .dt-paging-button.disabled:active {
+    color: rgb(255, 255, 255) !important;
+}
+
+button.dt-paging-button {
+    background-color: rgb(76, 149, 197) !important;
+    color: rgb(255, 253, 253) !important;
+    padding: 6px 12px !important;
+    border: 1px solid rgb(60, 133, 206) !important;
+}
+
+th {
+    font-weight: 500 !important;
+}
+
+td:first-child,
+td:last-child,
+th:first-child,
+th:last-child {
+    text-align: center !important;
+}
+
+td.child ul {
+    width: 100%;
+    text-align: left;
+}
+
+td.child ul li {
+    padding-left: 16px !important;
+}
+
+.dt-processing {
+    margin-top: 20px !important;
+}
+
+.dtr-control {
+    position: relative;
+}
+
+.dtr-control::before {
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%, 50%);
+}
