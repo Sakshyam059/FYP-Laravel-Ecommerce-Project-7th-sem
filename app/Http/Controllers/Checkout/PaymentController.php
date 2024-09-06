@@ -23,6 +23,7 @@ class PaymentController extends Controller
     private $user;
     private $cart;
     private $order_amount;
+    private $ref_id,$payment_url;
     public function __construct()
     {
         $this->user = Auth::user();
@@ -49,24 +50,7 @@ class PaymentController extends Controller
         $payment['amount'] = $this->cart['subtotal'];
         $payment['payment_method'] = Session::get('payment_method');
         PaymentTransaction::create($payment);
-        foreach ($this->cart->cartItems()->get() as $item) {
-            $quantity=$item->quantity;
-            $default_sku= $item->product->product_skus->first();
-            $size=$item->size_id??$default_sku->size_id;
-            $color=$item->color_id??$default_sku->color_id;
-
-            $inventory=$item->product->product_skus()->where('product_id',$item->product->id)->where('color_id',$color)->where('size_id',$size)->first();
-            $detail = [
-                'order_id' => $orderdata->id,
-                'product_id' => $item['product_id'],
-                'size_id' => $size,
-                'color_id' => $color,
-                'quantity' => $item['quantity']
-            ];
-            OrderDetail::create($detail);
-            $inventory->quantity-=$quantity;
-            $inventory->save();
-        }
+        
 
         $shipping_detail = Session::get('shipping_detail');
         $shipping_detail['order_id'] = $orderdata['id'];
@@ -96,14 +80,15 @@ class PaymentController extends Controller
         $response = Http::withHeaders([
             'Authorization' => env('KHALTI_SECRET_KEY'),
             'Content-Type' => 'application/json',
-        ])->post($khalti . "epayment/initiate/", $data);
-        foreach ($this->cart->cartItems()->get() as $item) {
-            $order_detail['ref_id'] = $response['pidx'];
-            $order_detail['product_id'] = $item->product_id;
-            $order_detail['quantity'] = $item->quantity;
-            Session::push('order_details', $order_detail);
-        }
-        return Redirect::to($response['payment_url']);
+            ])->post($khalti . "epayment/initiate/", $data);
+            
+            foreach ($this->cart->cartItems()->get() as $item) {
+                $order_detail['ref_id'] = $response['pidx'];
+                $order_detail['product_id'] = $item->product_id;
+                $order_detail['quantity'] = $item->quantity;
+                Session::push('order_details', $order_detail);
+            }
+            $this->payment_url=$response['payment_url'];
     }
     public function verifyKhaltiPayment(Request $request)
     {
@@ -114,7 +99,7 @@ class PaymentController extends Controller
             "pidx" => $request->pidx,
         ]);
         $response = Http::withHeaders([
-            'Authorization' => 'key 82936285c62c4251a08f8d9702b3f3be',
+            'Authorization' => env('KHALTI_SECRET_KEY'),
             'Content-Type' => 'application/json',
         ])->post($khalti . "epayment/lookup/", $data);
         DB::beginTransaction();
@@ -135,13 +120,22 @@ class PaymentController extends Controller
                 // $payment['request_date'] = Carbon::now();
                 PaymentTransaction::create($payment);
                 $order_details = Session::get('order_details');
-                foreach ($order_details as $item) {
+                foreach ($this->cart->cartItems()->get() as $item) {
+                    $quantity=$item->quantity;
+                    $default_sku= $item->product->product_skus->first();
+                    $size=$item->size_id??$default_sku->size_id;
+                    $color=$item->color_id??$default_sku->color_id;
+                    $inventory=$item->product->product_skus()->where('product_id',$item->product->id)->where('color_id',$color)->where('size_id',$size)->first();
                     $detail = [
                         'order_id' => $orderdata->id,
                         'product_id' => $item['product_id'],
+                        'size_id' => $size,
+                        'color_id' => $color,
                         'quantity' => $item['quantity']
                     ];
                     OrderDetail::create($detail);
+                    $inventory->quantity-=$quantity;
+                    $inventory->save();
                 }
                 $shipping_detail = Session::get('shipping_detail');
                 $shipping_detail['order_id'] = $orderdata['id'];
@@ -174,8 +168,11 @@ class PaymentController extends Controller
             $this->cashPayment();
         }elseif($payment_method==='khalti'){
             $this->initiateKhaltiPayment();
+            
+            return Redirect::to($this->payment_url);
         }else{
             $this->cashPayment();
+
         }
         $cart = Cart::where('user_id', $this->user->id)->first();
         $cart->delete();

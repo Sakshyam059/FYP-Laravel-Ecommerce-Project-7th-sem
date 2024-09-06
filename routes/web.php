@@ -40,7 +40,7 @@ Route::middleware('auth')->group(function () {
     
     Route::get('/checkout/payment-details', [PaymentController::class, 'index'])->name('checkout.payment');
     Route::post('/payment/initiate',[PaymentController::class,'initiatePayment'])->name('payment.initiate');
-    Route::get('/payment/verify',[PaymentController::class,'verifyPayment'])->name('payment.verify');
+    Route::get('/payment/verify',[PaymentController::class,'verifyKhaltiPayment'])->name('payment.verify');
     
     Route::get('/my-orders',[OrderController::class,'index'])->name('order.index');
     Route::get('/my-transactions',[TransactionController::class,'index'])->name('transaction.index');
