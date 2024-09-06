@@ -23,6 +23,7 @@ class AddToCartPostRequest extends FormRequest
     {
         return [
             'product_id'=>['required'],
+            'quantity'=>['integer'],
             'status'=>['boolean'],
         ];
     }

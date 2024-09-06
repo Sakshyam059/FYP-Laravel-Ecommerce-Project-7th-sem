@@ -121,8 +121,8 @@ class ProductController extends Controller
     }
     public function store(Request $request, ProductImagePostRequest $imgrequest)
     {
+        DB::beginTransaction();
         try {
-            DB::beginTransaction();
             $validator = $request->validate([
                 'name' => 'required',
                 'short_description' => 'required',
@@ -133,7 +133,7 @@ class ProductController extends Controller
                 'price' => 'required',
                 'discount_value' => 'required',
                 'discount_type' => 'required',
-                'trending' => 'boolean'
+                'trending' => 'nullable'
             ]);
             $validator['slug'] = Str::slug($request->name);
             $validator['trending'] = $request['trending'] ? 1 : 0;
@@ -159,6 +159,8 @@ class ProductController extends Controller
                 foreach ($files as $key => $file) {
                     if ($key === 0) {
                         $product_image['is_main'] = 1;
+                    }else{
+                        $product_image['is_main'] = 0;
                     }
                     $product_image['product_id'] = $product['id'];
                     $name = $file->getClientOriginalName();
@@ -173,6 +175,7 @@ class ProductController extends Controller
             DB::commit();
             return to_route('admin.product.index')->with('success', 'Product Updated Successfully.');
         } catch (\Exception $e) {
+            DB::rollBack();
             dd($e->getMessage());
             return redirect()->back()->with('error', 'Failed to create product. Please try again.');
         }

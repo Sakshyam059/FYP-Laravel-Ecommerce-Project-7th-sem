@@ -1,41 +1,59 @@
-<aside class="">
-    <h3 class="px-6 mb-4 text-2xl font-bold">Shopping Cart</h3>
-
-    <table class="min-w-full text-sm font-normal dark:text-white ">
+<aside class="py-6 -mt-2 space-y-6">
+    <h3 class="px-6 text-2xl font-bold">Shopping Cart</h3>
+    <table class="min-w-full text-center dark:text-white ">
         <thead>
-            <tr class="text-base border-y">
-                <th scope="col" class="px-6 py-2">Product</th>
-                <th scope="col" class="px-6 py-2">Price</th>
-                <th scope="col" class="px-6 py-2">Quantity</th>
-                <th scope="col" class="px-6 py-2">Total Price</th>
-                <th scope="col" class="px-6 py-2"></th>
+            <tr class=" border-y">
+                <th scope="col" class="py-3">Item No.</th>
+                <th scope="col" class="py-3">Product</th>
+                <th scope="col" class="py-3">Price</th>
+                <th scope="col" class="py-3">Dicount Rate</th>
+                <th scope="col" class="py-3">Quantity</th>
+                <th scope="col" class="py-3">Total Price</th>
+                <th scope="col" class="py-3"></th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($user->cart->cartItems as $item)
-                <tr class="border-b ">
-                    <td class="flex items-center gap-3 px-6 py-2">
-                        <img src="{{ asset('admin/images/product/' . $item->product->mainImage->image) }}"
-                            class="object-contain h-16 aspect-square" alt="">
-                        <p class="">{{ $item->product->name }}</p>
-                    </td>
-                    <td class="px-6 py-2 whitespace-nowrap">NPR
-                        {{ number_format($item->product->price - $item->product->price / $item->product->discount_value, 2) }}
-                    </td>
-                    <td class="px-6 py-2 whitespace-nowrap">1</td>
-                    <td class="px-6 py-2 whitespace-nowrap">1000</td>
-                    <td class="px-6 py-2 whitespace-nowrap">
-                        <form action="{{ route('cart.remove', $item->id) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-sm btn-trash btn-danger">
-                                <i class='bx bx-x'></i>
-                            </button>
-                            
-                        </form>
-                    </td>
+            @if (!empty($mycart->cartItems))
+                @foreach ($user->cart->cartItems as $item)
+                    <tr class="border-b ">
+                        <td class="px-6 py-2 whitespace-nowrap">
+                            {{ $loop->count }}
+                        </td>
+                        <td class="flex items-center justify-center gap-3 px-6 py-3">
+                            <img src="{{ asset('admin/images/product/' . $item->product->mainImage->image) }}"
+                                class="object-contain h-16 aspect-square" alt="">
+                            <p class="">{{ $item->product->name }}</p>
+                        </td>
+                        <td class="px-6 py-2 whitespace-nowrap">NPR
+                            {{ number_format($item->product->price, 2) }}
+                        </td>
+                        <td class="px-6 py-2 whitespace-nowrap">
+                            {{ number_format($item->product->discount_value, 2) }} %
+                        </td>
+                        <td class="px-6 py-2 whitespace-nowrap">{{$item->quantity}}</td>
+                        <td class="px-6 py-2 whitespace-nowrap">NPR {{number_format($item->product->discount_price(),2)}}</td>
+                        <td class="px-6 py-2 whitespace-nowrap">
+                            <form action="{{ route('cart.remove', $item->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="flex items-center p-1 text-white bg-red-600 rounded">
+                                    <i class='bx bx-x'></i>
+                                </button>
+
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
+                @if ($mycart->cartItems->isEmpty())
+                    <tr>
+                        <td colspan="5" class="py-6 text-center border-b">No Any Items in Cart</td>
+                    </tr>
+                @endif
+            @else
+                <tr>
+                    <td colspan="5" class="py-6 text-center border-b">No Any Items in Cart</td>
                 </tr>
-            @endforeach
+            @endif
         </tbody>
     </table>
 

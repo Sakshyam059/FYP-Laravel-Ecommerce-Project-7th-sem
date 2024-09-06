@@ -1,9 +1,9 @@
 @extends('frontend.includes.main')
 @section('content')
-    <section class="px-6">
+    <section class="px-6 space-y-4">
         <div class="flex items-center justify-between">
-            <h4 class="w-full text-3xl font-medium">Checkout</h4>
-            <ul class="flex items-center justify-between w-full px-3 pb-3 overflow-hidden ">
+            <h4 class="w-full text-xl font-medium">Checkout</h4>
+            {{-- <ul class="flex items-center justify-between w-full px-3 pb-3 overflow-hidden ">
                 <li class="w-full">
                     <div class="relative flex items-center px-6">
                         <div class="relative flex flex-col items-center py-10">
@@ -39,74 +39,73 @@
 
 
 
-            </ul>
+            </ul> --}}
         </div>
         
-        <div class="flex gap-3 my-4 justify-content-center">
-    
-            <div class="p-0 card col">
-                <div class="bg-white border-0 card-header">
-                    <h5 class="py-2 card-title">Billing Address</h5>
+        <div class="grid grid-cols-2 gap-4">  
+            @include('frontend.cart.partials.shipping-info')
+            <div class="p-4 space-y-4 border rounded">
+                <div class="">
+                    <h2 class="text-xl font-medium">Billing Address</h2>
                 </div>
-                <div class="pt-0 card-body">
-                    <div class="row">
-                        <div class="mb-3 col form-group">
-                            <label for="" class="form-label">First Name</label>
-                            <input type="text" class="form-control" value="{{ auth()->user()->firstname }}" readonly>
+                <form action="{{route('billing.create')}}" method="POST" class="space-y-4">
+                    @csrf
+                    <div class="grid grid-cols-2 gap-4 ">
+                        <div class="space-y-2">
+                            <label for="" class="block ">First Name</label>
+                            <input type="text" class="w-full border-gray-400 rounded bg-gray-50" value="{{ auth()->user()->firstname }}" readonly>
                         </div>
-                        <div class="mb-3 col form-group">
-                            <label for="" class="form-label">Last Name</label>
-                            <input type="text" class="form-control" value="{{ auth()->user()->lastname }}" readonly>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="mb-3 col form-group">
-                            <label for="" class="form-label">Email</label>
-                            <input type="text" class="form-control" value="{{ auth()->user()->email }}" readonly>
-                        </div>
-                        <div class="mb-3 col form-group">
-                            <label for="" class="form-label">Phone</label>
-                            <input type="text" class="form-control" value="{{ auth()->user()->phone }}" readonly>
+                        <div class="space-y-2">
+                            <label for="" class="block ">Last Name</label>
+                            <input type="text" class="w-full border-gray-400 rounded bg-gray-50" value="{{ auth()->user()->lastname }}" readonly>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="mb-3 col form-group">
-                            <label for="" class="form-label">Address</label>
-                            <input type="text" class="form-control">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="space-y-2">
+                            <label for="" class="block ">Email</label>
+                            <input type="text" class="w-full border-gray-400 rounded bg-gray-50" value="{{ auth()->user()->email }}" readonly>
                         </div>
-                        <div class="mb-3 col form-group">
-                            <label for="" class="form-label">City</label>
-                            <input type="text" class="form-control">
+                        <div class="space-y-2">
+                            <label for="" class="block ">Phone</label>
+                            <input type="text" class="w-full border-gray-400 rounded bg-gray-50" value="{{ auth()->user()->phone }}" readonly>
                         </div>
                     </div>
-                    <div class="mb-3 row">
-                        <div class="col form-group">
-                            <label for="" class="form-label">Zip Code</label>
-                            <input type="text" class="form-control">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="space-y-2">
+                            <label for="" class="block ">Address</label>
+                            <input type="text" name="address" value="{{session()->get('billing_information')['city']??old('city')}}" class="w-full border-gray-400 rounded bg-gray-50">
                         </div>
-                        <div class="col form-group">
-                            <label for="" class="form-label">State</label>
-                            <select name="city" id="" class="form-select">
-                                <option value="">Choose your city</option>
-                                <option value="">Kathmandu</option>
-                                <option value="">Bharatpur</option>
-                                <option value="">Pokhara</option>
+                        <div class="space-y-2">
+                            <label for="" class="block">City</label>
+                            <input type="text" name="city" value="{{session()->get('billing_information')['city']??old('city')}}" class="w-full border-gray-400 rounded bg-gray-50">
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="space-y-2">
+                            <label for="" class="block ">Zip Code</label>
+                            <input type="text" name="zipcode" value="{{session()->get('billing_information')['city']??old('city')}}" class="w-full border-gray-400 rounded bg-gray-50">
+                        </div>
+                        <div class="space-y-2">
+                            <label for="" class="block ">State</label>
+                            <select name="state" id="" class="w-full border-gray-400 rounded bg-gray-50">
+                                <option selected disabled>Choose your city</option>
+                                <option value="ktm">Kathmandu</option>
+                                <option value="bht">Bharatpur</option>
+                                <option value="pok">Pokhara</option>
                             </select>
                         </div>
                     </div>
-                    <div class="mb-3 form-group">
-                        <label for="" class="form-label">Additional Notes</label>
-                        <textarea class="form-control" name="" id="" cols="30" rows="3"></textarea>
+                    <div class="space-y-2">
+                        <label for="" class="block">Additional Notes</label>
+                        <textarea class="w-full border-gray-400 rounded bg-gray-50" name="add_note" rows="4" id="" cols="30">{{session()->get('billing_information')['add_note']??old('add_note')}}</textarea>
                     </div>
-                </div>
+                    <div class="flex justify-between gap-6 ">
+                        <a href="{{route('cart.index')}}" class="inline-flex items-center justify-center w-full py-2 bg-gray-100 border rounded">Return</a>
+                        <button type="submit" class="w-full py-2 text-white bg-blue-600 border rounded">Confirm</button>
+                    </div>
+                </form>
             </div>        
-            <div class="">
-                @include('frontend.cart.partials.shipping-info')
-                <div class="mt-4 border-0 card">
-                    <a href="{{route('checkout.payment')}}" class="btn btn-primary">Continue</a>
-                    <a href="{{route('cart.index')}}" class="mt-2 btn btn-outline-secondary">Back</a>
-                </div>
-            </div>
+              
         </div>
     </section>
 @endsection

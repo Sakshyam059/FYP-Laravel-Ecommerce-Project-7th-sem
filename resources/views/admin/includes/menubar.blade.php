@@ -124,8 +124,8 @@
                 </a>
             </li>
             <li>
-                <a class="inline-flex items-center w-full gap-2 p-2 font-semibold text-gray-800 transition-colors duration-150 border border-none rounded hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-200"
-                    href="{{route('admin.dashboard')}}">
+                <a class="{{ Request::routeIs('admin.order.index')?'border border-black/50 text-white bg-blue-800/75 dark:bg-gray-700 ':''}} p-2 inline-flex gap-2 items-center w-full rounded border-none   font-semibold  transition-colors duration-150 border  hover:text-gray-800 dark:hover:text-gray-200 text-gray-800 dark:text-gray-200"
+                    href="{{route('admin.order.index')}}">
                     <i class='bx bx-cart-alt'></i>
                     <span >Orders</span>
                 </a>

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class ProductSku extends Model
 {
     use HasFactory;
+    // protected $primaryKey = ['product_id','color_id','size_id'];
     protected $guarded=[];
 
     public function size(){

@@ -5,7 +5,7 @@
         <div class="flex items-center justify-between">
             <h2 class='font-medium underline '>Change Password</h2>
             <div>
-                <button class="px-8 py-2 text-sm text-white bg-blue-800 rounded-md">Change</button>
+                <button class="px-8 py-2 text-sm text-white bg-green-600 rounded-md">Change</button>
 
                 @if (session('status') === 'password-updated')
                     <p x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 2000)"

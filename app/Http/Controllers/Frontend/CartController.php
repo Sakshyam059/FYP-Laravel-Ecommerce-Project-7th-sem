@@ -7,7 +7,6 @@ use App\Http\Requests\AddToCartPostRequest;
 use App\Models\Cart;
 use App\Models\CartItem;
 use App\Models\Product;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
@@ -27,29 +26,30 @@ class CartController extends Controller
             if($cart===null){
                     $data=Cart::create([
                         'user_id' => $user_id,
-                        'subtotal' => $product['price']
+                        'subtotal' => $product->price-($product->price*$product->discount_value/100)
                     ]);
                     CartItem::create([
                         'cart_id'=>$data['id'],
                         'product_id'=>$request->product_id,
-                        'quantity'=>1
+                        'color_id'=>$request->color,
+                        'size_id'=>$request->size,
+                        'quantity'=>$request->quantity??1
                     ]);   
             }else{
                 $item=CartItem::where('cart_id',$cart['id'])->where('product_id',$request->product_id)->exists();
                 if($item){
                     throw new \Exception("Already in cart");
-                }else{
-                    
+                }else{                  
                     CartItem::create([
                         'cart_id'=>$cart['id'],
                         'product_id'=>$request->product_id,
-                        'quantity'=>1
+                        'color_id'=>$request->color,
+                        'size_id'=>$request->size,
+                        'quantity'=>$request->quantity??1
                     ]);   
-                    $cart['subtotal']+=$product['price'];
+                    $cart['subtotal']+=$product->price-($product->price*$product->discount_value/100);
                     $cart->save();
-                }
-                // 
-                
+                }              
             }
             return back();
         } catch (\Exception $e) {
@@ -58,9 +58,9 @@ class CartController extends Controller
     }
     public function removeFromCart(CartItem $item){
         $cart=Cart::find($item->cart_id);
-
+        $price=$item->product->price-($item->product->price/$item->product->discount_value);
         try{
-            $cart['subtotal']-=$item->product->price;
+            $cart['subtotal']-=$price;
             $cart->update();
             $item->delete();
         }catch(\Exception $e){

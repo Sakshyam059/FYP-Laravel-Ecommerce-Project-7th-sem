@@ -1,5 +1,5 @@
 
-<aside class="px-6 mb-3 border-r">
+<aside class="px-6 py-4 mb-3 border-r">
     <h4 class="text-2xl font-bold ">Filters</h4>
     <ul class="py-3">
         <li>
@@ -19,7 +19,7 @@
                     x-transition:enter-start="opacity-25 max-h-0" x-transition:enter-end="opacity-100 max-h-xl"
                     x-transition:leave="transition-all ease-in-out duration-300"
                     x-transition:leave-start="opacity-100 max-h-xl" x-transition:leave-end="opacity-0 max-h-0"
-                    class="space-y-2 overflow-hidden text-sm font-medium text-gray-800  rounded-b-md dark:text-gray-400 dark:bg-gray-900"
+                    class="space-y-2 overflow-hidden text-sm font-medium text-gray-800 rounded-b-md dark:text-gray-400 dark:bg-gray-900"
                     aria-label="submenu">
                     
                     <div
@@ -56,7 +56,7 @@
                     x-transition:enter-start="opacity-25 max-h-0" x-transition:enter-end="opacity-100 max-h-xl"
                     x-transition:leave="transition-all ease-in-out duration-300"
                     x-transition:leave-start="opacity-100 max-h-xl" x-transition:leave-end="opacity-0 max-h-0"
-                    class="space-y-2 overflow-hidden text-sm font-medium text-gray-800  rounded-b-md dark:text-gray-400 dark:bg-gray-900"
+                    class="space-y-2 overflow-hidden text-sm font-medium text-gray-800 rounded-b-md dark:text-gray-400 dark:bg-gray-900"
                     aria-label="submenu">
                     @foreach (App\Models\Category::all() as $category)
                     <div
@@ -86,7 +86,7 @@
                     x-transition:enter-start="opacity-25 max-h-0" x-transition:enter-end="opacity-100 max-h-xl"
                     x-transition:leave="transition-all ease-in-out duration-300"
                     x-transition:leave-start="opacity-100 max-h-xl" x-transition:leave-end="opacity-0 max-h-0"
-                    class="space-y-2 overflow-hidden text-sm font-medium text-gray-800  rounded-b-md dark:text-gray-400 dark:bg-gray-900"
+                    class="space-y-2 overflow-hidden text-sm font-medium text-gray-800 rounded-b-md dark:text-gray-400 dark:bg-gray-900"
                     aria-label="submenu">
                     @foreach (App\Models\Category::all() as $category)
                     <div

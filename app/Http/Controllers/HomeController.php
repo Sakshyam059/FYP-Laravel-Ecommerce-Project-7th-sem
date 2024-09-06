@@ -11,6 +11,6 @@ class HomeController extends Controller
     public function index(){
         $banners=Banner::get();
         $products=Product::get();
-        return view('frontend.test',compact('banners','products'));
+        return view('frontend.index',compact('banners','products'));
     }
 }

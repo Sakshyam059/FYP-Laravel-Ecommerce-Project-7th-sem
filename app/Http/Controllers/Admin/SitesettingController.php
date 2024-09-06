@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\SiteSettingPostRequest;
 use App\Models\SiteSetting;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class SitesettingController extends Controller
 {
@@ -15,8 +17,8 @@ class SitesettingController extends Controller
             $fileName = pathinfo($originName, PATHINFO_FILENAME);
             $extension = $request->file('upload')->getClientOriginalExtension();
             $fileName = $fileName . '_' . time() . '.' . $extension;
-            $request->file('upload')->move(public_path('admin/media/setting'), $fileName);
-            $url = asset('admin/media/setting/' . $fileName);
+            $request->file('upload')->move(public_path('admin/site/setting'), $fileName);
+            $url = asset('admin/site/setting/' . $fileName);
             return response()->json(['fileName' => $fileName, 'uploaded' => 1, 'url' => $url]);
         }
     }
@@ -27,48 +29,30 @@ class SitesettingController extends Controller
     {
         return view('admin.site.setting');
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function update(SiteSettingPostRequest $request, SiteSetting $siteSetting)
     {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(SiteSetting $siteSetting)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-   
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, SiteSetting $siteSetting)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(SiteSetting $siteSetting)
-    {
-        //
+        try {
+            $data = $request->validated();
+            if ($request->hasFile('logo')) {
+                $file = $request->file('logo');
+                $filename = $file->getClientOriginalName();
+                $logo = time() . '_' . $filename;
+                $file->move(public_path('admin/images/logos/'), $logo);
+                File::delete(public_path('admin/images/logos/' . $siteSetting->logo));
+                $data['logo'] = $logo;
+            }
+            if ($request->hasFile('favicon')) {
+                $file = $request->file('favicon');
+                $filename = $file->getClientOriginalName();
+                $icon = time() . '_' . $filename;
+                $file->move(public_path('admin/images/favicon/'), $icon);
+                File::delete(public_path('admin/images/favicon/' . $siteSetting->favicon));
+                $data['favicon'] = $icon;
+            }
+            $siteSetting->update($data);
+            return redirect()->back()->with('success', 'Setting change successfull');
+        } catch (\Exception $e) {
+            dd($e->getMessage());
+        }
     }
 }

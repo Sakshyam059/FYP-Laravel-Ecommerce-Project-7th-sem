@@ -1,9 +1,14 @@
 <?php
 
+use App\Http\Controllers\Checkout\BillingController;
 use App\Http\Controllers\Checkout\CheckoutController;
+use App\Http\Controllers\Checkout\PaymentController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\PageController;
 use App\Http\Controllers\Frontend\ProductController;
+use App\Http\Controllers\Checkout\ShippingController;
+use App\Http\Controllers\Frontend\OrderController;
+use App\Http\Controllers\Frontend\TransactionController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -11,16 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/',[HomeController::class,'index'])->name('homepage');
 Route::get('/about',[PageController::class,'about'])->name('about');
 Route::get('/contact-us',[PageController::class,'contact'])->name('contact-us');
-
-Route::middleware('guest')->group(function(){
-
-    Route::get('/customer/register', function () {
-        return view('auth.customer-register');
-    })->name('customer.register');
-    Route::get('/customer/login', function () {
-        return view('auth.customer-login');
-    })->name('customer.login');
-});
+Route::get('/privacy-policy',[PageController::class,'privacyPolicy'])->name('privacy-policy');
 
 Route::get('/products',[ProductController::class,'index'])->name('products.index');
 Route::get('/product/{product}',[ProductController::class,'show'])->name('product.show');
@@ -37,8 +33,19 @@ Route::middleware('auth')->group(function () {
     Route::post('/product/add-to-cart',[CartController::class,'addToCart'])->name('cart.add');
     Route::delete('/product/remove-from-cart/{item}',[CartController::class,'removeFromCart'])->name('cart.remove');
 
-    Route::get('/checkout/billing-information', [CheckoutController::class, 'index'])->name('checkout.billing');
-    Route::get('/checkout/payment-details', [CheckoutController::class, 'paymentIndex'])->name('checkout.payment');
+    Route::post('shipping-details',[ShippingController::class,'createShipping'])->name('shipping.create');
+
+    Route::post('billing-information',[BillingController::class,'create'])->name('billing.create');
+    Route::get('/checkout/billing-information', [BillingController::class, 'index'])->name('checkout.billing');
+    
+    Route::get('/checkout/payment-details', [PaymentController::class, 'index'])->name('checkout.payment');
+    Route::post('/payment/initiate',[PaymentController::class,'initiatePayment'])->name('payment.initiate');
+    Route::get('/payment/verify',[PaymentController::class,'verifyPayment'])->name('payment.verify');
+    
+    Route::get('/my-orders',[OrderController::class,'index'])->name('order.index');
+    Route::get('/my-transactions',[TransactionController::class,'index'])->name('transaction.index');
+
+
     Route::get('/checkout/complete-order', [CheckoutController::class, 'completeOrder'])->name('checkout.complete');
 
 });

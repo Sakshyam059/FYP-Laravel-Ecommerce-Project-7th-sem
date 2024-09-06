@@ -1,4 +1,4 @@
-<aside class="col-span-4 pl-3 pr-6">
+<aside class="col-span-4 py-4 pl-3 pr-6">
     <div class="flex items-center justify-between mb-3">
         <div>
             <h5 class="text-gray-500">Showing latest products </h5>

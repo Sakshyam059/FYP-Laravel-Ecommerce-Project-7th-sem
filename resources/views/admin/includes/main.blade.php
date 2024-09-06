@@ -5,13 +5,12 @@
 <head>
     @include('admin.includes.top')
     @yield('styles')
-    
 </head>
 
 <body >
     <div class="flex h-screen dark:bg-gray-900" :class="{ 'overflow-hidden': isSideMenuOpen }">
         @include('admin.includes.menubar')
-        <div class="z-10 flex flex-col flex-1 w-full ">
+        <div class="z-10 flex flex-col flex-1 w-full bg-white ">
             @include('admin.includes.header')
             @include('admin.includes.loading')
             <main class="hidden h-full overflow-y-auto lg:px-3" id="content">

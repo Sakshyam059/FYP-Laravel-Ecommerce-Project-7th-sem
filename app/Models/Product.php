@@ -11,6 +11,9 @@ class Product extends Model
     use HasFactory;
     protected $guarded=[];
 
+    public function discount_price(){
+        return $this->price-($this->price*($this->discount_value/100));
+    }
     public function product_skus(){
         return $this->hasMany(ProductSku::class);
     }

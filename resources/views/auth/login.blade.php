@@ -1,47 +1,36 @@
-<x-guest-layout>
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
-
-    <form method="POST" action="{{ route('login') }}">
-        @csrf
-
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+@extends('frontend.includes.main')
+@section('content')
+    <div class="grid grid-cols-3 p-6">
+        <div class="overflow-hidden">
+            <img src="{{ asset('frontend/assets/svg/auth-asset1.svg') }}" alt="Sample photo" class="object-cover mx-auto"/>
         </div>
+        <div class="w-2/3 col-span-2 mx-auto space-y-4">
+            <div>
+                <h3 class="text-2xl font-bold">Welcome Back!</h3>
+                <p class="">Sign In to your account.</p>
+            </div>
+            <form action="{{ route('login') }}" method="POST" class="space-y-4">
+                @csrf
+                <div data-mdb-input-init class="mb-3 space-y-2">
+                    <label class="block font-semibold" for="form3Example8">Email</label>
+                    <input type="text" id="form3Example8" class="block w-full rounded-md bg-gray-100/60"
+                        value="{{ old('email') }}" name="email" />
+                </div>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
 
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                <div data-mdb-input-init class="space-y-2 ">
+                    <label class="block font-semibold" for="form3Example8">Password</label>
+                    <input type="password" id="form3Example8" class="block w-full rounded-md bg-gray-100/60" name="password" />
+                </div>
+                <div>
+                    <button type="submit" data-mdb-button-init data-mdb-ripple-init
+                        class="block w-full py-2 text-white bg-blue-800 rounded-md">Log In</button>
+                </div>
+            </form>
+            <div>
+                <h6 class="inline">Don't have an account ?</h6>
+               <a href="{{route('register')}}" class="font-medium text-blue-600">Sign Up</a>
+            </div>
         </div>
-
-        <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
-                <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-            </label>
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
-            @endif
-
-            <x-primary-button class="ms-3">
-                {{ __('Log in') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+    </div>
+@endsection

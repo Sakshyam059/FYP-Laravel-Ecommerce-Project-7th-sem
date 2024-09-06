@@ -7,13 +7,14 @@ use Illuminate\Http\Request;
 
 class CheckoutController extends Controller
 {
-    public function index(){
-        return view('frontend.checkout.billing-info');
-    }
-    public function paymentIndex(){
-        return view('frontend.checkout.payment-info');
-    }
-    public function completeOrder(){
-        return view('frontend.checkout.complete-order');
+    public function completeOrder(Request $request){
+        $order=$request->session()->get('order');
+        $payment_method=$request->session()->get('payment_method');
+        $shipping_detail=$request->session()->get('shipping_detail');
+        $billing_information=$request->session()->get('billing_information');
+        $request->session()->forget('order_details');
+        $request->session()->forget('payment_method');
+        return view('frontend.checkout.complete-order',compact('payment_method','billing_information','shipping_detail','order'));
+
     }
 }

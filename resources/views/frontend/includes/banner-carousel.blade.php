@@ -20,7 +20,7 @@
                 <div class=" swiper-slide">
                     <div class="flex flex-col overflow-hidden border">
                         <div class="flex-shrink-0">
-                            <img class=" banner-image" src="{{ asset('admin/images/banners/' . $banner->image) }}"
+                            <img class="w-full rounded max-h-96" src="{{ asset('admin/images/banners/' . $banner->image) }}"
                                 alt="">
                         </div>
                     </div>

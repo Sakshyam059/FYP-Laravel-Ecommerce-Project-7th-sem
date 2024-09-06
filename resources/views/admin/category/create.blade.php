@@ -46,12 +46,13 @@
                     <div>
                         <label for="description"
                             class="block pb-3 text-sm text-gray-700 capitalize dark:text-gray-200">Description</label>
-                        <textarea name="description" class="w-full text-sm text-gray-700 capitalize dark:text-gray-200" id="description"
-                            rows="3"></textarea>
+                        <textarea name="description"
+                            class="block w-full px-3 py-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40"
+                            id="description" rows="3"></textarea>
                         <span class="hidden text-xs text-red-600" id="description_error"></span>
                     </div>
                     <div class="py-2 space-y-2">
-                        <label class="block font-semibold">Thumbnail Image</label>
+                        <label class="block pb-3 text-sm text-gray-700 capitalize dark:text-gray-200 ">Thumbnail Image</label>
                         <div class="flex items-center gap-3">
                             <img class="hidden object-contain w-24 h-24 p-3 rounded" src="" id="preview"
                                 alt="" />
@@ -61,7 +62,7 @@
                                 <span>Choose Image</span>
                             </label>
                         </div>
-                        <input class="hidden" type="file" onchange="previewFile()" name="thumbnail_image"
+                        <input class="hidden" type="file" name="thumbnail_image"
                             id="thumbnail_image">
                         @error('thumbnail_image')
                             <span class="text-xs text-red-600 ">{{ $message }}</span>
@@ -123,27 +124,23 @@
                 });
             });
         });
-        $(document).ready(function() {
-            $('#clearBtn').on('click', function(e) {
-                $('#categoryForm')[0].reset();
-                $('.error-message').text('');
-            });
+        $('#clearBtn').on('click', function(e) {
+            $('#categoryForm')[0].reset();
+            $('.error-message').text('');
         });
-        $(document).ready(() => {
-            const photoInp = $("#thumbnail_image");
-            let file;
-            photoInp.change(function(e) {
-                file = this.files[0];
-                if (file) {
-                    let reader = new FileReader();
-                    reader.onload = function(event) {
-                        $("#preview").show();
-                        $("#preview")
-                            .attr("src", event.target.result);
-                    };
-                    reader.readAsDataURL(file);
-                }
-            });
+        const photoInp = $("#thumbnail_image");
+        let file;
+        photoInp.change(function(e) {
+            file = this.files[0];
+            if (file) {
+                let reader = new FileReader();
+                reader.onload = function(event) {
+                    $("#preview").show();
+                    $("#preview")
+                        .attr("src", event.target.result);
+                };
+                reader.readAsDataURL(file);
+            }
         });
     </script>
 @endpush

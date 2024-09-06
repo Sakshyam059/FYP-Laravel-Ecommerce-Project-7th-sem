@@ -18,7 +18,10 @@ class DatabaseSeeder extends Seeder
     
         $this->call([
             SiteSettingSeeder::class,
-            UserSeeder::class
+            UserSeeder::class,
+            ColorSeeder::class,
+            SizeSeeder::class,
+            BrandSeeder::class
         ]);
     }
 }

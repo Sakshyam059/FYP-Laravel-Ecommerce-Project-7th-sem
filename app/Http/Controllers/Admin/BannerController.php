@@ -23,7 +23,7 @@ class BannerController extends Controller
             return DataTables::of($data)->addIndexColumn()
             ->addIndexColumn()
                 ->editColumn('select_banners', function ($row) {
-                    return '<input class="mx-3 lg:mx-1 select-product" type="checkbox" name="banners[]" value="' . $row->id . '"/>';
+                    return '<input class="mx-3 select-all lg:mx-1" type="checkbox" name="banners[]" value="' . $row->id . '"/>';
                 })->editColumn('image',function($row){
                     $image=asset('admin/images/banners/'.$row->image);
                     return "<img src='$image' class='object-cover w-2/3 h-16' />";
@@ -40,8 +40,8 @@ class BannerController extends Controller
                 $status_btn = '<button class="w-100 btn ' . ($status_class === 'active' ? 'btn-outline-success ' : 'btn-outline-danger ') . 'btn-sm "' . ' >' . $status . '</button>';
                 return $status_btn;
             })->addColumn('action', function ($row) {
-                $edit = route('admin.product.banner.edit', $row->id);
-                $delete = route('admin.product.banner.destroy', $row->id);
+                $edit = route('admin.marketing.banner.edit', $row->id);
+                $delete = route('admin.marketing.banner.destroy', $row->id);
 
                 $btn = '<div x-data="{ open: false }" class="relative">
                 <button @click="open = ! open" class=" focus:outline-none">

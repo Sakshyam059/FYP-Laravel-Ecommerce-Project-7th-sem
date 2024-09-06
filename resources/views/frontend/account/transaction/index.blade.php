@@ -1,0 +1,42 @@
+@extends('frontend.includes.main')
+@section('content')
+    <ul class="flex gap-2 px-6 py-3 -mt-2 text-sm font-medium text-green-700 border-b">
+        <li class="flex items-center gap-2">
+            <i class="bx bx-home"></i>
+            <span>Home</span>
+        </li>
+        <li><small>></small></li>
+        <li><span>My Orders</li>
+    </ul>
+    <div class="grid grid-cols-5 gap-6 px-6 py-2">
+        @include('frontend.account.includes.menu')
+        <div class="col-span-4 space-y-8 border rounded">
+            <table class="table w-full text-center">
+                <thead>
+                    <tr class="border-b bg-gray-50">
+                        <th class="py-4">Payment Id</th>
+                        <th>Order No.</th>
+                        <th class="py-4">Payment Method</th>
+                        <th class="py-4">Payment Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($orders as $order)
+                        @foreach ($order->transactions as $transaction)
+                            <tr class="border-b">
+                                <td class="py-4" scope="row">{{ $transaction->id }}</td>
+                                <td class="py-4">{{ $transaction->order_id }}</td>
+                                <td class="py-4">{{ $transaction->payment_method }}</td>
+                                <td class="py-4 text-xs text-white"><span
+                                        class="px-4 py-1 rounded  {{ $transaction->payment_status == 1 ? 'bg-green-600' : 'bg-red-600' }}">{{ $transaction->payment_status == 1 ? 'Paid' : 'Pending' }}</span>
+                                </td>
+
+                            </tr>
+                        @endforeach
+                    @endforeach
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+@endsection

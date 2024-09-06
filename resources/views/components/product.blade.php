@@ -16,7 +16,7 @@
     </div>
     
     <div class="flex items-center justify-between px-3 my-3">
-        <h4 class="inline-flex flex-col gap-2 font-medium"><span class="text-orange-600">NPR {{ number_format($product->price-($product->price/$product->discount_value),2) }}</span> <span class="text-xs text-red-600 line-through">NPR {{ $product->price }}</span></h4>
+        <h4 class="inline-flex flex-col gap-2 font-medium"><span class="text-orange-600">NPR {{ number_format($product->discount_price(),2) }}</span> <span class="text-xs text-red-600 line-through">NPR {{ $product->price }}</span></h4>
         <form action="{{route('cart.add')}}" method="post">
             @csrf
             <input class="hidden" type="text" value="{{$product->id}}" name="product_id" readonly>

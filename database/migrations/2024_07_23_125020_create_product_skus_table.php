@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('product_skus', function (Blueprint $table) {
-            $table->primary(['product_id','color_id','size_id']);
+            $table->increments('id')->unique();
+            $table->primary(['id','product_id','color_id','size_id']);
             $table->string('sku')->nullable();
             $table->foreignId('product_id')->constrained('products')->cascadeOnDelete();
             $table->foreignId('color_id')->constrained('colors')->cascadeOnDelete();

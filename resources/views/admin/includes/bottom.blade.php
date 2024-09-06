@@ -2,7 +2,7 @@
 <script>
     $(document).ready(function() {
         setTimeout(function() {
-            $('#loader').empty();
+            $('#loader').hide();
             $('#content').show();
         }, 500);
     });

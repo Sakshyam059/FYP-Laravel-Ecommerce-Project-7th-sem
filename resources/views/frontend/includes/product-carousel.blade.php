@@ -21,16 +21,16 @@
             spaceBetween: 10,
         },
     },
-})" class="space-y-4">
+})" class="py-2 space-y-4 ">
     <div class="relative flex items-center">
         <h3 class="text-2xl font-semibold ">Our new products</h3>
         <div class="absolute right-0 z-10 flex items-center gap-2">
             <button @click="swiper.slidePrev()"
-                class="flex items-center justify-center p-2 bg-white border rounded-full focus:outline-none">
+                class="flex items-center justify-center p-2 border rounded-full focus:outline-none">
                 <i class='bx bx-left-arrow-alt'></i>
             </button>
             <button @click="swiper.slideNext()"
-                class="flex items-center justify-center p-2 bg-white border rounded-full focus:outline-none">
+                class="flex items-center justify-center p-2 border rounded-full focus:outline-none">
                 <i class='bx bx-right-arrow-alt'></i>
             </button>
         </div>

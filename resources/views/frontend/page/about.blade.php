@@ -7,11 +7,11 @@
         </div>
         <div class="flex items-center justify-between w-full gap-4">
             <div class="w-full ">
-                <img src="{{asset('admin/assets/static/images/about-5.jpg')}}" class="w-full mx-auto rounded h-80 " alt="">
+                <img src="{{asset('frontend/assets/static/images/about/product-2.jpg')}}" class="w-full mx-auto rounded h-80 " alt="">
             </div>
             <div class="w-full space-y-4 ">
-                <img src="{{asset('admin/assets/static/images/about-2.jpg')}}" class="w-full mx-auto rounded h-72" alt="">
-                <img src="{{asset('admin/assets/static/images/about-3.jpg')}}" class="w-full mx-auto rounded aspect-square " alt="">
+                <img src="{{asset('frontend/assets/static/images/about/product-1.jpg')}}" class="w-full mx-auto rounded h-72" alt="">
+                <img src="{{asset('frontend/assets/static/images/about/product-3.jpg')}}" class="w-full mx-auto rounded aspect-square " alt="">
             </div>
         </div>
     </section>
@@ -34,14 +34,21 @@
     <section class="px-6 my-4 space-y-6">
         <h2 class="text-3xl font-bold text-center">Our Team Members</h2>
         <div class="flex justify-around gap-16">
+           
             <div class="p-4 space-y-4 text-center border rounded">
-                <img src="{{asset('admin/assets/static/images/profile-1.jpg')}}" class="w-56 aspect-square" alt="">
-                <h4 class="text-lg font-semibold">Sakshyam Gurau</h4>
+                <img src="{{asset('frontend/assets/static/images/profile-2.jpg')}}" class="w-56 aspect-square" alt="">
+                <h4 class="text-lg font-semibold">XYZ</h4>
+                <small>Web Developer</small>
+            </div>
+           
+            <div class="p-4 space-y-4 text-center border rounded">
+                <img src="{{asset('frontend/assets/static/images/profile-2.jpg')}}" class="w-56 aspect-square" alt="">
+                <h4 class="text-lg font-semibold">XYZ</h4>
                 <small>Web Developer</small>
             </div>
             <div class="p-4 space-y-4 text-center border rounded">
-                <img src="{{asset('admin/assets/static/images/profile-2.jpg')}}" class="w-56 aspect-square" alt="">
-                <h4 class="text-lg font-semibold">Amod KC</h4>
+                <img src="{{asset('frontend/assets/static/images/profile-2.jpg')}}" class="w-56 aspect-square" alt="">
+                <h4 class="text-lg font-semibold">XYZ</h4>
                 <small>Web Developer</small>
             </div>
         </div>

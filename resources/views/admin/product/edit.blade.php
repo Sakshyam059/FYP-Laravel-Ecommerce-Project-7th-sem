@@ -13,24 +13,24 @@
             </div>
 
         </div>
-        <form method="post" action="{{route('admin.product.update',$product->id)}}" class="grid grid-cols-[60%,40%]" enctype="multipart/form-data">
+        <form method="post" action="{{ route('admin.product.store') }}" class="grid grid-cols-[60%,40%]" enctype="multipart/form-data">
             @csrf
-            @method('PUT')
             <div class="p-3">
                 @include('admin.product.partials.general-info')
                 @include('admin.product.partials.pricing-info')
-                @include('admin.product.partials.additional-info')
+                @include('admin.product.partials.size-and-color-info')
             </div>
             <div class="p-3">
                 @include('admin.product.partials.image-info')
                 @include('admin.product.partials.category-info')
-                @include('admin.product.partials.quantity-info')
+                @include('admin.product.partials.brand-info')
+                @include('admin.product.partials.additional-info')
     
     
                 <div class="mt-3 ">
                     <div class="grid grid-cols-2 gap-5">
                         <a href="{{ route('admin.product.index') }}" class="py-2 text-center border rounded bg-gray-50/40">Discard</a>
-                        <button type="submit" class="py-2 text-center text-white border rounded bg-blue-600/90">Add Product</button>
+                        <button type="submit" class="py-2 text-center text-white border rounded bg-blue-600/90">Update Product</button>
                     </div>
                 </div>
             </div>
@@ -40,7 +40,7 @@
 @endsection
 @section('scripts')
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    
+   
     <script>
         $("document").ready(function() {
             $('#category').on('change', function() {
@@ -65,9 +65,6 @@
                     })
                 }
             });
-
-
         });
-        
     </script>
 @endsection

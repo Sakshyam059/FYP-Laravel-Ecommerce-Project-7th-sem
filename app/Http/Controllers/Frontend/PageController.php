@@ -13,4 +13,7 @@ class PageController extends Controller
     public function contact(){
         return view('frontend.page.contact');
     }
+    public function privacyPolicy(){
+        return view('frontend.page.privacy-policy');
+    }
 }

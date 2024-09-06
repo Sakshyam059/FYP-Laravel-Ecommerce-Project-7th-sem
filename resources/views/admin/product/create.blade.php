@@ -6,11 +6,6 @@
             <h4 class="text-xl">
                 Add New Product
             </h4>
-            <div class="flex px-0">
-                {{-- @include('admin.category.create')
-                @include('admin.subcategory.create') --}}
-
-            </div>
 
         </div>
         <form method="post" action="{{ route('admin.product.store') }}" class="grid grid-cols-[60%,40%]" enctype="multipart/form-data">

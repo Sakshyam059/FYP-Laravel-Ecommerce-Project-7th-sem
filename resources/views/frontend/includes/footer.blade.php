@@ -15,7 +15,7 @@
                     <li class="py-2"><a title="My Account">About us</a></li>
                     <li class="py-2"><a title="My Cart">Contact us</a></li>
                     <li class="py-2"><a title="Wishlist">Faq</a></li>
-                    <li class="py-2"><a title="Wishlist">Privacy policy</a></li>
+                    <li class="py-2"><a href="{{route('privacy-policy')}}" title="Privacy-Policy">Privacy policy</a></li>
                 </ul>
             </div>
             <div class="">
@@ -37,7 +37,7 @@
                     <li class="py-2">
                         <a href="#" title="Terms & Conditions">Terms & Conditions</a>
                     </li>
-                    <li class="py-2"><a title="About">Privacy policy</a></li>
+                    <li class="py-2"><a href="{{route('privacy-policy')}}" title="Privacy-Policy">Privacy policy</a></li>
                 </ul>
             </div>
         </div>

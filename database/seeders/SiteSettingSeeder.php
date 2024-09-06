@@ -20,6 +20,7 @@ class SiteSettingSeeder extends Seeder
             'phone' => '9812364578',
             'address' => 'Gaindakot',
             'working_hrs' => '24',
+            'copyrights' => '2024',
             'fb_link'=>'https://www.facebook.com',
             'insta_link'=>'https://www.instagram.com',
             'twitter_link'=>'https://www.twitter.com'

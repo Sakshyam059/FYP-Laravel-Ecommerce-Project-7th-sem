@@ -4,20 +4,20 @@
 
     <div class="py-3 space-y-3">
         <div class="grid grid-cols-3 gap-4 size-color-info">
-            <select class="color-info"  name="skus[0][color_id]">
+            <select class="w-full rounded color-info"  name="skus[0][color_id]">
                 <option value="">Choose a color</option>
                 @foreach (App\Models\Color::all() as $color)
                     <option value="{{$color->id}}">{{$color->color_name}}</option>         
                     @endforeach
                 </select>
-                <select  class="size-info" name="skus[0][size_id]">
+                <select  class="w-full rounded size-info" name="skus[0][size_id]">
                     <option value="">Choose a size</option>
                     @foreach (App\Models\Size::all() as $size)
                     <option value="{{$size->id}}">{{$size->size_name}}</option>         
                 @endforeach
                 
             </select>
-            <input type="text" class="quantity-info"  value="" placeholder="Enter Quantity" class="w-full rounded bg-gray-100/40" name="skus[0][quantity]">
+            <input type="text" class="w-full rounded quantity-info"  value="" placeholder="Enter Quantity" class="w-full rounded bg-gray-100/40" name="skus[0][quantity]">
         </div>
     </div>
     <div>

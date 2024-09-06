@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ColorController;
 use App\Http\Controllers\Admin\NewsletterController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\SitesettingController;
@@ -35,8 +36,11 @@ Route::middleware(['auth', 'admin'])->group(function () {
     });
     Route::resource('newsletter', NewsletterController::class);
 
+    Route::get('orders',[OrderController::class,'index'])->name('order.index');
+    
     Route::get('profile/setting', [ProfileController::class, 'edit'])->name('profile.edit');
     
     Route::get('site/setting', [SitesettingController::class, 'edit'])->name('site_setting.edit');
+    Route::put('site/setting/{siteSetting}/update', [SitesettingController::class, 'update'])->name('site_setting.update');
     Route::post('site/description', [SiteSettingController::class, 'upload'])->name('site_setting.description');
 });
