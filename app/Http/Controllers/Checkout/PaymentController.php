@@ -112,12 +112,6 @@ class PaymentController extends Controller
             'Content-Type' => 'application/json',
         ])->post($khalti . "epayment/initiate/", $data);
 
-        foreach ($this->cart->cartItems()->get() as $item) {
-            $order_detail['ref_id'] = $response['pidx'];
-            $order_detail['product_id'] = $item->product_id;
-            $order_detail['quantity'] = $item->quantity;
-            Session::push('order_details', $order_detail);
-        }
         $this->payment_url = $response['payment_url'];
     }
     public function verifyKhaltiPayment(Request $request)
