@@ -25,7 +25,7 @@ class BannerController extends Controller
                 ->editColumn('select_banners', function ($row) {
                     return '<input class="mx-3 select-all lg:mx-1" type="checkbox" name="banners[]" value="' . $row->id . '"/>';
                 })->editColumn('image',function($row){
-                    $image=asset('admin/images/banners/'.$row->image);
+                    $image=asset('asset/images/banners/'.$row->image);
                     return "<img src='$image' class='object-cover w-2/3 h-16' />";
                 })->editColumn('category_name',function($row){
                     return $row->category->category_name;
@@ -104,7 +104,7 @@ class BannerController extends Controller
                 $file = $request->file('image');
                 $name = $file->getClientOriginalName();
                 $imagepath = time() . '_' . $name;
-                $file->move(public_path('admin/images/banners/'), $imagepath);
+                $file->move(public_path('asset/images/banners/'), $imagepath);
                 $data['image'] = $imagepath;
             }
             Banner::create($data);
@@ -145,7 +145,7 @@ class BannerController extends Controller
     {
         try {
             if ($banner) {
-                File::delete(public_path('admin/images/banners/' . $banner->image));
+                File::delete(public_path('asset/images/banners/' . $banner->image));
                 $banner->delete();
                 
                 return response()->json(['status' => 200, 'message' => 'Banner deleted successfully']);

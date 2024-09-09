@@ -18,6 +18,5 @@
             @include('frontend.account.profile.partials.update-password-form')
         </div>
     </div>
-    @include('frontend.page.partials.newsletter')
     @include('frontend.page.partials.features')
 @endsection

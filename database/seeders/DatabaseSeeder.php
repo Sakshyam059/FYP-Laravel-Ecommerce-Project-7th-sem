@@ -21,7 +21,8 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             ColorSeeder::class,
             SizeSeeder::class,
-            BrandSeeder::class
+            BrandSeeder::class,
+            PaymentMethodSeeder::class,
         ]);
     }
 }

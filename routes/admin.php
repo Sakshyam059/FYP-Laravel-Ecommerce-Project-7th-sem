@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\SitesettingController;
 use App\Http\Controllers\Admin\SizeController;
 use App\Http\Controllers\Admin\SubcategoryController;
+use App\Http\Controllers\Admin\VendorController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -18,6 +19,10 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/dashboard', function () {
         return view('admin.dashboard.dashboard');
     })->name('dashboard');
+    Route::get('vendors',[VendorController::class,'verificationRequest'])->name('vendor.request');
+    Route::get('vendor/{id}/verify',[VendorController::class,'show'])->name('vendor.show');
+    Route::put('vendor/{user}/verify', [VendorController::class, 'verifyVendor'])->name('vendor.verify');
+
 
     Route::post('product/description/image',[ProductController::class,'storeDescriptionImage'])->name('product.description.image');
     Route::get('product/removeall',[ProductController::class,'bulkDelete'])->name('product.bulk-delete');

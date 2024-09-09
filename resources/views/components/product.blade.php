@@ -4,7 +4,7 @@
         <span>{{ number_format($product->discount_value, 0) }}</span>% off
     </h4>
     <div>
-        <img class="object-cover h-56 mx-auto" src="{{ asset('admin/images/product/' . $product->mainImage->image) }}"
+        <img class="object-cover h-56 mx-auto" src="{{ asset('asset/images/product/' . $product->mainImage->image) }}"
             alt="">
     </div>
     <ul class="p-2 space-y-2">

@@ -95,7 +95,7 @@ class SubcategoryController extends Controller
         try {
             $validator = $request->validated();
             $validator['slug'] = Str::slug($request->subcategory_name);
-            $subcategory = Subcategory::create($validator);
+            Subcategory::create($validator);
             
             return response()->json(['status' => 200, 'success' => true, 'message' => 'Subcategory Created successfully']);
         } catch (\Exception $e) {

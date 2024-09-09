@@ -27,27 +27,6 @@
                     type="text" placeholder="Search">
             </div>
             <div class="items-center justify-end hidden gap-2 text-xl lg:flex">
-                <div x-data="{ userDropdown: false }" class="relative p-2">
-                    <button x-on:click="userDropdown = true" class="flex items-center gap-2" type="button">
-                        <i class='bx bx-bell'></i>
-                    </button>
-                    <ul x-show="userDropdown" x-on:click.away="userDropdown = false"
-                        :class="userDropdown ? 'opacity-100' : ''"
-                        class="absolute right-0 z-10 w-64 mt-2 overflow-hidden text-xs text-justify bg-white border rounded opacity-0 text-slate-600 ">
-                        <li class="inline-flex items-center gap-3 p-3 border-b">
-                            <i class='bx bx-envelope'></i>
-                            <span>
-                                Lorem, ipsum dolo a tempore ab officia labore expedita eligendi.
-                            </span>
-                        </li>
-                        <li class="inline-flex items-center gap-3 p-3 border-b">
-                            <i class='bx bx-envelope'></i>
-                            <span>
-                                Lorem, ipsum dolo a tempore ab officia labore expedita eligendi.
-                            </span>
-                        </li>
-                    </ul>
-                </div>
 
                 <div class="relative p-2">
                     <button @click="cartOpen = !cartOpen" class="inline-flex items-center focus:outline-none">
@@ -72,14 +51,23 @@
                         :class="userDropdown ? 'opacity-100' : ''"
                         class="absolute right-0 z-10 py-2 mt-1 space-y-2 text-sm text-black bg-white border rounded opacity-0 w-36">
                         @auth
-                            @if (Auth::user()->usertype === 'admin')
+                            @if (\Auth::user()->usertype === 'admin' || \Auth::user()->usertype === 'vendor')
+                                @php
+                                   $usertype= \Auth::user()->usertype;
+                                @endphp
                                 <li>
-                                    <a href="{{ route('admin.dashboard') }}"
+                                    <a href="{{ route("$usertype.dashboard") }}"
                                         class="block px-3 py-1 whitespace-no-wrap hover:bg-gray-200">
                                         Dashboard
                                     </a>
                                 </li>
                             @endif
+                            <li>
+                                <a href="{{ route('profile.info') }}"
+                                    class="block px-3 py-1 whitespace-no-wrap hover:bg-gray-200">
+                                    Profile
+                                </a>
+                            </li>
                             <li>
                                 <a href="{{ route('order.index') }}"
                                     class="block px-3 py-1 whitespace-no-wrap hover:bg-gray-200">
@@ -89,7 +77,7 @@
                             <li>
                                 <a href="{{ route('profile.edit') }}"
                                     class="block px-3 py-1 whitespace-no-wrap hover:bg-gray-200">
-                                    My Account
+                                    Settings
                                 </a>
                             </li>
                             <hr>
@@ -147,9 +135,8 @@
                     </ul>
                 </div>
                 <a class="py-2 hover:text-blue-500 " href="{{ route('homepage') }}">Home</a>
-                <a class="py-2 hover:text-blue-500" href="{{ route('products.index') }}">Shop</a>
-                <a class="py-2 hover:text-blue-500 " href="#">Pages</a>
-                <a class="py-2 hover:text-blue-500 " href="#">Blogs</a>
+                <a class="py-2 hover:text-blue-500" href="{{ route('products.index') }}">Shops</a>
+                <a class="py-2 hover:text-blue-500" href="{{ route('products.index') }}">Products</a>
             </div>
         </nav>
 

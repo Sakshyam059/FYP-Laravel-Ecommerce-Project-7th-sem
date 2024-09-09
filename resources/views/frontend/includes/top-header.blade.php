@@ -1,10 +1,10 @@
-<div class="items-center justify-between hidden px-6 py-2 text-xs border-b lg:flex" >
+<div class="items-center justify-between hidden px-6 py-2 text-xs border-b lg:flex">
 
     <!-- End topBar-left -->
 
     <div class="flex items-center gap-4 ">
         <a class="nav-link" href="#">FAQ</a>
-        <a class="nav-link" href="{{route('contact-us')}}">Contact us</a>
+        <a class="nav-link" href="{{ route('contact-us') }}">Contact us</a>
         <a class="nav-link" href="{{ route('about') }}">About us</a>
     </div>
 
@@ -13,12 +13,9 @@
 
     <div class="flex items-center gap-3">
         <div x-data="{ userDropdown: false }" class="relative">
-            <button x-on:click="userDropdown = true" class="flex items-center gap-2" type="button">
-                @auth
-                    <span>Hi, {{ auth()->user()->firstname }}</span>
-                @endauth
-            </button>
-            
+            <a href="{{ route('vendor.register') }}" class="flex items-center gap-2" type="button">
+                Become a Seller
+            </a>
         </div>
         <div x-data="{ userDropdown: false }" class="relative">
             <button x-on:click="userDropdown = true" class="flex items-center gap-2" type="button">

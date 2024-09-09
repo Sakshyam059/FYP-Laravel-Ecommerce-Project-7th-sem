@@ -2,7 +2,7 @@
 @section('styles')
     <link href="https://cdn.datatables.net/2.1.3/css/dataTables.dataTables.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/3.0.2/css/responsive.dataTables.min.css">
-    <link rel="stylesheet" href="{{asset('admin/assets/css/custom-datatables.css')}}">
+    <link rel="stylesheet" href="{{asset('asset/css/custom-datatables.css')}}">
     <style>
         th:nth-child(2),td:nth-child(2){
             padding: 0px 32px  !important;
@@ -86,7 +86,7 @@
 @endsection
 
 @section('scripts')
-   @include('admin.includes.datatables-scripts')
+   @include('backend.includes.datatables-scripts')
     <script type="text/javascript">
         $(document).ready(function() {
             var table = $("#data-table").DataTable({

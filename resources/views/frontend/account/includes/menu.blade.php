@@ -14,7 +14,7 @@
         </li>
         <li  class="p-2 rounded {{Request::routeIs('transaction.index')?'text-white bg-blue-600':''}}">
             <a href="{{route('transaction.index')}}" class="flex items-center gap-2 ">
-                <i class='bx bx-transaction'></i>
+                <i class='bx bx-credit-card'></i>
                 <span>Transactions</span>
             </a>
         </li>

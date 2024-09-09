@@ -1,6 +1,7 @@
 <?php
 
 use App\Enums\UsertypeEnum;
+use App\Enums\VerificationEnum;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,15 +15,13 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('firstname');
-            $table->string('lastname');
-            $table->string('usertype')->default(UsertypeEnum::GUEST->value);
+            $table->string('name');
+            $table->string('usertype')->default(UsertypeEnum::USER->value);
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('phone',50)->nullable();
-            $table->string('address')->nullable();
-            $table->boolean('status')->default(1);
+            $table->string('phone',50);
+            $table->boolean('status')->default(VerificationEnum::UNVERIFIED->value);
             $table->rememberToken();
             $table->timestamps();
         });

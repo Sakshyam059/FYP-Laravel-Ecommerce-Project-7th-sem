@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Product\ColorPostRequest;
-use App\Models\Category;
 use App\Models\Color;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;

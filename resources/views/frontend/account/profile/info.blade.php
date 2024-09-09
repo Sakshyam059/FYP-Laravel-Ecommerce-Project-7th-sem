@@ -11,7 +11,7 @@
     <div class="grid grid-cols-5 gap-6 px-6 py-2">
         @include('frontend.account.includes.menu')
         <div class="col-span-4 px-4 py-2 space-y-8 border rounded">
-           <div class="space-y-4">
+           <div class="space-y-2">
                 <div class="flex items-center justify-between">
                     <h2 class="font-medium underline">Personal Info</h2>
                     <a href="{{route('profile.edit')}}" class="px-2 py-1 text-sm text-white bg-green-500 rounded">
@@ -20,26 +20,25 @@
                 </div>
                 <table class="w-full">
                     <tr >
-                        <td class="pb-2">Customer Name</td>
-                        <td class="pb-2">{{$user->fullname()}}</td>
+                        <td class="py-2">Customer Name</td>
+                        <td class="py-2">{{$user->name}}</td>
                     </tr>
                     <tr >
-                        <td class="pb-2">Email</td>
-                        <td class="pb-2">{{$user->email}}</td>
+                        <td class="py-2">Email</td>
+                        <td class="py-2">{{$user->email}}</td>
                     </tr>
                     <tr >
-                        <td class="pb-2">Phone / Mobile</td>
-                        <td class="pb-2">{{$user->phone}}</td>
+                        <td class="py-2">Phone / Mobile</td>
+                        <td class="py-2">{{$user->phone}}</td>
                     </tr>
                     <tr >
-                        <td class="pb-2">Address</td>
-                        <td class="pb-2">{{$user->address}}</td>
+                        <td class="py-2">Address</td>
+                        <td class="py-2">{{$user->address}}</td>
                     </tr>
                     
                 </table>
            </div>
         </div>
     </div>
-    @include('frontend.page.partials.newsletter')
     @include('frontend.page.partials.features')
 @endsection

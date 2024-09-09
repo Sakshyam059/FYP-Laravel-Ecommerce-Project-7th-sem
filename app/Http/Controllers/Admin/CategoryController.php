@@ -25,7 +25,7 @@ class CategoryController extends Controller
                 ->editColumn('select_categories', function ($row) {
                     return '<input class="mx-3 select-all lg:mx-1" type="checkbox" name="categories[]" value="' . $row->id . '"/>';
                 })->editColumn('thumbnail_image',function($row){
-                    $image=asset('admin/images/category/'.$row->thumbnail_image);
+                    $image=asset('asset/images/category/'.$row->thumbnail_image);
                     return "<img src='$image' class='object-contain h-12 mr-auto' />" ;
                 })->editColumn('status', function ($row) {
                     if ($row->status === 1) {
@@ -95,7 +95,7 @@ class CategoryController extends Controller
                 $file = $request->file('thumbnail_image');
                 $name = $file->getClientOriginalName();
                 $imagepath = time() . '_' . $name;
-                $file->move(public_path('admin/images/category/'), $imagepath);
+                $file->move(public_path('asset/images/category/'), $imagepath);
                 $validator['thumbnail_image'] = $imagepath;
             }
             Category::create($validator);
@@ -128,8 +128,8 @@ class CategoryController extends Controller
                 $file = $request->file('thumbnail_image');
                 $name = $file->getClientOriginalName();
                 $imagepath = time() . '_' . $name;
-                File::delete(public_path('admin/images/category/' . $category->thumbnail_image));
-                $file->move(public_path('admin/images/category/'), $imagepath);
+                File::delete(public_path('asset/images/category/' . $category->thumbnail_image));
+                $file->move(public_path('asset/images/category/'), $imagepath);
                 $validator['thumbnail_image'] = $imagepath;
             }
             $category->update($validator);
@@ -147,7 +147,7 @@ class CategoryController extends Controller
     {
         try {
             if ($category) {
-                File::delete(public_path('admin/images/category/'.$category->thumbnail_image));
+                File::delete(public_path('asset/images/category/'.$category->thumbnail_image));
                 $category->delete();
                 return response()->json(['status' => 200, 'message' => 'Category deleted successfully']);
             }

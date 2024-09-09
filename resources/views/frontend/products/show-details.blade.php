@@ -22,7 +22,7 @@
                 <div class="">
                     @foreach ($product->allImage as $path)
                         <div class="p-3 border rounded">
-                            <img class="mx-auto h-80 aspect-square" src="{{ asset('admin/images/product/' . $path->image) }}"
+                            <img class="mx-auto h-80 aspect-square" src="{{ asset('asset/images/product/' . $path->image) }}"
                                 alt="">
                         </div>
                     @endforeach
@@ -151,7 +151,7 @@
                             <div class="flex justify-between gap-6">
                                 <div>
                                     <img class="object-cover w-12 h-12 rounded-full"
-                                        src="{{ asset('admin/assets/static/images/profile-2.jpg') }}" alt="">
+                                        src="{{ asset('frontend/assets/static/images/profile-2.jpg') }}" alt="">
                                 </div>
                                 <div class="grid w-full grid-cols-2">
                                     <div class="flex items-center gap-4">

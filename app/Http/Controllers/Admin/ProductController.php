@@ -27,7 +27,7 @@ class ProductController extends Controller
                 ->editColumn('select_products', function ($row) {
                     return '<input class="mx-3 border-gray-300 rounded select-all lg:mx-1" type="checkbox" name="products[]" value="' . $row->id . '"/>';
                 })->editColumn('name', function ($row) {
-                    $imagepath = asset('admin/images/product/' . $row->mainImage->image);
+                    $imagepath = asset('asset/images/product/' . $row->mainImage->image);
                     $name = "<div class='flex items-center gap-3 overflow-hidden '>
                 <img src='$imagepath' class='w-8 h-8' />
                 <span>$row->name</span>

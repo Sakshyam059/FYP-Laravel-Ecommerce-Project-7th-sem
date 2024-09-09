@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('vendor_id')->constrained('vendors')->cascadeOnDelete();
             $table->string('name')->unique();
             $table->string('slug',150)->unique();
             $table->string('short_description')->nullable();
@@ -23,6 +24,7 @@ return new class extends Migration
             $table->string('price');
             $table->decimal('discount_value',10,2)->nullable()->default(0);
             $table->string('discount_type')->nullable();
+            $table->boolean('has_size_option')->default(0);
             $table->boolean('trending')->nullable()->default(0);
             $table->string('tags')->nullable();
             $table->boolean('status')->default(1);

@@ -19,16 +19,15 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'firstname',
-        'lastname',
+        'name',
+        'usertype',
         'email',
         'password',
         'phone',
-        'address'
+        'address',
+        'status'
     ];
-    protected $casts = [
-        'usertyoe' => UserTypeEnum::class,
-    ];
+ 
 
     /**
      * The attributes that should be hidden for serialization.
@@ -52,11 +51,8 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
-    public function fullname(){
-        return $this->firstname.' '.$this->lastname;
-    }
-    public function isAdministrator() {
-        return $this->where('usertype', 'admin')->exists();
+     public function vendor(){
+        return $this->hasOne(Vendor::class);
      }
      public function cart(){
         return $this->hasOne(Cart::class);

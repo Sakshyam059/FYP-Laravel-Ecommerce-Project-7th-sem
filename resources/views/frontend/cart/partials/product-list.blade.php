@@ -20,7 +20,7 @@
                             {{ $loop->count }}
                         </td>
                         <td class="flex items-center justify-center gap-3 px-6 py-3">
-                            <img src="{{ asset('admin/images/product/' . $item->product->mainImage->image) }}"
+                            <img src="{{ asset('asset/images/product/' . $item->product->mainImage->image) }}"
                                 class="object-contain h-16 aspect-square" alt="">
                             <p class="">{{ $item->product->name }}</p>
                         </td>

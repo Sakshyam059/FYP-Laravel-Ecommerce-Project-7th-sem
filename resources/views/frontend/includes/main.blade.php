@@ -4,7 +4,7 @@
     @include("frontend.includes.top")
 </head>
 <body>
-    <header class="fixed top-0 left-0 right-0 z-50 bg-gray-50">
+    <header class="fixed top-0 left-0 right-0 z-50 min-h-28 bg-gray-50">
         @include("frontend.includes.top-header")
         @include("frontend.includes.header")
         {{-- @include('frontend.includes.menubar') --}}

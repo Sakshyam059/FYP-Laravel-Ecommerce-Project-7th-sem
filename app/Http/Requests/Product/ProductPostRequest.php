@@ -27,6 +27,8 @@ class ProductPostRequest extends FormRequest
             'description' => ['required','string'],
             'category_id' => ['required','string'],
             'subcategory_id' => ['required'],
+            'brand_id' => ['required'],
+            'price' => ['required'],
             'discount_value' =>['required'],
             'discount_type' =>['required'],
             'tags' =>['nullable','string'],

@@ -84,9 +84,7 @@ class PaymentController extends Controller
         }catch(\Exception $e){
             dd($e->getMessage());
         }
-        // $product=Product::find($item['product_id']);
-        // $product->stock=$product['stock']-1;
-        // $product->update();
+       
     }
     public function cashPayment()
     {

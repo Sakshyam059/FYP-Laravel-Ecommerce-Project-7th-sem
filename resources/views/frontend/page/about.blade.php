@@ -53,6 +53,5 @@
             </div>
         </div>
     </section>
-    @include('frontend.page.partials.newsletter')
     @include('frontend.page.partials.features')
 @endsection

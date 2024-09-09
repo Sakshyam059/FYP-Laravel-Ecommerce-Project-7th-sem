@@ -23,7 +23,7 @@ class CategoryPostRequest extends FormRequest
     public function rules(): array
     {
         $rule = Rule::unique('categories', 'category_name');
-        $image='required';
+        $image='nullable';
         if ($this->method() !== 'POST') {
             $rule->ignore($this->category->id);
             $image='nullable';

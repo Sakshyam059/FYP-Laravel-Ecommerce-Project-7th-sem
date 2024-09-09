@@ -54,6 +54,10 @@ function data() {
     togglePagesMenu() {
       this.isPagesMenuOpen = !this.isPagesMenuOpen
     },
+    isSettingsMenuOpen: false,
+    toggleSettingsMenu() {
+      this.isSettingsMenuOpen = !this.isSettingsMenuOpen
+    },
     isMarketingMenuOpen: false,
     toggleMarketingMenu() {
       this.isMarketingMenuOpen = !this.isMarketingMenuOpen
