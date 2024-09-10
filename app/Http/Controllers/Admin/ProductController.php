@@ -22,7 +22,7 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = Product::with('mainImage')->select('id', 'name', 'category_id','brand_id','price','discount_value', 'status');
+            $data = Product::with('mainImage')->select('id', 'name','vendor_id' ,'category_id','brand_id','price','discount_value', 'status');
             return DataTables::of($data)->addIndexColumn()
                 ->editColumn('select_products', function ($row) {
                     return '<input class="mx-3 border-gray-300 rounded select-all lg:mx-1" type="checkbox" name="products[]" value="' . $row->id . '"/>';
@@ -33,6 +33,8 @@ class ProductController extends Controller
                 <span>$row->name</span>
                 </div>";
                     return $name;
+                })->editColumn('vendor_id', function ($row) {
+                    return $row->vendor->user->name;
                 })->editColumn('category_id', function ($row) {
                     return $row->category->category_name;
                 })->editColumn('brand_id', function ($row) {

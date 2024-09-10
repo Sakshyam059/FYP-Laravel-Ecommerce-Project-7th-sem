@@ -36,10 +36,7 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:55'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'phone'=>['required','string','min:10','max:16'],
-            'address'=>['required','string'],
-            'logo'=>['image','nullable'],
-            'description'=>['nullable']
+            'phone'=>['required','string','min:10','max:16']
         ]);
 
         $user = User::create([
@@ -51,9 +48,7 @@ class RegisteredUserController extends Controller
             'status' => VerificationEnum::UNVERIFIED->value,
         ]);
         Vendor::create([
-            'user_id'=>$user['id'],
-            'description'=>$request->description,
-            'logo'=>$request->logo,
+            'user_id'=>$user['id']
         ]);
 
         event(new Registered($user));

@@ -30,7 +30,10 @@
         @endif
     </div>
     <div>
-        <textarea class="w-full rounded bg-gray-50" name="description" id=""  rows="2">{{$user->vendor->description}}</textarea>
+        <textarea class="w-full rounded bg-gray-50" name="description" id="" placeholder="Write something about your shop."  rows="2">{{$user->vendor->description}}</textarea>
     </div>
-
+</div>
+<div class="space-y-4">
+    <label class="block text-xl font-medium" for="form3Example8">Company Logo  </label>
+    <input type="file" name="logo" />
 </div>

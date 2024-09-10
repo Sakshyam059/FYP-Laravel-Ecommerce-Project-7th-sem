@@ -44,16 +44,16 @@
                 </div>
 
                 <div x-data="{ userDropdown: false }" class="relative p-2">
-                    <button x-on:click="userDropdown = true" class="flex items-center gap-2 p-2 " type="button">
-                        <i class="bx bx-user"></i>
-                    </button>
-                    <ul x-show="userDropdown" x-on:click.away="userDropdown = false"
-                        :class="userDropdown ? 'opacity-100' : ''"
-                        class="absolute right-0 z-10 py-2 mt-1 space-y-2 text-sm text-black bg-white border rounded opacity-0 w-36">
-                        @auth
+                    @auth
+                        <button x-on:click="userDropdown = true" class="flex items-center gap-2 p-2 " type="button">
+                            <i class="bx bx-user"></i>
+                        </button>
+                        <ul x-show="userDropdown" x-on:click.away="userDropdown = false"
+                            :class="userDropdown ? 'opacity-100' : ''"
+                            class="absolute right-0 z-10 py-2 mt-1 space-y-2 text-sm text-black bg-white border rounded opacity-0 w-36">
                             @if (\Auth::user()->usertype === 'admin' || \Auth::user()->usertype === 'vendor')
                                 @php
-                                   $usertype= \Auth::user()->usertype;
+                                    $usertype = \Auth::user()->usertype;
                                 @endphp
                                 <li>
                                     <a href="{{ route("$usertype.dashboard") }}"
@@ -89,20 +89,22 @@
                                             class="bx bx-log-out"></i><span>LogOut</span></button>
                                 </form>
                             </li>
+                        </ul>
                         @else
+                        <ul class="flex items-center gap-4 text-sm">
                             <li>
-                                <a href="{{ route('login') }}" class="block px-3 py-1 whitespace-no-wrap hover:bg-gray-200">
-                                    Log In
+                                <a href="{{ route('vendor.auth.register') }}" class="block px-3 py-2 whitespace-no-wrap border rounded hover:bg-gray-200">
+                                    Become a Seller
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ route('register') }}"
-                                    class="block px-3 py-1 whitespace-no-wrap hover:bg-gray-200">
-                                    Register
+                                <a href="{{ route('login') }}"
+                                    class="block px-3 py-2 text-white whitespace-no-wrap bg-green-400 rounded hover:bg-gray-200">
+                                    LogIn / Register
                                 </a>
                             </li>
-                        @endauth
-                    </ul>
+                        </ul>
+                    @endauth
                 </div>
 
 

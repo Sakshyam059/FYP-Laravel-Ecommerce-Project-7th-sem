@@ -130,7 +130,7 @@ class ProductController extends Controller
         DB::beginTransaction();
         try {
             $validator = $request->validated();
-            $validator['vendor_detail_id']=$vendor['id'];
+            $validator['vendor_id']=$vendor['id'];
             if($request->category_id==0){
                 $category->validated();
                 $cat=Category::create([

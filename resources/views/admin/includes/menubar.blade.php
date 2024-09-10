@@ -77,14 +77,6 @@
                                 Brands
                             </a>
                         </li>
-                        <li
-                            class="inline-flex items-center w-full gap-2 px-6 py-2 font-semibold text-gray-800 transition-colors duration-150 border border-none rounded hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-200">
-                            <a href="{{route('admin.product.create')}}"  href="pages/forgot-password.html">
-                                Add Product
-                            </a>
-                        </li>
-                
-                   
                 </template>
             </li>
             <li>

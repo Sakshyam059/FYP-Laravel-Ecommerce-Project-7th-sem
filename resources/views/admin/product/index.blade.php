@@ -17,12 +17,7 @@
                 <p class="py-1 text-sm text-gray-400">Showing products added recently.</p>
             </div>
             <div class="flex items-center justify-between gap-2 mt-2 lg:my-0" id="buttons">
-                <a href="{{ route('admin.product.create') }}"
-                    class="px-3 py-1 text-xs text-white bg-blue-600 border border-blue-400 rounded-md lg:py-2 lg:text-sm">
-                    <span class="inline-flex items-center gap-2 text-sm">
-                        <i class="text-lg bx bx-plus"></i>Add Product</span>
-                </a>
-
+            
             </div>
 
         </div>
@@ -70,6 +65,7 @@
                         <th><input class="mx-3 border-gray-300 rounded lg:mx-1" name="select_all" value="1" id="select_all" type="checkbox" />
                         </th>
                         <th data-priority="1">Name</th>
+                        <th>Vendor</th>
                         <th>Category</th>
                         <th>Brand</th>
                         <th>Price</th>                  
@@ -107,6 +103,10 @@
                     },
                     {
                         "data": "name"
+                    },
+                    {
+                        "data": "vendor_id",
+                        sortable: false
                     },
                     {
                         "data": "category_id",

@@ -68,25 +68,35 @@ class VendorVerificationController extends Controller
                 $file->move(public_path('asset/images/vendor/card/'), $imagepath);
                 $vendor_id_detail['ID_Card_Back'] = $imagepath;
             }
-            VendorIdDetail::create($vendor_id_detail);
-
+            VendorIdDetail::updateOrCreate(
+                [
+                    'vendor_id' => $vendor->id
+                ],
+                $vendor_id_detail
+            );
             foreach ($request->payment_methods as $key => $method) {
-                $mode = VendorPaymentMethod::create([
-                    'vendor_id' => $vendor->id,
-                    'payment_method_id' => $key
-                ]);
-                if ($key !== 1) {
-                    if($method['key']!==null){
-                        VendorPayementGatewaySetting::create([
-                            'vendor_payment_mode_id' => $mode['id'],
-                            'APIkey' => $method['key'],
-                        ]);
-                    }else{
-                        throw new \Exception("Api Key has null value");
+                if (array_key_exists("checked",$method)){
+                    $mode = VendorPaymentMethod::updateOrCreate([
+                        'vendor_id' => $vendor->id,
+                        'payment_method_id' => $key,
+                    ], [
+                        'vendor_id' => $vendor->id,
+                        'payment_method_id' => $key
+                    ]);
+                    if ($key !== 1) {
+                        if ( $method['key'] !== null) {
+                            VendorPayementGatewaySetting::updateOrCreate([
+                                'vendor_payment_mode_id' => $mode['id']
+                            ], [
+                                'vendor_payment_mode_id' => $mode['id'],
+                                'APIkey' => $method['key'],
+                            ]);
+                        }else{
+                            throw new \Exception("Api Key is null");
+                        }
                     }
                 }
             }
-
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();

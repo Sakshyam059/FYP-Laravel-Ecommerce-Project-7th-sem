@@ -11,6 +11,10 @@ class Product extends Model
     use HasFactory;
     protected $guarded=[];
 
+    public function vendor(){
+        return $this->belongsTo(Vendor::class,'vendor_id','id');
+    }
+
     public function discount_price(){
         return $this->price-($this->price*($this->discount_value/100));
     }
@@ -30,11 +34,5 @@ class Product extends Model
     public function brand(){
         return $this->belongsTo(Brand::class);
     }
-    // public function cartItem()
-    // {   
-    //    return $this->belongsTo(CartItem::class)->where('cart_id',Auth::user()->cart->id);
-    // }
-    // public function alreadyInCart(){
-    //     return $this->hasOne(CartItem::class)->where('cart_id',1)->where('product_id',$this->id);
-    // }
+   
 }
