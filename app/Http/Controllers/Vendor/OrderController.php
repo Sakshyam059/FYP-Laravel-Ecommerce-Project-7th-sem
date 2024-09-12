@@ -15,6 +15,9 @@ class OrderController extends Controller
             $data = OrderDetail::select('*');
             return DataTables::of($data)->addIndexColumn()
                 ->addIndexColumn()
+                ->editColumn('user_id',function($row){
+                    return $row->order->user_id;
+                })
                 ->editColumn('color_id',function($row){
                     return $row->color->color_name;
                 })

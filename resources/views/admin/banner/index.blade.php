@@ -52,9 +52,10 @@
             <table class="text-left bg-white border dark:border-gray-800 dark:bg-gray-700" id="data-table">
                 <thead class=" bg-gray-50/75 dark:bg-gray-900">
                     <tr class="border-b">
-                        <th><input class="mx-3 lg:mx-1" name="select_all" value="1" id="select_all" type="checkbox" />
+                        <th><input class="mx-3 rounded lg:mx-1" name="select_all" value="1" id="select_all" type="checkbox" />
                         </th>
-                        <th>Image</th>
+                        <th>Banner Image</th>
+                        <th>Type</th>
                         <th>Category</th>
                         <th>Status</th>
                         <th>Action</th>
@@ -75,18 +76,21 @@
                 processing: true,
                 serverSide: true,
                 ajax: {
-                    url: "{{ route('admin.marketing.banner.index') }}",
+                    url: "{{ route('admin.promotion.banner.index') }}",
                     data: function(d) {
                         d.status = $('#status').val(),
                             d.search = $('.dt-search input').val()
                     }
                 },
                 columns: [{
-                        "data": 'select_banners',                    
+                        "data": 'select_all',                    
                     },
                     {
                         "data": "image",
-                        width:"33%",
+                    },
+                    {
+                        "data": "banner_type"
+                     
                     },
                     {
                         "data": "category_name",
@@ -99,10 +103,7 @@
                         "data": "action",
                     },
                 ],
-                columnDefs: [{
-                    "width": "150px",
-                    "targets": [0, 1]
-                }],
+               
                 order: [],
                 layout: {
                     topStart: {

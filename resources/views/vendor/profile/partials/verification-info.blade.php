@@ -22,10 +22,10 @@
                 <input name="id_card_back" type="file">
             </div>
             <div>
-                <input class="w-full rounded bg-gray-50 " type="text" name="id_name" placeholder="Your Name">
+                <input value="{{old('id_name')}}" class="w-full rounded bg-gray-50 " type="text" name="id_name" placeholder="Your Name">
             </div>
             <div>
-                <input class="w-full rounded bg-gray-50 " type="text" name="id_number" placeholder="ID Number">
+                <input value="{{old('id_number')}}" class="w-full rounded bg-gray-50 " type="text" name="id_number" placeholder="ID Number">
             </div>
         </div>
     </div>

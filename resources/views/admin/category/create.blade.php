@@ -51,23 +51,7 @@
                             id="description" rows="3"></textarea>
                         <span class="hidden text-xs text-red-600" id="description_error"></span>
                     </div>
-                    <div class="py-2 space-y-2">
-                        <label class="block pb-3 text-sm text-gray-700 capitalize dark:text-gray-200 ">Thumbnail Image</label>
-                        <div class="flex items-center gap-3">
-                            <img class="hidden object-contain w-24 h-24 p-3 rounded" src="" id="preview"
-                                alt="" />
-                            <label for="thumbnail_image"
-                                class="inline-flex items-center gap-1 px-4 py-2 text-sm text-white bg-gray-800 border rounded">
-                                <i class='bx bx-image-alt'></i>
-                                <span>Choose Image</span>
-                            </label>
-                        </div>
-                        <input class="hidden" type="file" name="thumbnail_image"
-                            id="thumbnail_image">
-                        @error('thumbnail_image')
-                            <span class="text-xs text-red-600 ">{{ $message }}</span>
-                        @enderror
-                    </div>
+                    
                     <div class="flex justify-end gap-2 mt-6">
                         <button id="clearBtn" type="button"
                             class="px-3 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-200 transform bg-gray-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50">
@@ -128,19 +112,6 @@
             $('#categoryForm')[0].reset();
             $('.error-message').text('');
         });
-        const photoInp = $("#thumbnail_image");
-        let file;
-        photoInp.change(function(e) {
-            file = this.files[0];
-            if (file) {
-                let reader = new FileReader();
-                reader.onload = function(event) {
-                    $("#preview").show();
-                    $("#preview")
-                        .attr("src", event.target.result);
-                };
-                reader.readAsDataURL(file);
-            }
-        });
+       
     </script>
 @endpush

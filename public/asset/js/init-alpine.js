@@ -58,9 +58,13 @@ function data() {
     toggleSettingsMenu() {
       this.isSettingsMenuOpen = !this.isSettingsMenuOpen
     },
-    isMarketingMenuOpen: false,
-    toggleMarketingMenu() {
-      this.isMarketingMenuOpen = !this.isMarketingMenuOpen
+    isVendorMenuOpen: false,
+    toggleVendorMenu() {
+      this.isVendorMenuOpen = !this.isVendorMenuOpen
+    },
+    isPromotionMenuOpen: false,
+    togglePromotionMenu() {
+      this.isPromotionMenuOpen = !this.isPromotionMenuOpen
     },
     isSettingsMenuOpen: false,
     toggleSettingsMenu() {

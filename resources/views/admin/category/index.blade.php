@@ -55,7 +55,6 @@
                         <th><input class="mx-3 lg:mx-1" name="select_all" value="1" id="select_all" type="checkbox" />
                         </th>
                         <th>Name</th>
-                        <th>Thumbnail Image</th>
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
@@ -89,10 +88,6 @@
                     },
                     {
                         "data": "category_name",
-                        width:"33%"
-                    },
-                    {
-                        "data": "thumbnail_image",
                         width:"33%"
                     },
                     {

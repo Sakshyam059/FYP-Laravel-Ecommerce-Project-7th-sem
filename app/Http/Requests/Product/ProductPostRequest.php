@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Product;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class ProductPostRequest extends FormRequest
 {
@@ -21,8 +22,12 @@ class ProductPostRequest extends FormRequest
      */
     public function rules(): array
     {
+        $rule = Rule::unique('sizes', 'size_name');
+        if ($this->method() !== 'POST') {
+            $rule->ignore($this->product->id);
+        }
         return [
-            'name' => ['required','string','max:255','unique:products,name,'.$this->id],
+            'name' => ['required','string','max:255',$rule],
             'short_description' => ['required','string'],
             'description' => ['required','string'],
             'category_id' => ['required','string'],

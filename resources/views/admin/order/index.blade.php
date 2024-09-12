@@ -43,8 +43,7 @@
             </div>
             <table class="text-left bg-white border dark:border-gray-800 dark:bg-gray-700" id="data-table">
                 <thead class=" bg-gray-50/75 dark:bg-gray-900">
-                    <tr class="border-b">
-                        
+                    <tr class="border-b">                  
                         <th>Order No.</th>
                         <th>Product No.</th>
                         <th>Color</th>

@@ -14,8 +14,8 @@
         <div id="preview-container" class="grid grid-cols-4 gap-4 ">
             @if (!empty($product))
                 @foreach ($product->allImage as $image)
-                <div class="relative group">
-                    <img class="object-cover w-full h-16 mb-2 rounded-md" src="{{ asset('admin/images/product/'.$image->image) }}" alt="">
+                <div class="relative group w-fit">
+                    <img class="object-cover h-16 mb-2 rounded-md" src="{{ asset('asset/images/product/'.$image->image) }}" alt="">
                     <button id="deleteImage" class="absolute top-0 right-0 inline-flex items-center p-1 text-sm text-white transition bg-red-500 border-none rounded-md opacity-100 group-hover:opacity-100">
                         <i class="bx bx-x"></i>
                     </button>

@@ -19,14 +19,8 @@
     <div class="px-6 ">
         <div class="py-4">
             <div class="grid grid-cols-2 gap-6">
-                <div class="">
-                    @foreach ($product->allImage as $path)
-                        <div class="p-3 border rounded">
-                            <img class="mx-auto h-80 aspect-square" src="{{ asset('asset/images/product/' . $path->image) }}"
-                                alt="">
-                        </div>
-                    @endforeach
-                </div>
+                <x-product-image-swiper :images="$product->allImage" />
+
                 <div>
                     <div class="pb-2 space-y-2">
                         <h2 class="text-2xl font-semibold">{{ $product->name }}</h2>
@@ -51,23 +45,25 @@
                     </div>
                   
                     <div>
+                        
                         <form action="{{route('cart.add')}}" method="post" class="space-y-4">
                             @csrf
                             <div class="flex justify-between">
                                 <div class="flex-1 space-y-2">
                                     <h4 class="text-lg font-medium text-gray-800">Sizes:</h4>
                                     @foreach ($product->product_skus as $sku)
+                                    <input class="sr-only peer" type="radio" name="size" value="{{$sku->size->id}}" id="size-{{$sku->size->id}}" >
                                         <label for="size-{{$sku->size->id}}"
-                                            class="inline-block px-3 py-1 overflow-hidden text-center border border-gray-400 rounded-md ">{{ $sku->size->size_name }}</label>
-                                            <input class="hidden" type="radio" name="size" value="{{$sku->size->id}}" id="size-{{$sku->size->id}}" >
+                                            class="inline-block px-3 py-1 overflow-hidden text-center border border-gray-400 rounded-md peer-checked:bg-yellow-300 ">{{ $sku->size->size_name }}</label>
+                                        
                                     @endforeach
                                 </div>
                                 <div class="flex-1 space-y-2">
                                     <h4 class="text-lg font-medium text-gray-800">Colors:</h4>
                                     @foreach ($product->product_skus as $sku)
-                                        <label for="color-{{$sku->color->id}}" class="block w-8 h-8 border border-gray-400 rounded-full"
+                                    <input class="sr-only peer" type="radio" name="color" value="{{$sku->color->id}}" id="color-{{$sku->color->id}}" >
+                                        <label for="color-{{$sku->color->id}}" class="block w-8 h-8 border border-gray-400 rounded-full peer-checked:border-2 peer-checked:border-gray-800"
                                             style="background-color: {{ $sku->color->color_name }};"></label>
-                                            <input class="hidden" type="radio" name="color" value="{{$sku->color->id}}" id="color-{{$sku->color->id}}" >
                                     @endforeach
                                 </div>
                             </div>

@@ -52,7 +52,7 @@
             <table class="text-left bg-white border dark:border-gray-800 dark:bg-gray-700" id="data-table">
                 <thead class=" bg-gray-50/75 dark:bg-gray-900">
                     <tr class="border-b">
-                        <th><input class="mx-3 lg:mx-1" name="select_all" value="1" id="select_all" type="checkbox" />
+                        <th><input class="mx-3 rounded lg:mx-1" name="select_all" value="1" id="select_all" type="checkbox" />
                         </th>
                         <th>Subcategory Name</th>
                         <th>Category Name</th>

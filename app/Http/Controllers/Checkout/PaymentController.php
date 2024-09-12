@@ -22,6 +22,7 @@ class PaymentController extends Controller
     private $user;
     private $cart;
     private $order_amount, $ref_id;
+    private $api_key;
     private $payment_url,$payment_status;
     public function __construct()
     {

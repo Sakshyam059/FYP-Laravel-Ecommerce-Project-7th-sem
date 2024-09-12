@@ -29,7 +29,7 @@ class ProductController extends Controller
         if ($request->ajax()) {
             $data = Product::where('vendor_id',$vendor->id)->with('mainImage')->select('id', 'name', 'category_id','brand_id','price','discount_value', 'status');
             return DataTables::of($data)->addIndexColumn()
-                ->editColumn('select_products', function ($row) {
+                ->editColumn('select_all', function ($row) {
                     return '<input class="mx-3 border-gray-300 rounded select-all lg:mx-1" type="checkbox" name="products[]" value="' . $row->id . '"/>';
                 })->editColumn('name', function ($row) {
                     $imagepath = asset('asset/images/product/' . $row->mainImage->image);
@@ -42,6 +42,13 @@ class ProductController extends Controller
                     return $row->category->category_name;
                 })->editColumn('brand_id', function ($row) {
                     return $row->brand->brand_name;
+                })->editColumn('status', function ($row) {
+                })->addColumn('deal', function ($row) {
+                    $deal = route('vendor.product-deal.create', $row->id);
+                    $deal_btn='<a href=' . $deal . ' class="inline-flex items-center gap-3 px-2 py-1 text-sm text-white bg-yellow-400 rounded cursor-pointer hover:bg-sky-600">   
+                                        <span>Add to Deal</span>
+                                    </a>';
+                    return $deal_btn;
                 })->editColumn('status', function ($row) {
                     if ($row->status === 1) {
                         $status_class = 'active';
@@ -60,6 +67,7 @@ class ProductController extends Controller
                                 <button @click="open = ! open" class=" focus:outline-none">
                                   <i class="bx bx-dots-vertical-rounded"></i> </button>
                                 <div x-cloak x-show="open" @click.away="open = false" class="absolute right-0 z-10 p-2 bg-white border border-gray-200 rounded-lg shadow ">
+                                    
                                     <a href=' . $edit . ' class="inline-flex items-center w-full gap-3 px-2 py-1 text-sm cursor-pointer hover:bg-sky-100">
                                         <i class="bx bx-edit-alt"></i>    
                                         <span>Edit</span>
@@ -94,7 +102,7 @@ class ProductController extends Controller
                         });
                     }
                 })
-                ->rawColumns(['select_products', 'name', 'status', 'action'])
+                ->rawColumns(['select_all', 'deal','name', 'status', 'action'])
                 ->make(true);
         }
         return view('vendor.product.index');
@@ -213,7 +221,7 @@ class ProductController extends Controller
                 if ($imgrequest->hasFile('image')) {
                     $files = $imgrequest->file('image');
                     foreach ($files as $key => $file) {
-                        if ($key === 0) {
+                        if ($key === 0 && $product->allImage->isEmpty()) {
                             $product_image['is_main'] = 1;
                         }
                         $product_image['product_id'] = $product['id'];

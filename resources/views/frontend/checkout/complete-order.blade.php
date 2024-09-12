@@ -17,7 +17,7 @@
             <div class="grid grid-cols-2">
                 <div class="space-y-2">
                     <h5 class="font-medium ">Your Information</h5>
-                    <p>{{ auth()->user()->fullname() }}</p>
+                    <p>{{ auth()->user()->name }}</p>
                     <p>{{ auth()->user()->email }}</p>
                     <p>{{ auth()->user()->phone }}</p>
                 </div>
@@ -38,7 +38,7 @@
                 </div>
                 <div class="space-y-2">
                     <h5 class="font-medium ">Billing Information</h5>
-                    <p>Name: {{ auth()->user()->fullname() }}</p>
+                    <p>Name: {{ auth()->user()->name }}</p>
                     <p>Email: {{ auth()->user()->email }}</p>
                     <p>Phone: {{ auth()->user()->phone }}</p>
                     <p>Address: {{ $billing_information['address'] }}</p>

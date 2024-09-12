@@ -20,7 +20,7 @@ class SubcategoryController extends Controller
             $data = Subcategory::select('*');
             return DataTables::of($data)->addIndexColumn()
             ->addIndexColumn()
-                ->editColumn('select_subcategories', function ($row) {
+                ->editColumn('select_all', function ($row) {
                     return '<input class="mx-3 select-all lg:mx-1" type="checkbox" name="subcategories[]" value="' . $row->id . '"/>';
                 })->editColumn('category_id', function ($row) {
                     return $row->category->category_name;
@@ -73,7 +73,7 @@ class SubcategoryController extends Controller
                    
                 }
             })
-                ->rawColumns(['select_subcategories','category_name','status', 'action'])
+                ->rawColumns(['select_all','category_name','status', 'action'])
                 ->make(true);
         }
         return view('admin.subcategory.index',['categories'=>Category::all()]);

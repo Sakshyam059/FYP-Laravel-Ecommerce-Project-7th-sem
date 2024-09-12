@@ -4,7 +4,6 @@
 <title>
     @yield("title")
 </title>
-<link rel="stylesheet" href="{{asset('frontend/assets/css/styles.css')}}">
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 @vite(['resources/css/app.css', 'resources/js/app.js'])
 <script src="{{asset('frontend/assets/js/init-alpine.js')}}"></script>

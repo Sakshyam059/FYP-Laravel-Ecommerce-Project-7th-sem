@@ -22,8 +22,8 @@ class BannerController extends Controller
             $data = Banner::with('category')->select('*');
             return DataTables::of($data)->addIndexColumn()
             ->addIndexColumn()
-                ->editColumn('select_banners', function ($row) {
-                    return '<input class="mx-3 select-all lg:mx-1" type="checkbox" name="banners[]" value="' . $row->id . '"/>';
+                ->editColumn('select_all', function ($row) {
+                    return '<input class="mx-3 rounded select-all lg:mx-1" type="checkbox" name="banners[]" value="' . $row->id . '"/>';
                 })->editColumn('image',function($row){
                     $image=asset('asset/images/banners/'.$row->image);
                     return "<img src='$image' class='object-cover w-2/3 h-16' />";
@@ -37,11 +37,11 @@ class BannerController extends Controller
                     $status_class = 'danger';
                     $status = 'Inactive';
                 }
-                $status_btn = '<button class="w-100 btn ' . ($status_class === 'active' ? 'btn-outline-success ' : 'btn-outline-danger ') . 'btn-sm "' . ' >' . $status . '</button>';
+                $status_btn = '<button class="px-4 py-1 text-sm text-white rounded w-fit ' . ($status_class === 'active' ? 'bg-green-500 ' : 'bg-red-500 ') . '"' . ' >' . $status . '</button>';
                 return $status_btn;
             })->addColumn('action', function ($row) {
-                $edit = route('admin.marketing.banner.edit', $row->id);
-                $delete = route('admin.marketing.banner.destroy', $row->id);
+                $edit = route('admin.promotion.banner.edit', $row->id);
+                $delete = route('admin.promotion.banner.destroy', $row->id);
 
                 $btn = '<div x-data="{ open: false }" class="relative">
                 <button @click="open = ! open" class=" focus:outline-none">
@@ -78,7 +78,7 @@ class BannerController extends Controller
                    
                 }
             })
-                ->rawColumns(['select_banners','image','category_name','status', 'action'])
+                ->rawColumns(['select_all','image','category_name','status', 'action'])
                 ->make(true);
         }
         $categories=Category::get();

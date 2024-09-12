@@ -28,8 +28,12 @@
 
 
     </div>
-    <div class="grid grid-cols-4 gap-3" id="products">
+    <div class="grid grid-cols-4 gap-6 py-2" id="products">
         @foreach ($products as $product)
+           <x-product :product="$product" />
+           <x-product :product="$product" />
+           <x-product :product="$product" />
+           <x-product :product="$product" />
            <x-product :product="$product" />
         @endforeach
     </div>

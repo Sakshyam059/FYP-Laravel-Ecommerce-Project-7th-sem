@@ -110,8 +110,8 @@
 
             </div>
         </div>
-        <nav :class="isOpen ? '' : 'hidden'" class="px-6 py-2 border-y bg-gray-50 sm:flex sm:items-center ">
-            <div class="flex flex-col gap-12 space-x-4 text-sm tracking-wide sm:flex-row">
+        <nav class="flex items-center justify-between px-6 py-2 border-y bg-gray-50 ">
+            <div class="flex gap-8 space-x-4 text-sm tracking-wide ">
                 <div x-data="{ categoryMenuDropdown: false }" class="relative">
                     <button x-on:click="categoryMenuDropdown = true" type="button"
                         class="inline-flex items-center gap-2 px-6 py-2 text-white bg-green-500 border rounded-md hover:text-blue-500">
@@ -137,9 +137,12 @@
                     </ul>
                 </div>
                 <a class="py-2 hover:text-blue-500 " href="{{ route('homepage') }}">Home</a>
-                <a class="py-2 hover:text-blue-500" href="{{ route('products.index') }}">Shops</a>
-                <a class="py-2 hover:text-blue-500" href="{{ route('products.index') }}">Products</a>
+                <a class="py-2 hover:text-blue-500" href="{{ route('products.index') }}">Shop</a>
+                <a class="py-2 hover:text-blue-500" href="{{ route('products.index') }}">Product</a>
+                <a class="py-2 hover:text-blue-500" href="{{ route('products.index') }}">Blog</a>
+                <a class="py-2 hover:text-blue-500" href="{{ route('products.index') }}">Pages</a>
             </div>
+          
         </nav>
 
     </header>

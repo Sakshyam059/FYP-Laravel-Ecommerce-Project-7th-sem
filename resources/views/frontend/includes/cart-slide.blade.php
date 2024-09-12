@@ -19,7 +19,7 @@
                         <div class="flex justify-between px-6 ">
                             <div class="flex">
                                 <img class="object-cover w-20 h-20 p-3 border rounded"
-                                    src="{{ asset('admin/images/product/' . $item->product->mainImage->image) }}"
+                                    src="{{ asset('asset/images/product/' . $item->product->mainImage->image) }}"
                                     alt="">
                                 <div class="mx-3">
                                     <h3 class="text-sm ">{{ $item->product->name }}</h3>

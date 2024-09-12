@@ -11,4 +11,3 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" defer></script>
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 @vite(['resources/css/app.css'])
-<link rel="stylesheet" href="{{asset('asset/css/styles.css')}}">

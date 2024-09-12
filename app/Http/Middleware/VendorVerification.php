@@ -18,7 +18,7 @@ class VendorVerification
     public function handle(Request $request, Closure $next): Response
     {
         $user = $request->user();
-        if ($user && $user->usertype === UsertypeEnum::VENDOR->value && $user->status===VerificationEnum::UNVERIFIED->value) {
+        if ($user && $user->usertype === UsertypeEnum::VENDOR->value && $user->status!==VerificationEnum::VERIFIED->value) {
             return response()->view('vendor.profile.verify',compact('user'));
         }
         return $next($request);

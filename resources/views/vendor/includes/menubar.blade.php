@@ -23,7 +23,7 @@
                     class="{{ Request::routeIs('vendor.product.*') ? 'border border-black/50 bg-blue-800/75 text-white  dark:bg-gray-700 ' : '' }}relative p-2 inline-flex gap-2 items-center w-full rounded border-none   font-semibold  transition-colors duration-150 border  hover:text-gray-800 dark:hover:text-gray-200 text-gray-800 dark:text-gray-200"
                     @click="togglePagesMenu" aria-haspopup="true">
 
-                    <i class='bx bxs-shopping-bag-alt'></i>
+                    <i class='bx bx-shopping-bag'></i>
                     <span>Products</span>
 
                     <svg class="absolute w-4 h-4 right-3 " aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">

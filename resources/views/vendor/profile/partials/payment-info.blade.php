@@ -6,7 +6,7 @@
         <div class="flex items-center gap-4">
             @foreach (App\Models\PaymentMethod::all() as $method)
                 <div class="flex items-center gap-2">
-                    <input type="checkbox" name="payment_methods[{{$method->id}}][checked]"  class="rounded">
+                    <input type="checkbox" name="payment_methods[{{$method->id}}][checked]"  class="rounded" >
                     <label for="">{{ $method->method_name }}</label>
                 </div>
             @endforeach
@@ -16,7 +16,7 @@
     @foreach (App\Models\PaymentMethod::where('method_type',1)->get() as $method)
     <div class="flex items-center justify-between gap-6">
         <label for="">For {{$method->method_name}}</label>
-        <input name="payment_methods[{{$method->id}}][key]" type="text" placeholder="Enter API Key" class="w-2/3 rounded bg-gray-50">
+        <input  name="payment_methods[{{$method->id}}][key]" type="text" placeholder="Enter API Key" class="w-2/3 rounded bg-gray-50">
     </div>
     @endforeach
    

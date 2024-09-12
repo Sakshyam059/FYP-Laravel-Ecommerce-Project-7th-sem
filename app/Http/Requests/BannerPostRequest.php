@@ -23,6 +23,7 @@ class BannerPostRequest extends FormRequest
     {
         return [
             'category_id' => ['required'],
+            'banner_type' => ['required'],
             'image' => ['required','mimes:jpeg,png,jpg,gif,svg'],
             'alt' => ['nullable'],
             'link' => ['nullable'],

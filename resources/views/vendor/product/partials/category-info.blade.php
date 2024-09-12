@@ -16,7 +16,7 @@
         </div>
         <div class="flex items-center justify-between gap-12">
             <label class="" for="category">Category <strong class="text-red-600">*</strong></label>
-            <input type="text" name="category_name" value="Default" class="w-2/3 border-gray-400 rounded bg-gray-50">
+            <input type="text" name="category_name" value="{{old('category_name')}}" class="w-2/3 border-gray-400 rounded bg-gray-50">
         </div>
 
         <div class="flex items-center justify-between gap-12">
@@ -37,7 +37,7 @@
         <div class="flex items-center justify-between gap-12">
 
             <label class="block " for="category">Subcategory <strong class="text-red-600">*</strong></label>
-            <input type="text" value="Default" name="subcategory_name" class="w-2/3 border-gray-400 rounded bg-gray-50">
+            <input type="text" value="{{old('subcategory_name')}}" name="subcategory_name" class="w-2/3 border-gray-400 rounded bg-gray-50">
         </div>
 
 

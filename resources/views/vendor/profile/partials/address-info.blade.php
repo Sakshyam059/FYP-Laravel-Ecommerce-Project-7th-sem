@@ -15,7 +15,7 @@
         </select>
     </div>
     <div>
-        <input type="text" name="address" value="{{$user->vendor->address}}" class="w-full rounded bg-gray-50" placeholder="Address Line">
+        <input type="text" name="address" value="{{ old('address',$user->vendor->address)}}" class="w-full rounded bg-gray-50" placeholder="Address Line">
     </div>
 
 </div>

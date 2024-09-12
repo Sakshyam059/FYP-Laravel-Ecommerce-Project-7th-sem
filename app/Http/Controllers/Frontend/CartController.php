@@ -23,10 +23,11 @@ class CartController extends Controller
             $user_id = Auth::user()->id;
             $cart = Cart::where('user_id', $user_id)->first();
             $product = Product::find($request->product_id);
+            $quantity=$request->quantity??1;
             if($cart===null){
                     $data=Cart::create([
                         'user_id' => $user_id,
-                        'subtotal' => $product->price-($product->price*$product->discount_value/100)
+                        'subtotal' => $quantity*($product->price-($product->price*$product->discount_value/100))
                     ]);
                     CartItem::create([
                         'cart_id'=>$data['id'],

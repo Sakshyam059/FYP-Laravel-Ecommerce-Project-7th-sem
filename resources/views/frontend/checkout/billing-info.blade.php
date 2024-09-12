@@ -41,49 +41,54 @@
 
             </ul> --}}
         </div>
-        
-        <div class="grid grid-cols-2 gap-4">  
+
+        <div class="grid grid-cols-2 gap-4">
             @include('frontend.cart.partials.shipping-info')
             <div class="p-4 space-y-4 border rounded">
                 <div class="">
                     <h2 class="text-xl font-medium">Billing Address</h2>
                 </div>
-                <form action="{{route('billing.create')}}" method="POST" class="space-y-4">
+                <form action="{{ route('billing.create') }}" method="POST" class="space-y-4">
                     @csrf
-                    <div class="grid grid-cols-2 gap-4 ">
-                        <div class="space-y-2">
-                            <label for="" class="block ">First Name</label>
-                            <input type="text" class="w-full border-gray-400 rounded bg-gray-50" value="{{ auth()->user()->firstname }}" readonly>
-                        </div>
-                        <div class="space-y-2">
-                            <label for="" class="block ">Last Name</label>
-                            <input type="text" class="w-full border-gray-400 rounded bg-gray-50" value="{{ auth()->user()->lastname }}" readonly>
-                        </div>
+
+                    <div class="space-y-2">
+                        <label for="" class="block ">Full Name</label>
+                        <input type="text" class="w-full border-gray-400 rounded bg-gray-50"
+                            value="{{ auth()->user()->name }}" readonly>
                     </div>
+
                     <div class="grid grid-cols-2 gap-4">
                         <div class="space-y-2">
                             <label for="" class="block ">Email</label>
-                            <input type="text" class="w-full border-gray-400 rounded bg-gray-50" value="{{ auth()->user()->email }}" readonly>
+                            <input type="text" class="w-full border-gray-400 rounded bg-gray-50"
+                                value="{{ auth()->user()->email }}" readonly>
                         </div>
                         <div class="space-y-2">
                             <label for="" class="block ">Phone</label>
-                            <input type="text" class="w-full border-gray-400 rounded bg-gray-50" value="{{ auth()->user()->phone }}" readonly>
+                            <input type="text" class="w-full border-gray-400 rounded bg-gray-50"
+                                value="{{ auth()->user()->phone }}" readonly>
                         </div>
                     </div>
                     <div class="grid grid-cols-2 gap-4">
                         <div class="space-y-2">
                             <label for="" class="block ">Address</label>
-                            <input type="text" name="address" value="{{session()->get('billing_information')['city']??old('city')}}" class="w-full border-gray-400 rounded bg-gray-50">
+                            <input type="text" name="address"
+                                value="{{ session()->get('billing_information')['city'] ?? old('city') }}"
+                                class="w-full border-gray-400 rounded bg-gray-50">
                         </div>
                         <div class="space-y-2">
                             <label for="" class="block">City</label>
-                            <input type="text" name="city" value="{{session()->get('billing_information')['city']??old('city')}}" class="w-full border-gray-400 rounded bg-gray-50">
+                            <input type="text" name="city"
+                                value="{{ session()->get('billing_information')['city'] ?? old('city') }}"
+                                class="w-full border-gray-400 rounded bg-gray-50">
                         </div>
                     </div>
                     <div class="grid grid-cols-2 gap-4">
                         <div class="space-y-2">
                             <label for="" class="block ">Zip Code</label>
-                            <input type="text" name="zipcode" value="{{session()->get('billing_information')['city']??old('city')}}" class="w-full border-gray-400 rounded bg-gray-50">
+                            <input type="text" name="zipcode"
+                                value="{{ session()->get('billing_information')['city'] ?? old('city') }}"
+                                class="w-full border-gray-400 rounded bg-gray-50">
                         </div>
                         <div class="space-y-2">
                             <label for="" class="block ">State</label>
@@ -97,15 +102,17 @@
                     </div>
                     <div class="space-y-2">
                         <label for="" class="block">Additional Notes</label>
-                        <textarea class="w-full border-gray-400 rounded bg-gray-50" name="add_note" rows="4" id="" cols="30">{{session()->get('billing_information')['add_note']??old('add_note')}}</textarea>
+                        <textarea class="w-full border-gray-400 rounded bg-gray-50" name="add_note" rows="4" id=""
+                            cols="30">{{ session()->get('billing_information')['add_note'] ?? old('add_note') }}</textarea>
                     </div>
                     <div class="flex justify-between gap-6 ">
-                        <a href="{{route('cart.index')}}" class="inline-flex items-center justify-center w-full py-2 bg-gray-100 border rounded">Return</a>
+                        <a href="{{ route('cart.index') }}"
+                            class="inline-flex items-center justify-center w-full py-2 bg-gray-100 border rounded">Return</a>
                         <button type="submit" class="w-full py-2 text-white bg-blue-600 border rounded">Confirm</button>
                     </div>
                 </form>
-            </div>        
-              
+            </div>
+
         </div>
     </section>
 @endsection

@@ -21,8 +21,14 @@ class ProductImagePostRequest extends FormRequest
      */
     public function rules(): array
     {
+        $image='required';
+        if ($this->method() !== 'POST') {
+            if($this->product->allImage->isNotEmpty() ){
+                $image='nullable';
+            }
+        }
         return [
-            'image' => ['required'],
+            'image' => [$image],
             'image.*' => ['image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048']
         ];
     }

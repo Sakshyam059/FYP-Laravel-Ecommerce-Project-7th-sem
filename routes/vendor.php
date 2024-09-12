@@ -5,6 +5,7 @@ use App\Http\Controllers\Vendor\Auth\VendorVerificationController;
 use App\Http\Controllers\Vendor\BrandController;
 use App\Http\Controllers\Vendor\CategoryController;
 use App\Http\Controllers\Vendor\ColorController;
+use App\Http\Controllers\Vendor\DealController;
 use App\Http\Controllers\Vendor\OrderController;
 use App\Http\Controllers\Vendor\ProductController;
 use App\Http\Controllers\Vendor\ProfileController;
@@ -28,6 +29,8 @@ Route::middleware(['auth', 'vendor','vendor_verified'])->group(function () {
     Route::get('product/removeall',[ProductController::class,'bulkDelete'])->name('product.bulk-delete');
     Route::resource('product', ProductController::class);
 
+    Route::get('product/{product}/add-to-deal',[DealController::class,'createProductDeal'])->name('product-deal.create');
+    Route::post('product/{product}/add-to-deal',[DealController::class,'addProductDeal'])->name('product-deal.store');
     Route::get('orders',[OrderController::class,'index'])->name('order.index');
     
     Route::get('profile/setting', [ProfileController::class, 'edit'])->name('profile.edit');

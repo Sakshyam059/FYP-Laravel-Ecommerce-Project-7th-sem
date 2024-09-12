@@ -4,23 +4,45 @@
 @endsection
 @section('content')
     <section class="px-6 overflow-hidden" id="banners">
-        @include('frontend.includes.banner-carousel')
+        <x-banner-carousel :hero="$banners" />
     </section>
-    <section class="px-6 py-4 space-y-4">
-        <h3 class="text-2xl font-semibold ">Explore Vendors</h3>
-        <div class="grid grid-cols-2 gap-3 lg:grid-cols-6 lg:gap-6 ">
-            @foreach (App\Models\Vendor::all() as $vendor)
-                <div class="p-6 text-white border rounded-md bg-gray-600/90">
-                    <h6 class="text-center">{{ $vendor->user->name }}</h6>
-                </div>
-            @endforeach
+    <x-vendor-list />
+    <x-promotion-banner-list />
 
-        </div>
-    </section>
-    <section class="px-6 py-4">
-        <div class="overflow-hidden">
-            @include('frontend.includes.product-carousel')
-        </div>
+    <section class="px-6 py-4 space-y-6">
+        @foreach ($deals as $deal)
+            <div class="overflow-hidden">
+                <x-product-carousel :products="$deal->productDeals" :deal="$deal">
+                    {{ $deal->deal_name }}
+                </x-product-carousel>
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        const endDate = new Date('{{ $deal->end_date }}').getTime();
+
+                        function updateCountdown(elementId) {
+                            const now = new Date().getTime();
+                            const distance = endDate - now;
+
+                            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                            document.getElementById(elementId).innerHTML =
+                                days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+
+                            if (distance < 0) {
+                                clearInterval(countdownFunction);
+                                document.getElementById(elementId).innerHTML = "EXPIRED";
+                            }
+                        }
+
+                        const countdownFunction = setInterval(() => updateCountdown('countdown-{{ $deal->id }}'), 1000);
+                    });
+                </script>
+            </div>
+        @endforeach
+
     </section>
     <section class="p-6 mt-4">
         <div class="grid gap-2 mx-auto lg:grid-cols-3">

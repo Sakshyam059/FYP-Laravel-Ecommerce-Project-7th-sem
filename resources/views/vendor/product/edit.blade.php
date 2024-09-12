@@ -4,33 +4,26 @@
 
         <div class="flex items-center justify-between px-3 py-3">
             <h4 class="text-xl">
-                Add New Product
+                Edit Product
             </h4>
-            <div class="flex px-0">
-                {{-- @include('vendor.category.create')
-                @include('vendor.subcategory.create') --}}
-
-            </div>
-
         </div>
-        <form method="post" action="{{ route('vendor.product.store') }}" class="grid grid-cols-[60%,40%]" enctype="multipart/form-data">
+        <form method="post"  action="{{ route('vendor.product.update',$product->id) }}" enctype="multipart/form-data">
             @csrf
-            <div class="p-3">
+            @method('PUT')
+            <div class="p-3 space-y-4">
                 @include('vendor.product.partials.general-info')
+                @include('vendor.product.partials.category-info')
                 @include('vendor.product.partials.pricing-info')
-                @include('vendor.product.partials.size-and-color-info')
             </div>
             <div class="p-3">
                 @include('vendor.product.partials.image-info')
-                @include('vendor.product.partials.category-info')
                 @include('vendor.product.partials.brand-info')
+                @include('vendor.product.partials.size-and-color-info')
                 @include('vendor.product.partials.additional-info')
-    
-    
                 <div class="mt-3 ">
                     <div class="grid grid-cols-2 gap-5">
                         <a href="{{ route('vendor.product.index') }}" class="py-2 text-center border rounded bg-gray-50/40">Discard</a>
-                        <button type="submit" class="py-2 text-center text-white border rounded bg-blue-600/90">Update Product</button>
+                        <button type="submit" class="py-2 text-center text-white border rounded bg-blue-600/90">Save Product</button>
                     </div>
                 </div>
             </div>

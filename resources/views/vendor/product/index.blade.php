@@ -72,8 +72,8 @@
                         <th data-priority="1">Name</th>
                         <th>Category</th>
                         <th>Brand</th>
-                        <th>Price</th>                  
-                        <th>Discount rate</th>                  
+                        <th>Price</th>                          
+                        <th>Deals</th>                  
                         <th>Status</th>
                         <th data-priority="2">Action</th>
                     </tr>
@@ -102,7 +102,7 @@
                     }
                 },
                 columns: [{
-                        "data": 'select_products',
+                        "data": 'select_all',
                         sortable: false
                     },
                     {
@@ -120,8 +120,9 @@
                         "data": "price",
                         sortable: false
                     },
+                   
                     {
-                        "data": "discount_value",
+                        "data": "deal",
                         sortable: false
                     },
                    

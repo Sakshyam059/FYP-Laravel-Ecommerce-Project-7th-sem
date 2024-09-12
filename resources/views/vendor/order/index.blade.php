@@ -46,6 +46,7 @@
                     <tr class="border-b">
                         
                         <th>Order No.</th>
+                        <th>User ID</th>
                         <th>Product No.</th>
                         <th>Color</th>
                         <th>Size</th>
@@ -80,6 +81,9 @@
                 columns: [
                     {
                         "data": "order_id"
+                    },
+                    {
+                        "data": "user_id"
                     },
                     {
                         "data": "product_id"

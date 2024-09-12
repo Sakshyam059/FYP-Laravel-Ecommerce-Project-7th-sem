@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Vendor\Auth;
 
+use App\Enums\VerificationEnum;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Vendor;
@@ -11,6 +12,7 @@ use App\Models\VendorPaymentMethod;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 
 class VendorVerificationController extends Controller
 {
@@ -22,6 +24,7 @@ class VendorVerificationController extends Controller
                 'name' => 'required',
                 'email' => 'required',
                 'description' => 'required',
+                'logo' => 'required|image|mimes:png,jpg',
                 'address' => 'required',
                 'district' => 'required',
                 'state' => 'required',
@@ -39,13 +42,22 @@ class VendorVerificationController extends Controller
             $vendor = Vendor::where('user_id', $user_id)->first();
             $user->update([
                 'name' => $request->name,
-                'email' => $request->email
+                'email' => $request->email,
+                'status' => VerificationEnum::PENDING->value,
             ]);
+            if ($request->hasFile('logo')) {
+                $file = $request->file('logo');
+                $name = $file->getClientOriginalName();
+                $imagepath = time() . '_' . $name;
+                File::delete(public_path('asset/images/vendor/logo/' . $vendor->logo));
+                $file->move(public_path('asset/images/vendor/logo/'), $imagepath);
+            }
             $vendor->update([
                 'description' => $request->description,
                 'address' => $request->address,
                 'district' => $request->district,
-                'state' => $request->state
+                'state' => $request->state,
+                'logo'=> $imagepath
             ]);
 
             $vendor_id_detail = [
@@ -58,6 +70,7 @@ class VendorVerificationController extends Controller
                 $file = $request->file('id_card_front');
                 $name = $file->getClientOriginalName();
                 $imagepath = time() . '_' . $name;
+                File::delete(public_path('asset/images/vendor/card/' . $vendor->ID_Card_Front));
                 $file->move(public_path('asset/images/vendor/card/'), $imagepath);
                 $vendor_id_detail['ID_Card_Front'] = $imagepath;
             }
@@ -65,6 +78,7 @@ class VendorVerificationController extends Controller
                 $file = $request->file('id_card_back');
                 $name = $file->getClientOriginalName();
                 $imagepath = time() . '_' . $name;
+                File::delete(public_path('asset/images/vendor/card/' . $vendor->ID_Card_Back));
                 $file->move(public_path('asset/images/vendor/card/'), $imagepath);
                 $vendor_id_detail['ID_Card_Back'] = $imagepath;
             }

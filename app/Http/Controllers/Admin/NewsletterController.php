@@ -15,8 +15,8 @@ class NewsletterController extends Controller
             $data = Newsletter::select('*');
             return DataTables::of($data)->addIndexColumn()
                 ->addIndexColumn()
-                ->editColumn('select_newsletters', function ($row) {
-                    return '<input class="mx-3 select-all lg:mx-1" type="checkbox" name="newsletters[]" value="' . $row->id . '"/>';
+                ->editColumn('select_all', function ($row) {
+                    return '<input class="mx-3 rounded select-all lg:mx-1" type="checkbox" name="newsletters[]" value="' . $row->id . '"/>';
                 })->editColumn('status', function ($row) {
                     if ($row->status === 1) {
                         $status_class = 'active';
@@ -65,7 +65,7 @@ class NewsletterController extends Controller
                         });
                     }
                 })
-                ->rawColumns(['select_newsletters', 'status', 'action'])
+                ->rawColumns(['select_all', 'status', 'action'])
                 ->make(true);
         }
         return view('admin.newsletter.index');

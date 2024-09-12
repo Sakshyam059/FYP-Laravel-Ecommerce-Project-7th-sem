@@ -19,7 +19,7 @@ class SizeController extends Controller
             return DataTables::of($data)->addIndexColumn()
             ->addIndexColumn()
                 ->editColumn('select_sizes', function ($row) {
-                    return '<input class="mx-3 select-all lg:mx-1" type="checkbox" name="sizes[]" value="' . $row->id . '"/>';
+                    return '<input class="mx-3 rounded select-all lg:mx-1" type="checkbox" name="sizes[]" value="' . $row->id . '"/>';
                 })->editColumn('status', function ($row) {
                 if ($row->status === 1) {
                     $status_class = 'active';

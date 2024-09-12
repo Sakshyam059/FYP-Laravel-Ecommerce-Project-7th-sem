@@ -23,10 +23,7 @@ class CategoryController extends Controller
             return DataTables::of($data)->addIndexColumn()
                 ->addIndexColumn()
                 ->editColumn('select_categories', function ($row) {
-                    return '<input class="mx-3 select-all lg:mx-1" type="checkbox" name="categories[]" value="' . $row->id . '"/>';
-                })->editColumn('thumbnail_image',function($row){
-                    $image=asset('asset/images/category/'.$row->thumbnail_image);
-                    return "<img src='$image' class='object-contain h-12 mr-auto' />" ;
+                    return '<input class="mx-3 rounded select-all lg:mx-1" type="checkbox" name="categories[]" value="' . $row->id . '"/>';
                 })->editColumn('status', function ($row) {
                     if ($row->status === 1) {
                         $status_class = 'active';
@@ -35,7 +32,7 @@ class CategoryController extends Controller
                         $status_class = 'danger';
                         $status = 'Inactive';
                     }
-                    $status_btn = '<button class="px-4 py-1 text-sm text-white rounded w-fit ' . ($status_class === 'active' ? 'bg-green-500 ' : 'bg-red-500 ') . 'btn-sm "' . ' >' . $status . '</button>';
+                    $status_btn = '<button class="px-4 py-1 text-sm text-white rounded w-fit ' . ($status_class === 'active' ? 'bg-green-500 ' : 'bg-red-500 ') . ' "' . ' >' . $status . '</button>';
                     return $status_btn;
                 })->addColumn('action', function ($row) {
                     $edit = route('admin.product.category.edit', $row->id);
@@ -91,13 +88,7 @@ class CategoryController extends Controller
         try {
             $validator = $request->validated();
             $validator['slug'] = Str::slug($request->category_name);
-            if ($request->hasFile('thumbnail_image')) {
-                $file = $request->file('thumbnail_image');
-                $name = $file->getClientOriginalName();
-                $imagepath = time() . '_' . $name;
-                $file->move(public_path('asset/images/category/'), $imagepath);
-                $validator['thumbnail_image'] = $imagepath;
-            }
+          
             Category::create($validator);
             return response()->json(['status' => 200, 'success' => true, 'message' => 'Category Created successfully']);
         } catch (\Exception $e) {
@@ -124,14 +115,7 @@ class CategoryController extends Controller
         try {
             $validator = $request->validated();
             $validator['slug'] = Str::slug($request->category_name);
-            if ($request->hasFile('thumbnail_image')) {
-                $file = $request->file('thumbnail_image');
-                $name = $file->getClientOriginalName();
-                $imagepath = time() . '_' . $name;
-                File::delete(public_path('asset/images/category/' . $category->thumbnail_image));
-                $file->move(public_path('asset/images/category/'), $imagepath);
-                $validator['thumbnail_image'] = $imagepath;
-            }
+          
             $category->update($validator);
             return to_route('admin.product.category.index')->with('success', 'Category Updated Successfully.');
         } catch (\Exception $e) {
@@ -147,7 +131,6 @@ class CategoryController extends Controller
     {
         try {
             if ($category) {
-                File::delete(public_path('asset/images/category/'.$category->thumbnail_image));
                 $category->delete();
                 return response()->json(['status' => 200, 'message' => 'Category deleted successfully']);
             }

@@ -35,5 +35,15 @@
 </div>
 <div class="space-y-4">
     <label class="block text-xl font-medium" for="form3Example8">Company Logo  </label>
+    <div id="preview-container" class="grid grid-cols-4 gap-4 ">
+        @if (!empty($user->vendor->logo))
+            <div class="relative group w-fit">
+                <img class="object-cover w-20 h-20 mb-2 rounded-md" src="{{ asset('asset/images/vendor/logo/'.$user->vendor->logo) }}" alt="">
+                <button id="deleteImage" class="absolute top-0 right-0 inline-flex items-center p-1 text-sm text-white transition bg-red-500 border-none rounded-md opacity-100 group-hover:opacity-100">
+                    <i class="bx bx-x"></i>
+                </button>
+            </div>
+        @endif
+    </div>
     <input type="file" name="logo" />
 </div>

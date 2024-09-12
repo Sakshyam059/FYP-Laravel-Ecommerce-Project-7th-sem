@@ -70,7 +70,8 @@
                     class="block w-full text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40"
                     name="status" id="">
                     <option value="1" {{ $user->status === 1 ? 'selected' : '' }}>Verified</option>
-                    <option value="0" {{ $user->status === 0 ? 'selected' : '' }}>Unverified</option>
+                    <option value="2" {{ $user->status === 2 ? 'selected' : '' }}>Pending</option>
+                    <option selected value="0" {{ $user->status === 0 ? 'selected' : '' }}>Unverified</option>
                 </select>
             </div>
 

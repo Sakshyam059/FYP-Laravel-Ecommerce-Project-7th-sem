@@ -49,12 +49,25 @@
                         @enderror
                     </div>
                     <div class="mb-3 space-y-2">
+                        <label for="" class="">Banner Type</label>
+                        <select class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40" name="banner_type" id="">
+                            <option selected disabled>Choose a Type</option>
+                            <option value="static">Static</option>
+                            <option value="Hero">Hero</option>
+                            <option value="promotional">Promotional</option>
+                        </select>
+                        @error('alt')
+                            <span class="text-danger form-text">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="mb-3 space-y-2">
                         <label for="" class="">Banner Image <b class="text-danger">*</b></label>             
                         <input type="file" class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40" name="image" id="bannerImg">
                             @error('image')
                             <span class="text-danger form-text">{{ $message }}</span>
                         @enderror
                     </div>
+                   
                     <div class="mb-3 space-y-2">
                         <label for="" class="">Alt</label>
                         <input type="text" class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40" name="alt"  placeholder="Enter alt text">
@@ -91,7 +104,7 @@
                 let formData = new FormData(this);
                 $.ajax({
                     type: "POST",
-                    url: "{{ route('admin.marketing.banner.store') }}",
+                    url: "{{ route('admin.promotion.banner.store') }}",
                     data: formData,
                     contentType: false,
                     processData: false,

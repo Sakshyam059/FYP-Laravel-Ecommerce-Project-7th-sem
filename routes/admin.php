@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ColorController;
+use App\Http\Controllers\Admin\DealController;
 use App\Http\Controllers\Admin\NewsletterController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
@@ -19,7 +20,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/dashboard', function () {
         return view('admin.dashboard.dashboard');
     })->name('dashboard');
-    Route::get('vendors',[VendorController::class,'verificationRequest'])->name('vendor.request');
+    Route::get('vendors',[VendorController::class,'index'])->name('vendor.index');
+    Route::get('vendor/requests',[VendorController::class,'verificationRequest'])->name('vendor.request');
     Route::get('vendor/{id}/verify',[VendorController::class,'show'])->name('vendor.show');
     Route::put('vendor/{user}/verify', [VendorController::class, 'verifyVendor'])->name('vendor.verify');
 
@@ -36,8 +38,9 @@ Route::middleware(['auth', 'admin'])->group(function () {
         Route::resource('brand', BrandController::class);   
         
     });
-    Route::name('marketing.')->group(function(){
+    Route::name('promotion.')->group(function(){
         Route::resource('banner', BannerController::class);
+        Route::resource('deals', DealController::class);   
     });
     Route::resource('newsletter', NewsletterController::class);
 
