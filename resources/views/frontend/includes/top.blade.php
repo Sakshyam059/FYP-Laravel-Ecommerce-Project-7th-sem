@@ -6,7 +6,8 @@
 </title>
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 @vite(['resources/css/app.css', 'resources/js/app.js'])
-<script src="{{asset('frontend/assets/js/init-alpine.js')}}"></script>
+<script src="{{asset('asset/js/init-alpine.js')}}"></script>
+
 <style>
     [x-cloak] { 
         display: none !important;

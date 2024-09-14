@@ -2,7 +2,7 @@
         x-transition:enter="transition ease-out duration-300 translate-x-full" x-transition:enter-start="opacity-0"
         x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-300 translate-x-full"
         x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
-        class="fixed top-0 right-0 z-10 w-full h-full max-w-sm py-4 space-y-8 overflow-y-auto text-gray-700 transition duration-300 transform bg-white border-l border-gray-300">
+        class="fixed top-0 right-0 z-50 w-full h-full max-w-sm py-4 space-y-8 overflow-y-auto text-gray-700 transition duration-300 transform bg-white border-l border-gray-300">
         <div class="flex items-center justify-between px-6 pb-4 border-b">
             <h3 class="text-xl font-medium ">My cart</h3>
             <button @click="cartOpen = !cartOpen" class=" focus:outline-none">

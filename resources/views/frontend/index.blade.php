@@ -4,7 +4,10 @@
 @endsection
 @section('content')
     <section class="px-6 overflow-hidden" id="banners">
+        @if ($banners->isNotEmpty())
         <x-banner-carousel :hero="$banners" />
+            
+        @endif
     </section>
     <x-vendor-list />
 
@@ -35,7 +38,6 @@
                                 document.getElementById(elementId).innerHTML = "EXPIRED";
                             }
                         }
-
                         const countdownFunction = setInterval(() => updateCountdown('countdown-{{ $deal->id }}'), 1000);
                     });
                 </script>
@@ -44,6 +46,7 @@
 
     </section>
 
+    
     <x-promotion-banner-list />
 
     @include('frontend.page.partials.features')

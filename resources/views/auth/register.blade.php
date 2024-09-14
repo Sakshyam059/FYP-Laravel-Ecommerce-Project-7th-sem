@@ -1,67 +1,62 @@
 @extends('frontend.includes.main')
+
 @section('content')
-    <div class="grid grid-cols-2 gap-12 px-6">
-        <div class="overflow-hidden">
-            <img src="{{ asset('frontend/assets/svg/auth-asset1.svg') }}" alt="Sample photo" class="object-cover p-6 mx-auto" />
+    <!-- Form Section -->
+    <div class="p-6 mx-auto space-y-4 border rounded lg:w-2/3">
+        <div>
+            <h3 class="text-2xl font-bold">Welcome to {{ $siteSetting->name ?? 'Khelretail' }}</h3>
+            <p>Create an account</p>
         </div>
-        <div class="space-y-4 ">
-            <div>
-                <h3 class="text-2xl font-bold">Welcome to {{ $siteSetting->name ?? 'Khelretail' }}</h3>
-                <p class="">Create an account</p>
-            </div>
-            <form action="{{ route('register') }}" method="POST" class="space-y-4">
-                @csrf
+        <form action="{{ route('register') }}" method="POST" class="space-y-4">
+            @csrf
 
-                <div  class="space-y-2 ">
-                    <label class="block font-semibold" for="form3Example1m">Full name</label>
-                    <input type="text"  class="block w-full rounded-md bg-gray-50 "
-                        name="name" />
-                </div>
-
-                <div class="grid grid-cols-2 gap-3">
-
-                    <div  class="space-y-2 ">
-                        <label class="block font-semibold" for="form3Example8">Email</label>
-                        <input type="text"  class="block w-full rounded-md bg-gray-50"
-                            name="email" />
-                    </div>
-                    <div  class="space-y-2 ">
-                        <label class="block font-semibold" for="form3Example8">Phone</label>
-                        <input type="text"  class="block w-full rounded-md bg-gray-50 "
-                            name="phone" />
-                    </div>
-                </div>
-             
-                <div  class="space-y-2 ">
-                    <label class="block font-semibold" for="form3Example8">Password</label>
-                    <input type="password"  class="block w-full rounded-md bg-gray-50"
-                        name="password" />
-                </div>
-                <div  class="space-y-2 ">
-                    <label class="block font-semibold" for="form3Example8">Confirm Password</label>
-                    <input type="password"  class="block w-full rounded-md bg-gray-50 "
-                        name="password_confirmation" />
-                </div>
-
-                <div class="space-y-2 ">
-                    <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3c" />
-                    <label class="form-check-label" for="form2Example3">
-                        I agree all statements in <a href="#!">terms and conditions.</a>
-                    </label>
-                </div>
-
-                <div>
-                    <button type="submit" data-mdb-button-init data-mdb-ripple-init
-                        class="block w-full py-2 text-white bg-blue-800 rounded-md">Sign Up</button>
-
-                </div>
-            </form>
-            <div>
-                <h6 class="inline">Have an account ?</h6>
-                <a href="{{ route('login') }}" class="font-medium text-blue-600">Log In</a>
+            <!-- Full Name Field -->
+            <div class="space-y-2">
+                <label class="block font-semibold" for="name">Full name</label>
+                <input type="text" id="name" class="block w-full rounded-md bg-gray-50" name="name" />
             </div>
 
-        </div>
+            <!-- Email and Phone Fields -->
+            <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                <div class="space-y-2">
+                    <label class="block font-semibold" for="email">Email</label>
+                    <input type="text" id="email" class="block w-full rounded-md bg-gray-50" name="email" />
+                </div>
+                <div class="space-y-2">
+                    <label class="block font-semibold" for="phone">Phone</label>
+                    <input type="text" id="phone" class="block w-full rounded-md bg-gray-50" name="phone" />
+                </div>
+            </div>
 
+            <!-- Password and Confirm Password Fields -->
+            <div class="space-y-2">
+                <label class="block font-semibold" for="password">Password</label>
+                <input type="password" id="password" class="block w-full rounded-md bg-gray-50" name="password" />
+            </div>
+            <div class="space-y-2">
+                <label class="block font-semibold" for="password_confirmation">Confirm Password</label>
+                <input type="password" id="password_confirmation" class="block w-full rounded-md bg-gray-50"
+                    name="password_confirmation" />
+            </div>
+
+            <!-- Terms and Conditions Checkbox -->
+            <div class="flex items-center gap-2">
+                <input class="block rounded" type="checkbox" id="terms" />
+                <label class="block" for="terms">
+                    I agree to all statements in <a href="#!" class="text-green-600">Terms and conditions.</a>
+                </label>
+            </div>
+
+            <!-- Submit Button -->
+            <div>
+                <button type="submit" class="block w-full py-2 text-white bg-green-500 rounded-md">Sign Up</button>
+            </div>
+        </form>
+
+        <!-- Log In Link -->
+        <div>
+            <h6 class="inline">Have an account?</h6>
+            <a href="{{ route('login') }}" class="font-medium text-green-500">Log In</a>
+        </div>
     </div>
 @endsection
