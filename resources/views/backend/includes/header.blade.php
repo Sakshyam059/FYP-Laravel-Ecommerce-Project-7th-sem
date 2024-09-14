@@ -1,6 +1,6 @@
 <header class="z-10 py-4 bg-white border-b dark:bg-gray-800">
     <div
-        class="container flex items-center justify-between h-full pl-3 pr-6 mx-auto text-purple-600 dark:text-purple-300">
+        class="container flex items-center justify-between h-full pl-3 pr-6 mx-auto text-green-600 dark:text-purple-300">
         <!-- Mobile hamburger -->
         <button class="p-1 mr-5 rounded-md md:hidden focus:outline-none focus:shadow-outline-purple"
             @click="toggleSideMenu" aria-label="Menu">
@@ -101,8 +101,7 @@
                         src="https://images.unsplash.com/photo-1502378735452-bc7d86632805?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=aa3a807e1bbdfd4364d1f449eaa96d82"
                         alt="" aria-hidden="true" /> --}}
                     <span class="">
-
-                        <i class=" bx bx-user"></i>
+                        <i class="text-xl bx bx-user"></i>
                     </span>
                 </button>
                 <template x-if="isProfileMenuOpen">
