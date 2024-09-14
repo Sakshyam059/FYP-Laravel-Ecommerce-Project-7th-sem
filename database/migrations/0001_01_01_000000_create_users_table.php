@@ -21,6 +21,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('phone',50);
+            $table->timestamp('verified_at')->nullable();
             $table->boolean('status')->default(VerificationEnum::UNVERIFIED->value);
             $table->rememberToken();
             $table->timestamps();

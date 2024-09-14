@@ -143,53 +143,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="py-4 space-y-2">
-                            <div class="flex justify-between gap-6">
-                                <div>
-                                    <img class="object-cover w-12 h-12 rounded-full"
-                                        src="{{ asset('frontend/assets/static/images/profile-2.jpg') }}" alt="">
-                                </div>
-                                <div class="grid w-full grid-cols-2">
-                                    <div class="flex items-center gap-4">
-                                        <div>
-                                            <span class="text-yellow-400">
-                                                <i class="bx bxs-star"></i>
-                                                <i class="bx bxs-star"></i>
-                                                <i class="bx bxs-star"></i>
-                                                <i class="bx bxs-star"></i>
-                                                <i class="bx bxs-star"></i>
-                                            </span>
-                                            <h4 class="text-lg font-medium">Manish Sharma</h4>
-                                        </div>
-                                    </div>
-                                    <p class="text-right">Aug 2020</p>
-                                    <div class="col-span-2 py-2">
-                                        <h4 class="text-base font-medium">Best Product</h4>
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. A libero reprehenderit
-                                            sed minus
-                                            veritatis soluta facilis quidem obcaecati repellendus qui tempore impedit veniam
-                                            deleniti eum placeat aliquid, possimus sunt iste.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="space-y-4">
-                            <h3 class="text-xl font-medium">Add a Review</h3>
-                            <form action="" method="POST" class="space-y-4">
-                                @csrf
-                                <div class="">
-                                    <input type="text" placeholder="Title"
-                                        class="w-full px-4 border-gray-200 rounded bg-gray-50">
-                                </div>
-                                <div class="">
-                                    <textarea placeholder="Enter your comment and reviews" class="w-full px-4 border-gray-200 rounded bg-gray-50"></textarea>
-                                </div>
-                                <div class="float-right">
-                                    <button type="submit" class="px-4 py-2 text-white bg-blue-600 rounded">Send
-                                        Review</button>
-                                </div>
-                            </form>
-                        </div>
+                        @include('frontend.products.reviews.list')
+                        @include('frontend.products.reviews.create')
                     </div>
                 </div>
             </div>

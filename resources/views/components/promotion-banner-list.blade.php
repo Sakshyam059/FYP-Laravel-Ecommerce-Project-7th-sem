@@ -8,22 +8,7 @@
             <img class="w-full max-h-36" src="{{ asset('asset/images/banners/' . $banner->image) }}"
                 alt="">
         </div>
-        <div>
-            <img class="w-full max-h-36" src="{{ asset('asset/images/banners/' . $banner->image) }}"
-                alt="">
-        </div>
-        <div>
-            <img class="w-full max-h-36" src="{{ asset('asset/images/banners/' . $banner->image) }}"
-                alt="">
-        </div>
-        <div>
-            <img class="w-full max-h-36" src="{{ asset('asset/images/banners/' . $banner->image) }}"
-                alt="">
-        </div>
-        <div>
-            <img class="w-full max-h-36" src="{{ asset('asset/images/banners/' . $banner->image) }}"
-                alt="">
-        </div>
+        
         <div>
             <img class="w-full max-h-36" src="{{ asset('asset/images/banners/' . $banner->image) }}"
                 alt="">

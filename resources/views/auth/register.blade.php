@@ -31,11 +31,7 @@
                             name="phone" />
                     </div>
                 </div>
-                <div  class="space-y-2 ">
-                    <label class="block font-semibold" for="form3Example8">Address</label>
-                    <input type="text"  class="block w-full rounded-md bg-gray-50"
-                        name="address" />
-                </div>
+             
                 <div  class="space-y-2 ">
                     <label class="block font-semibold" for="form3Example8">Password</label>
                     <input type="password"  class="block w-full rounded-md bg-gray-50"

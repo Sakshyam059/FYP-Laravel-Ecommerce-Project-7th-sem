@@ -165,13 +165,7 @@
                     <span>Orders</span>
                 </a>
             </li>
-            <li>
-                <a class="inline-flex items-center w-full gap-2 p-2 font-semibold text-gray-800 transition-colors duration-150 border border-none rounded hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-200"
-                    href="{{ route('admin.dashboard') }}">
-                    <i class='bx bx-star'></i>
-                    <span>Review</span>
-                </a>
-            </li>
+        
             <li>
                 <a class="inline-flex items-center w-full gap-2 p-2 font-semibold text-gray-800 transition-colors duration-150 border border-none rounded hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-200"
                     href="{{ route('admin.dashboard') }}">

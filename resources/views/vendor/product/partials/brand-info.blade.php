@@ -5,7 +5,7 @@
             <select name="brand_id" id="" class="w-2/3 rounded ">
                 <option selected disabled>Select a brand</option>
                 @foreach (App\Models\Brand::all() as $brand)
-                    <option value="{{ $brand->id }}">{{ $brand->brand_name }}</option>
+                    <option value="{{ $brand->id }}" {{ $brand->id === $product->brand_id ? 'selected' : '' }}>{{ $brand->brand_name }}</option>
                 @endforeach
             </select>
         </div>

@@ -40,5 +40,8 @@ class Product extends Model
     public function productDeal(){
         return $this->hasOne(ProductDeal::class);
     }
+    public function productReviews(){
+        return $this->hasMany(ProductReview::class);
+    }
    
 }

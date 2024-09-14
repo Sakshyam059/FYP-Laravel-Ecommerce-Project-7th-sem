@@ -5,6 +5,7 @@
             @include('vendor.profile.partials.profile-info')
             @include('vendor.profile.partials.address-info')
             @include('vendor.profile.partials.verification-info')
+            @include('vendor.profile.partials.logo')
             @include('vendor.profile.partials.payment-info')
             <div>
                 <button class="px-12 py-2 text-white bg-green-600 rounded">Submit </button>

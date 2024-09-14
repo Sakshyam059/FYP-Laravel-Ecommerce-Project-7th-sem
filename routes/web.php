@@ -8,6 +8,7 @@ use App\Http\Controllers\Frontend\PageController;
 use App\Http\Controllers\Frontend\ProductController;
 use App\Http\Controllers\Checkout\ShippingController;
 use App\Http\Controllers\Frontend\OrderController;
+use App\Http\Controllers\Frontend\ProductReviewController;
 use App\Http\Controllers\Frontend\TransactionController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
@@ -47,6 +48,8 @@ Route::middleware('auth')->group(function () {
 
 
     Route::get('/checkout/complete-order', [CheckoutController::class, 'completeOrder'])->name('checkout.complete');
+
+    Route::post('/{product}/review',[ProductReviewController::class,'store'])->name('review.store');
 
 });
 

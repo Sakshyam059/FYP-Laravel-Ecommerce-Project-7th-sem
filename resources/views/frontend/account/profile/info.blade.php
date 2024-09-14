@@ -31,11 +31,7 @@
                         <td class="py-2">Phone / Mobile</td>
                         <td class="py-2">{{$user->phone}}</td>
                     </tr>
-                    <tr >
-                        <td class="py-2">Address</td>
-                        <td class="py-2">{{$user->address}}</td>
-                    </tr>
-                    
+                   
                 </table>
            </div>
         </div>

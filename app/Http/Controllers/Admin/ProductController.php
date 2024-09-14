@@ -100,130 +100,130 @@ class ProductController extends Controller
     {
         return view('admin.includes.main');
     }
-    public function create()
-    {
-        $categories = Category::get();
-        $product = new Product();
-        return view('admin.product.create', compact('categories', 'product'));
-    }
+    // public function create()
+    // {
+    //     $categories = Category::get();
+    //     $product = new Product();
+    //     return view('admin.product.create', compact('categories', 'product'));
+    // }
 
-    public function storeDescriptionImage(Request $request)
-    {
-        if ($request->hasFile('upload')) {
-            $originName = $request->file('upload')->getClientOriginalName();
-            $fileName = pathinfo($originName, PATHINFO_FILENAME);
-            $extension = $request->file('upload')->getClientOriginalExtension();
-            $fileName = $fileName . '_' . time() . '.' . $extension;
+    // public function storeDescriptionImage(Request $request)
+    // {
+    //     if ($request->hasFile('upload')) {
+    //         $originName = $request->file('upload')->getClientOriginalName();
+    //         $fileName = pathinfo($originName, PATHINFO_FILENAME);
+    //         $extension = $request->file('upload')->getClientOriginalExtension();
+    //         $fileName = $fileName . '_' . time() . '.' . $extension;
 
-            $request->file('upload')->move(public_path('media'), $fileName);
+    //         $request->file('upload')->move(public_path('media'), $fileName);
 
-            $url = asset('media/' . $fileName);
-            return response()->json(['fileName' => $fileName, 'uploaded' => 1, 'url' => $url]);
-        }
-    }
-    public function store(Request $request, ProductImagePostRequest $imgrequest)
-    {
-        DB::beginTransaction();
-        try {
-            $validator = $request->validate([
-                'name' => 'required',
-                'short_description' => 'required',
-                'description' => 'required',
-                'category_id' => 'required',
-                'subcategory_id' => 'required',
-                'brand_id' => 'required',
-                'price' => 'required',
-                'discount_value' => 'required',
-                'discount_type' => 'required',
-                'trending' => 'nullable'
-            ]);
-            $validator['slug'] = Str::slug($request->name);
-            $validator['trending'] = $request['trending'] ? 1 : 0;
+    //         $url = asset('media/' . $fileName);
+    //         return response()->json(['fileName' => $fileName, 'uploaded' => 1, 'url' => $url]);
+    //     }
+    // }
+    // public function store(Request $request, ProductImagePostRequest $imgrequest)
+    // {
+    //     DB::beginTransaction();
+    //     try {
+    //         $validator = $request->validate([
+    //             'name' => 'required',
+    //             'short_description' => 'required',
+    //             'description' => 'required',
+    //             'category_id' => 'required',
+    //             'subcategory_id' => 'required',
+    //             'brand_id' => 'required',
+    //             'price' => 'required',
+    //             'discount_value' => 'required',
+    //             'discount_type' => 'required',
+    //             'trending' => 'nullable'
+    //         ]);
+    //         $validator['slug'] = Str::slug($request->name);
+    //         $validator['trending'] = $request['trending'] ? 1 : 0;
 
-            $product = Product::create($validator);
+    //         $product = Product::create($validator);
 
-            foreach ($request->skus as $sku) {
-                if (!in_array(null, $sku, true)) {
-                    ProductSku::create([
-                        'product_id' => $product->id,
-                        'color_id' => $sku['color_id'],
-                        'size_id' => $sku['size_id'],
-                        'quantity' => $sku['quantity'],
-                    ]);
-                }else{
-                    throw new \Exception("Skus has null value");
-                }
-            }
+    //         foreach ($request->skus as $sku) {
+    //             if (!in_array(null, $sku, true)) {
+    //                 ProductSku::create([
+    //                     'product_id' => $product->id,
+    //                     'color_id' => $sku['color_id'],
+    //                     'size_id' => $sku['size_id'],
+    //                     'quantity' => $sku['quantity'],
+    //                 ]);
+    //             }else{
+    //                 throw new \Exception("Skus has null value");
+    //             }
+    //         }
 
-            $product_image = $imgrequest->validated();
-            if ($imgrequest->hasFile('image')) {
-                $files = $imgrequest->file('image');
-                foreach ($files as $key => $file) {
-                    if ($key === 0) {
-                        $product_image['is_main'] = 1;
-                    }else{
-                        $product_image['is_main'] = 0;
-                    }
-                    $product_image['product_id'] = $product['id'];
-                    $name = $file->getClientOriginalName();
-                    $imagepath = time() . '_' . $name;
-                    $file->move(public_path('admin/images/product/'), $imagepath);
-                    $product_image['image'] = $imagepath;
-                    ProductImage::create($product_image);
-                }
-            }else{
-                throw new \Exception("Image failure");
-            }
-            DB::commit();
-            return to_route('admin.product.index')->with('success', 'Product Updated Successfully.');
-        } catch (\Exception $e) {
-            DB::rollBack();
-            dd($e->getMessage());
-            return redirect()->back()->with('error', 'Failed to create product. Please try again.');
-        }
-        return Redirect::back();
-    }
-    public function edit(Product $product)
-    {
-        $categories = Category::get();
-        $subcategories = Subcategory::where('category_id', $product->category_id)->get();
-        return view('admin.product.edit', compact('categories', 'subcategories', 'product'));
-    }
-    public function update(ProductPostRequest $request, ProductImagePostRequest $imgrequest, Product $product)
-    {
-        try {
-            $validator = $request->validated();
-            $validator['slug'] = Str::slug($request->name);
-            $validator['trending'] = $request['trending'] ? 1 : 0;
+    //         $product_image = $imgrequest->validated();
+    //         if ($imgrequest->hasFile('image')) {
+    //             $files = $imgrequest->file('image');
+    //             foreach ($files as $key => $file) {
+    //                 if ($key === 0) {
+    //                     $product_image['is_main'] = 1;
+    //                 }else{
+    //                     $product_image['is_main'] = 0;
+    //                 }
+    //                 $product_image['product_id'] = $product['id'];
+    //                 $name = $file->getClientOriginalName();
+    //                 $imagepath = time() . '_' . $name;
+    //                 $file->move(public_path('admin/images/product/'), $imagepath);
+    //                 $product_image['image'] = $imagepath;
+    //                 ProductImage::create($product_image);
+    //             }
+    //         }else{
+    //             throw new \Exception("Image failure");
+    //         }
+    //         DB::commit();
+    //         return to_route('admin.product.index')->with('success', 'Product Updated Successfully.');
+    //     } catch (\Exception $e) {
+    //         DB::rollBack();
+    //         dd($e->getMessage());
+    //         return redirect()->back()->with('error', 'Failed to create product. Please try again.');
+    //     }
+    //     return Redirect::back();
+    // }
+    // public function edit(Product $product)
+    // {
+    //     $categories = Category::get();
+    //     $subcategories = Subcategory::where('category_id', $product->category_id)->get();
+    //     return view('admin.product.edit', compact('categories', 'subcategories', 'product'));
+    // }
+    // public function update(ProductPostRequest $request, ProductImagePostRequest $imgrequest, Product $product)
+    // {
+    //     try {
+    //         $validator = $request->validated();
+    //         $validator['slug'] = Str::slug($request->name);
+    //         $validator['trending'] = $request['trending'] ? 1 : 0;
 
-            $product->update($validator);
-            try {
-                $product_image = $imgrequest->validated();
-                if ($imgrequest->hasFile('image')) {
-                    $files = $imgrequest->file('image');
-                    foreach ($files as $key => $file) {
-                        if ($key === 0) {
-                            $product_image['is_main'] = 1;
-                        }
-                        $product_image['product_id'] = $product['id'];
-                        $name = $file->getClientOriginalName();
-                        $imagepath = time() . '_' . $name;
-                        $file->move(public_path('admin/images/product/'), $imagepath);
-                        $product_image['image'] = $imagepath;
-                        ProductImage::create($product_image);
-                    }
-                }
-            } catch (\Exception $e) {
-                dd($e->getMessage());
-                return redirect()->back()->with('error', 'Failed to store image. Please try again.');
-            }
-            return to_route('admin.product.index')->with('success', 'Product Created successfully');
-        } catch (\Exception $e) {
-            dd($e->getMessage());
-            return redirect()->back()->with('error', 'Failed to create product. Please try again.');
-        }
-        return Redirect::back();
-    }
+    //         $product->update($validator);
+    //         try {
+    //             $product_image = $imgrequest->validated();
+    //             if ($imgrequest->hasFile('image')) {
+    //                 $files = $imgrequest->file('image');
+    //                 foreach ($files as $key => $file) {
+    //                     if ($key === 0) {
+    //                         $product_image['is_main'] = 1;
+    //                     }
+    //                     $product_image['product_id'] = $product['id'];
+    //                     $name = $file->getClientOriginalName();
+    //                     $imagepath = time() . '_' . $name;
+    //                     $file->move(public_path('admin/images/product/'), $imagepath);
+    //                     $product_image['image'] = $imagepath;
+    //                     ProductImage::create($product_image);
+    //                 }
+    //             }
+    //         } catch (\Exception $e) {
+    //             dd($e->getMessage());
+    //             return redirect()->back()->with('error', 'Failed to store image. Please try again.');
+    //         }
+    //         return to_route('admin.product.index')->with('success', 'Product Created successfully');
+    //     } catch (\Exception $e) {
+    //         dd($e->getMessage());
+    //         return redirect()->back()->with('error', 'Failed to create product. Please try again.');
+    //     }
+    //     return Redirect::back();
+    // }
     public function destroy(Product $product)
     {
         try {

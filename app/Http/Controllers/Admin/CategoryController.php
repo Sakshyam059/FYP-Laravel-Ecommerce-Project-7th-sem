@@ -87,8 +87,7 @@ class CategoryController extends Controller
     {
         try {
             $validator = $request->validated();
-            $validator['slug'] = Str::slug($request->category_name);
-          
+            $validator['slug'] = Str::slug($request->category_name); 
             Category::create($validator);
             return response()->json(['status' => 200, 'success' => true, 'message' => 'Category Created successfully']);
         } catch (\Exception $e) {

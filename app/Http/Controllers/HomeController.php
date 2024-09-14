@@ -6,6 +6,7 @@ use App\Models\Banner;
 use App\Models\Deal;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class HomeController extends Controller
 {
