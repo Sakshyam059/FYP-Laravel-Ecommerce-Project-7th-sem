@@ -9,7 +9,7 @@
         <ul class="px-3 space-y-2">
             <li class="text-xs font-bold uppercase">Menu</li>
             <li>
-                <a class="{{ Request::routeIs('vendor.dashboard') ? 'border border-black/50 text-white bg-blue-800/75 dark:bg-gray-700 ' : '' }} p-2 inline-flex gap-2 items-center w-full rounded border-none   font-semibold  transition-colors duration-150 border  hover:text-gray-800 dark:hover:text-gray-200 text-gray-800 dark:text-gray-200"
+                <a class="{{ Request::routeIs('vendor.dashboard') ? 'border border-black/50 text-white bg-green-500 dark:bg-gray-700 ' : '' }} p-2 inline-flex gap-2 items-center w-full rounded border-none   font-semibold  transition-colors duration-150 border  hover:bg-gray-700 hover:text-white dark:hover:text-gray-200 text-gray-800 dark:text-gray-200"
                     href="{{ route('vendor.dashboard') }}">
                     <i class=' bx bxs-dashboard'></i>
                     <span>Dashboard</span>
@@ -20,7 +20,7 @@
 
             <li>
                 <button
-                    class="{{ Request::routeIs('vendor.product.*') ? 'border border-black/50 bg-blue-800/75 text-white  dark:bg-gray-700 ' : '' }}relative p-2 inline-flex gap-2 items-center w-full rounded border-none   font-semibold  transition-colors duration-150 border  hover:text-gray-800 dark:hover:text-gray-200 text-gray-800 dark:text-gray-200"
+                    class="{{ Request::routeIs('vendor.product.*') ? 'border border-black/50 bg-green-500 text-white  dark:bg-gray-700 ' : '' }}relative p-2 inline-flex gap-2 items-center w-full rounded border-none   font-semibold  transition-colors duration-150 border  hover:bg-gray-700 hover:text-white dark:hover:text-gray-200 text-gray-800 dark:text-gray-200"
                     @click="togglePagesMenu" aria-haspopup="true">
 
                     <i class='bx bx-shopping-bag'></i>
@@ -40,12 +40,12 @@
                         class="py-2 overflow-hidden font-medium text-gray-800 rounded-b-md dark:text-gray-400 "
                         aria-label="submenu">
                         <li
-                            class="{{ Request::routeIs('vendor.product.index') ? 'border border-black/50 bg-blue-300/75  dark:bg-gray-700 ' : '' }} py-2 px-6 inline-flex gap-2 items-center w-full rounded border-none   font-semibold  transition-colors duration-150 border  hover:text-gray-800 dark:hover:text-gray-200 text-gray-800 dark:text-gray-200">
+                            class="{{ Request::routeIs('vendor.product.index') ? 'border border-black/50 bg-blue-300/75  dark:bg-gray-700 ' : '' }} py-2 px-6 inline-flex gap-2 items-center w-full rounded border-none   font-semibold  transition-colors duration-150 border  hover:bg-gray-700 hover:text-white dark:hover:text-gray-200 text-gray-800 dark:text-gray-200">
                             <a href="{{ route('vendor.product.index') }}" href="pages/login.html">Product List</a>
                         </li>
                         
                         <li
-                            class="inline-flex items-center w-full gap-2 px-6 py-2 font-semibold text-gray-800 transition-colors duration-150 border border-none rounded hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-200">
+                            class="inline-flex items-center w-full gap-2 px-6 py-2 font-semibold text-gray-800 transition-colors duration-150 border border-none rounded hover:bg-gray-700 hover:text-white dark:hover:text-gray-200 dark:text-gray-200">
                             <a href="{{ route('vendor.product.create') }}" href="pages/forgot-password.html">
                                 Add Product
                             </a>
@@ -56,28 +56,28 @@
             </li>
             
             <li>
-                <a class="inline-flex items-center w-full gap-2 p-2 font-semibold text-gray-800 transition-colors duration-150 border border-none rounded hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-200"
+                <a class="inline-flex items-center w-full gap-2 p-2 font-semibold text-gray-800 transition-colors duration-150 border border-none rounded hover:bg-gray-700 hover:text-white dark:hover:text-gray-200 dark:text-gray-200"
                     href="{{ route('vendor.dashboard') }}">
                     <i class='bx bx-credit-card'></i>
                     <span>Payment</span>
                 </a>
             </li>
             <li>
-                <a class="{{ Request::routeIs('vendor.order.index') ? 'border border-black/50 text-white bg-blue-800/75 dark:bg-gray-700 ' : '' }} p-2 inline-flex gap-2 items-center w-full rounded border-none   font-semibold  transition-colors duration-150 border  hover:text-gray-800 dark:hover:text-gray-200 text-gray-800 dark:text-gray-200"
+                <a class="{{ Request::routeIs('vendor.order.index') ? 'border border-black/50 text-white bg-green-500 dark:bg-gray-700 ' : '' }} p-2 inline-flex gap-2 items-center w-full rounded border-none   font-semibold  transition-colors duration-150 border  hover:bg-gray-700 hover:text-white dark:hover:text-gray-200 text-gray-800 dark:text-gray-200"
                     href="{{ route('vendor.order.index') }}">
                     <i class='bx bx-cart-alt'></i>
                     <span>Orders</span>
                 </a>
             </li>
             <li>
-                <a class="inline-flex items-center w-full gap-2 p-2 font-semibold text-gray-800 transition-colors duration-150 border border-none rounded hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-200"
+                <a class="inline-flex items-center w-full gap-2 p-2 font-semibold text-gray-800 transition-colors duration-150 border border-none rounded hover:bg-gray-700 hover:text-white dark:hover:text-gray-200 dark:text-gray-200"
                     href="{{ route('vendor.dashboard') }}">
                     <i class='bx bx-star'></i>
                     <span>Review</span>
                 </a>
             </li>
             <li>
-                <a class="inline-flex items-center w-full gap-2 p-2 font-semibold text-gray-800 transition-colors duration-150 border border-none rounded hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-200"
+                <a class="inline-flex items-center w-full gap-2 p-2 font-semibold text-gray-800 transition-colors duration-150 border border-none rounded hover:bg-gray-700 hover:text-white dark:hover:text-gray-200 dark:text-gray-200"
                     href="{{ route('vendor.dashboard') }}">
                     <i class='bx bx-detail'></i>
                     <span>Blogs</span>
@@ -86,7 +86,7 @@
 
             <li>
                 <button
-                    class="{{ Request::routeIs('vendor.profile.*') ? 'border border-black/50 bg-blue-800/75 text-white  dark:bg-gray-700 ' : '' }}relative p-2 inline-flex gap-2 items-center w-full rounded border-none   font-semibold  transition-colors duration-150 border  hover:text-gray-800 dark:hover:text-gray-200 text-gray-800 dark:text-gray-200"
+                    class="{{ Request::routeIs('vendor.profile.*') ? 'border border-black/50 bg-green-500 text-white  dark:bg-gray-700 ' : '' }}relative p-2 inline-flex gap-2 items-center w-full rounded border-none   font-semibold  transition-colors duration-150 border  hover:bg-gray-700 hover:text-white dark:hover:text-gray-200 text-gray-800 dark:text-gray-200"
                     @click="toggleSettingsMenu" aria-haspopup="true">
                     <i class='bx bx-user-circle' ></i>
                     <span>Accounts</span>
@@ -104,12 +104,12 @@
                         class="py-2 overflow-hidden font-medium text-gray-800 rounded-b-md dark:text-gray-400 "
                         aria-label="submenu">
                         <li
-                            class="{{ Request::routeIs('vendor.profile.edit') ? 'border border-black/50 bg-blue-300/75  dark:bg-gray-700 ' : '' }} py-2 px-6 inline-flex gap-2 items-center w-full rounded border-none   font-semibold  transition-colors duration-150 border  hover:text-gray-800 dark:hover:text-gray-200 text-gray-800 dark:text-gray-200">
+                            class="{{ Request::routeIs('vendor.profile.edit') ? 'border border-black/50 bg-blue-300/75  dark:bg-gray-700 ' : '' }} py-2 px-6 inline-flex gap-2 items-center w-full rounded border-none   font-semibold  transition-colors duration-150 border  hover:bg-gray-700 hover:text-white dark:hover:text-gray-200 text-gray-800 dark:text-gray-200">
                             <a href="{{ route('vendor.profile.edit') }}" href="pages/login.html">Profile</a>
                         </li>
                         
                         <li
-                            class="inline-flex items-center w-full gap-2 px-6 py-2 font-semibold text-gray-800 transition-colors duration-150 border border-none rounded hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-200">
+                            class="inline-flex items-center w-full gap-2 px-6 py-2 font-semibold text-gray-800 transition-colors duration-150 border border-none rounded hover:bg-gray-700 hover:text-white dark:hover:text-gray-200 dark:text-gray-200">
                             <a href="{{ route('vendor.product.create') }}" href="pages/forgot-password.html">
                                 Payment
                             </a>
@@ -120,7 +120,7 @@
             </li>
             
             <li>
-                <a class="{{ Request::routeIs('vendor.profile') ? 'border border-black/50 text-white bg-blue-800/75 dark:bg-gray-700 ' : '' }} inline-flex items-center w-full gap-2 p-2 font-semibold text-gray-800 transition-colors duration-150 border border-none rounded hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-200"
+                <a class="{{ Request::routeIs('vendor.profile') ? 'border border-black/50 text-white bg-green-500 dark:bg-gray-700 ' : '' }} inline-flex items-center w-full gap-2 p-2 font-semibold text-gray-800 transition-colors duration-150 border border-none rounded hover:bg-gray-700 hover:text-white dark:hover:text-gray-200 dark:text-gray-200"
                     href="{{ route('vendor.dashboard') }}">
                     <i class='bx bx-help-circle'></i>
                     <span>Help</span>
@@ -152,7 +152,7 @@
             <li class="relative px-6 py-3">
                 <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg"
                     aria-hidden="true"></span>
-                <a class="inline-flex items-center w-full font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
+                <a class="inline-flex items-center w-full font-semibold text-gray-800 transition-colors duration-150 hover:bg-gray-700 hover:text-white dark:hover:text-gray-200 dark:text-gray-100"
                     href="index.html">
                     <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round"
                         stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
@@ -166,7 +166,7 @@
 
 
             <li class="relative px-6 py-3">
-                <a class="inline-flex items-center w-full font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                <a class="inline-flex items-center w-full font-semibold transition-colors duration-150 hover:bg-gray-700 hover:text-white dark:hover:text-gray-200"
                     href="forms.html">
                     <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round"
                         stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
@@ -178,7 +178,7 @@
                 </a>
             </li>
             <li class="relative px-6 py-3">
-                <a class="inline-flex items-center w-full font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                <a class="inline-flex items-center w-full font-semibold transition-colors duration-150 hover:bg-gray-700 hover:text-white dark:hover:text-gray-200"
                     href="cards.html">
                     <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round"
                         stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
@@ -190,7 +190,7 @@
                 </a>
             </li>
             <li class="relative px-6 py-3">
-                <a class="inline-flex items-center w-full font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                <a class="inline-flex items-center w-full font-semibold transition-colors duration-150 hover:bg-gray-700 hover:text-white dark:hover:text-gray-200"
                     href="charts.html">
                     <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round"
                         stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
@@ -201,7 +201,7 @@
                 </a>
             </li>
             <li class="relative px-6 py-3">
-                <a class="inline-flex items-center w-full font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                <a class="inline-flex items-center w-full font-semibold transition-colors duration-150 hover:bg-gray-700 hover:text-white dark:hover:text-gray-200"
                     href="buttons.html">
                     <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round"
                         stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
@@ -213,7 +213,7 @@
                 </a>
             </li>
             <li class="relative px-6 py-3">
-                <a class="inline-flex items-center w-full font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                <a class="inline-flex items-center w-full font-semibold transition-colors duration-150 hover:bg-gray-700 hover:text-white dark:hover:text-gray-200"
                     href="modals.html">
                     <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round"
                         stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
@@ -225,7 +225,7 @@
                 </a>
             </li>
             <li class="relative px-6 py-3">
-                <a class="inline-flex items-center w-full font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                <a class="inline-flex items-center w-full font-semibold transition-colors duration-150 hover:bg-gray-700 hover:text-white dark:hover:text-gray-200"
                     href="tables.html">
                     <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round"
                         stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
@@ -236,7 +236,7 @@
             </li>
             <li class="relative px-6 py-3">
                 <button
-                    class="inline-flex items-center justify-between w-full font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                    class="inline-flex items-center justify-between w-full font-semibold transition-colors duration-150 hover:bg-gray-700 hover:text-white dark:hover:text-gray-200"
                     @click="togglePagesMenu" aria-haspopup="true">
                     <span class="inline-flex items-center">
                         <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round"
@@ -261,27 +261,27 @@
                         class="p-2 mt-2 space-y-2 overflow-hidden font-medium text-gray-500 rounded-md shadow-inner bg-gray-50 dark:text-gray-400 dark:bg-gray-900"
                         aria-label="submenu">
                         <li
-                            class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
+                            class="px-2 py-1 transition-colors duration-150 hover:bg-gray-700 hover:text-white dark:hover:text-gray-200">
                             <a class="w-full" href="pages/login.html">Login</a>
                         </li>
                         <li
-                            class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
+                            class="px-2 py-1 transition-colors duration-150 hover:bg-gray-700 hover:text-white dark:hover:text-gray-200">
                             <a class="w-full">
                                 Create account
                             </a>
                         </li>
                         <li
-                            class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
+                            class="px-2 py-1 transition-colors duration-150 hover:bg-gray-700 hover:text-white dark:hover:text-gray-200">
                             <a class="w-full" href="pages/forgot-password.html">
                                 Forgot password
                             </a>
                         </li>
                         <li
-                            class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
+                            class="px-2 py-1 transition-colors duration-150 hover:bg-gray-700 hover:text-white dark:hover:text-gray-200">
                             <a class="w-full" href="pages/404.html">404</a>
                         </li>
                         <li
-                            class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
+                            class="px-2 py-1 transition-colors duration-150 hover:bg-gray-700 hover:text-white dark:hover:text-gray-200">
                             <a class="w-full" href="pages/blank.html">Blank</a>
                         </li>
 
