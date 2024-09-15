@@ -35,6 +35,9 @@ class AuthenticatedSessionController extends Controller
     {
         
         $user=User::where('email',$request->email)->first();
+        if(!$user){
+            return redirect()->back();
+        }
         $otp = Str::random(6);
         Otp::updateOrCreate([
             'user_id'=>$user->id

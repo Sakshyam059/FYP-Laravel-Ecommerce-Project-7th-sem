@@ -16,4 +16,16 @@ class ProductReview extends Model
     public function product(){
         return $this->belongsTo(Product::class);
     }
+    public function isPurchased(User $user)
+    {
+        $orderDetails = OrderDetail::whereHas('order', function ($query) use ($user) {
+            $query->where('user_id', $user->id)->where('is_completed',1);
+        })->where('product_id', $this->product->id)->first();
+
+        if ($orderDetails) {
+            return true;
+        }
+
+        return false;
+    }
 }

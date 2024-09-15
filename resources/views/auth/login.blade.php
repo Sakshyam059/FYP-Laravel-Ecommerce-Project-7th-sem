@@ -16,12 +16,18 @@
                 <label class="block font-semibold" for="email">Email</label>
                 <input type="text" id="email" class="block w-full rounded-md bg-gray-100/60"
                     value="{{ old('email') }}" name="email" />
+                @error('email')
+                    <span class="text-sm text-red-600">{{ $message }}</span>
+                @enderror
             </div>
 
             <!-- Password Field -->
             <div class="space-y-2">
                 <label class="block font-semibold" for="password">Password</label>
                 <input type="password" id="password" class="block w-full rounded-md bg-gray-100/60" name="password" />
+                @error('password')
+                    <span class="text-sm text-red-600">{{ $message }}</span>
+                @enderror
             </div>
 
             <!-- Submit Button -->

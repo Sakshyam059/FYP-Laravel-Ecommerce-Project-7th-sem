@@ -48,6 +48,9 @@ class ProductController extends Controller
                     $deal_btn='<a href=' . $deal . ' class="inline-flex items-center gap-3 px-2 py-1 text-sm text-white bg-yellow-400 rounded cursor-pointer hover:bg-sky-600">   
                                         <span>Add to Deal</span>
                                     </a>';
+                    if($row->productDeal){
+                        return $row->productDeal->deal->deal_name;
+                    }
                     return $deal_btn;
                 })->editColumn('status', function ($row) {
                     if ($row->status === 1) {

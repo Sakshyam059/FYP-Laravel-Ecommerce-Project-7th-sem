@@ -43,5 +43,12 @@ class Product extends Model
     public function productReviews(){
         return $this->hasMany(ProductReview::class);
     }
+    public function orders(){
+        return $this->hasMany(OrderDetail::class);
+    }
+    public function averageRating()
+    {
+        return $this->productReviews()->average('rating');
+    }
    
 }

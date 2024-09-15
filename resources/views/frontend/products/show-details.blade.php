@@ -112,15 +112,15 @@
                         this.openReview = !this.openReview;
                     }
                 }">
-                    <div class="relative flex gap-2">
+                    <div class="relative flex ">
                         <button type="button" @click="toggle()"
                             class="z-10 px-2 pb-2 text-lg font-semibold duration-300 ease-linear border-b-2"
                             :class="openDescription ? 'text-blue-600 border-b-2 border-blue-600' :
-                                'hover:text-blue-600 hover:border-blue-600'">Description</button>
+                                'hover:text-blue-600 '">Description</button>
                         <button type="button" @click="toggle()"
                             class="z-10 px-2 pb-2 text-lg font-semibold duration-300 ease-linear border-b-2 "
                             :class="openReview ? 'text-blue-600 border-b-2 border-blue-600' :
-                                'hover:text-blue-600 hover:border-blue-600'">Ratings
+                                'hover:text-blue-600 '">Ratings
                             &amp; Reviews</button>
                         <div class="absolute bottom-0 w-full h-[2px] bg-gray-200"></div>
                     </div>
@@ -132,7 +132,7 @@
                             <div class="space-y-2">
                                 <h3 class="text-xl font-medium">Average Rating</h3>
                                 <div class="space-x-2">
-                                    <span class="text-xl font-medium">4.5</span>
+                                    <span class="text-xl font-medium">{{number_format($product->averageRating(),2)??'Not Rated Yet'}}</span>
                                     <span class="text-yellow-400">
                                         <i class="bx bxs-star"></i>
                                         <i class="bx bxs-star"></i>
