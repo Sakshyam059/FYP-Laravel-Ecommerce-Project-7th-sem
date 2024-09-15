@@ -18,7 +18,7 @@
             </div>
             <div class="flex items-center justify-between gap-2 mt-2 lg:my-0" id="buttons">
                 <a href="{{ route('vendor.product.create') }}"
-                    class="px-3 py-1 text-xs text-white bg-blue-600 border border-blue-400 rounded-md lg:py-2 lg:text-sm">
+                    class="px-3 py-1 text-xs text-white bg-green-500 border border-green-400 rounded-md lg:py-2 lg:text-sm">
                     <span class="inline-flex items-center gap-2 text-sm">
                         <i class="text-lg bx bx-plus"></i>Add Product</span>
                 </a>
