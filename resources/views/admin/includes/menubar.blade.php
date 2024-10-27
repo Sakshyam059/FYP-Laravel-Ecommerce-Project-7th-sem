@@ -146,14 +146,11 @@
                                 Deals
                             </a>
                         </li>
-
-
-
                 </template>
             </li>
-            <li>
+            {{-- <li>
                 <a class="inline-flex items-center w-full gap-2 p-2 font-semibold text-gray-800 transition-colors duration-150 border border-none rounded dark:hover:text-gray-200 dark:text-gray-200"
-                    href="{{ route('admin.dashboard') }}">
+                    href="{{ route('admin.payment.index') }}">
                     <i class='bx bx-credit-card'></i>
                     <span>Payment</span>
                 </a>
@@ -164,9 +161,9 @@
                     <i class='bx bx-cart-alt'></i>
                     <span>Orders</span>
                 </a>
-            </li>
+            </li> --}}
         
-            <li>
+            {{-- <li>
                 <a class="inline-flex items-center w-full gap-2 p-2 font-semibold text-gray-800 transition-colors duration-150 border border-none rounded dark:hover:text-gray-200 dark:text-gray-200"
                     href="{{ route('admin.dashboard') }}">
                     <i class='bx bx-detail'></i>
@@ -179,7 +176,7 @@
                     <i class='bx bx-news'></i>
                     <span>Newsletter</span>
                 </a>
-            </li>
+            </li> --}}
             <li>
                 <a class="{{ Request::routeIs('admin.site_setting.edit') ? 'border border-black/50 text-white bg-green-500 hover:bg-gray-700 dark:bg-green-500 ' : '' }} inline-flex items-center w-full gap-2 p-2 font-semibold text-gray-800 transition-colors duration-150 border border-none rounded  dark:hover:text-gray-200 dark:text-gray-200"
                     href="{{ route('admin.site_setting.edit') }}">
@@ -195,13 +192,13 @@
                     <span>Account</span>
                 </a>
             </li>
-            <li>
+            {{-- <li>
                 <a class="{{ Request::routeIs('admin.profile.edit') ? 'border border-black/50 text-white bg-green-500 hover:bg-gray-700 dark:bg-green-500 ' : '' }} inline-flex items-center w-full gap-2 p-2 font-semibold text-gray-800 transition-colors duration-150 border border-none rounded  dark:hover:text-gray-200 dark:text-gray-200"
                     href="{{ route('admin.dashboard') }}">
                     <i class='bx bx-help-circle'></i>
                     <span>Help</span>
                 </a>
-            </li>
+            </li> --}}
 
         </ul>
         {{-- <div class="px-6 my-6">

@@ -15,20 +15,13 @@
         @csrf
         @method('patch')
 
-        <div class="grid grid-cols-2 gap-3">
-            <div>
-                <label for="name" class="inline-block mb-3">Firstname</label>
-                <input id="firstname" name="firstname" type="text" class="w-full rounded"
-                    value="{{ old('firstname', $user->firstname) }}" required autofocus autocomplete="firstname" />
-                <x-input-error class="mt-2" :messages="$errors->get('firstname')" />
-            </div>
-            <div>
-                <label for="name" class="inline-block mb-3">Lastname</label>
-                <input id="lastname" name="lastname" type="text" class="w-full rounded"
-                    value="{{ old('lastname', $user->lastname) }}" required autofocus autocomplete="lastname" />
-                <x-input-error class="mt-2" :messages="$errors->get('lastname')" />
-            </div>
+        <div>
+            <label for="name" class="inline-block mb-3">Name</label>
+            <input id="name" name="name" type="text" class="w-full rounded"
+                value="{{ old('name', $user->name) }}" required autofocus autocomplete="name" />
+            <x-input-error class="mt-2" :messages="$errors->get('name')" />
         </div>
+
 
         <div class="mt-3">
             <label for="email" class="inline-block mb-3">Email</label>

@@ -12,7 +12,7 @@ class Product extends Model
     protected $guarded=[];
 
     public function vendor(){
-        return $this->belongsTo(Vendor::class,'vendor_id','id');
+        return $this->belongsTo(Vendor::class);
     }
 
     public function discount_price(){

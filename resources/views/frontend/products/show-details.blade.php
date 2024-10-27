@@ -25,7 +25,7 @@
                     <div class="pb-2 space-y-2">
                         <h2 class="text-2xl font-semibold">{{ $product->name }}</h2>
                         <small class="text-blue-600">{{ $product->category->category_name }}</small>
-                        <div class="text-yellow-400">
+                        {{-- <div class="text-yellow-400">
                             <span>
                                 <i class="bx bxs-star"></i>
                                 <i class="bx bxs-star"></i>
@@ -33,7 +33,7 @@
                                 <i class="bx bxs-star"></i>
                                 <i class="bx bxs-star"></i>
                             </span>
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="py-2 space-y-4 ">
                         <p>{{ $product->short_description }}</p>
@@ -133,13 +133,13 @@
                                 <h3 class="text-xl font-medium">Average Rating</h3>
                                 <div class="space-x-2">
                                     <span class="text-xl font-medium">{{number_format($product->averageRating(),2)??'Not Rated Yet'}}</span>
-                                    <span class="text-yellow-400">
+                                    {{-- <span class="text-yellow-400">
                                         <i class="bx bxs-star"></i>
                                         <i class="bx bxs-star"></i>
                                         <i class="bx bxs-star"></i>
                                         <i class="bx bxs-star"></i>
                                         <i class="bx bxs-star"></i>
-                                    </span>
+                                    </span> --}}
                                 </div>
                             </div>
                         </div>

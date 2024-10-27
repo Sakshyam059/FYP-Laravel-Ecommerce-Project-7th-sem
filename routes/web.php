@@ -9,6 +9,7 @@ use App\Http\Controllers\Frontend\ProductController;
 use App\Http\Controllers\Checkout\ShippingController;
 use App\Http\Controllers\Frontend\OrderController;
 use App\Http\Controllers\Frontend\ProductReviewController;
+use App\Http\Controllers\Frontend\SearchController;
 use App\Http\Controllers\Frontend\TransactionController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
@@ -23,6 +24,8 @@ Route::get('/products',[ProductController::class,'index'])->name('products.index
 Route::get('/product/{product}',[ProductController::class,'show'])->name('product.show');
 Route::get('/product/category/{slug}',[ProductController::class,'categoryFilter'])->name('product.category-filter');
 
+Route::get('/items', [SearchController::class, 'index'])->name('items.index');
+Route::get('/items/search', [SearchController::class, 'search'])->name('items.search');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile/setting', [ProfileController::class, 'edit'])->name('profile.edit');

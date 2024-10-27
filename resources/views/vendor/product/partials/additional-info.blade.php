@@ -7,9 +7,9 @@
             <input class="rounded " name="trending" type="checkbox">
             <label for="">Trending Product</label>
         </div>
-        <div>
+        {{-- <div>
             <label class="inline-block pb-3" for="tags">Tags</label>
             <input type="text" class="w-full rounded bg-gray-100/40" name="tags">
-        </div>
+        </div> --}}
 
 </div>

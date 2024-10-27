@@ -56,17 +56,24 @@
             </li>
             
             <li>
+                <a class="{{ Request::routeIs('vendor.order.index') ? 'border border-black/50 text-white bg-green-500 dark:bg-gray-700 ' : '' }} p-2 inline-flex gap-2 items-center w-full rounded border-none   font-semibold  transition-colors duration-150 border  hover:bg-gray-700 hover:text-white dark:hover:text-gray-200 text-gray-800 dark:text-gray-200"
+                    href="{{ route('vendor.order.index') }}">
+                    <i class='bx bx-cart-alt'></i>
+                    <span>Orders</span>
+                </a>
+            </li>
+            <li>
                 <a class="inline-flex items-center w-full gap-2 p-2 font-semibold text-gray-800 transition-colors duration-150 border border-none rounded hover:bg-gray-700 hover:text-white dark:hover:text-gray-200 dark:text-gray-200"
-                    href="{{ route('vendor.dashboard') }}">
+                    href="{{ route('vendor.payment.index') }}">
                     <i class='bx bx-credit-card'></i>
                     <span>Payment</span>
                 </a>
             </li>
             <li>
-                <a class="{{ Request::routeIs('vendor.order.index') ? 'border border-black/50 text-white bg-green-500 dark:bg-gray-700 ' : '' }} p-2 inline-flex gap-2 items-center w-full rounded border-none   font-semibold  transition-colors duration-150 border  hover:bg-gray-700 hover:text-white dark:hover:text-gray-200 text-gray-800 dark:text-gray-200"
-                    href="{{ route('vendor.order.index') }}">
-                    <i class='bx bx-cart-alt'></i>
-                    <span>Orders</span>
+                <a class="inline-flex items-center w-full gap-2 p-2 font-semibold text-gray-800 transition-colors duration-150 border border-none rounded hover:bg-gray-700 hover:text-white dark:hover:text-gray-200 dark:text-gray-200"
+                    href="{{ route('vendor.payment.index') }}">
+                    <i class='bx bx-credit-card'></i>
+                    <span>Shippings</span>
                 </a>
             </li>
             <li>
@@ -76,14 +83,7 @@
                     <span>Review</span>
                 </a>
             </li>
-            <li>
-                <a class="inline-flex items-center w-full gap-2 p-2 font-semibold text-gray-800 transition-colors duration-150 border border-none rounded hover:bg-gray-700 hover:text-white dark:hover:text-gray-200 dark:text-gray-200"
-                    href="{{ route('vendor.dashboard') }}">
-                    <i class='bx bx-detail'></i>
-                    <span>Blogs</span>
-                </a>
-            </li>
-
+            
             <li>
                 <button
                     class="{{ Request::routeIs('vendor.profile.*') ? 'border border-black/50 bg-green-500 text-white  dark:bg-gray-700 ' : '' }}relative p-2 inline-flex gap-2 items-center w-full rounded border-none   font-semibold  transition-colors duration-150 border  hover:bg-gray-700 hover:text-white dark:hover:text-gray-200 text-gray-800 dark:text-gray-200"
@@ -107,14 +107,7 @@
                             class="{{ Request::routeIs('vendor.profile.edit') ? 'border border-black/50 bg-blue-300/75  dark:bg-gray-700 ' : '' }} py-2 px-6 inline-flex gap-2 items-center w-full rounded border-none   font-semibold  transition-colors duration-150 border  hover:bg-gray-700 hover:text-white dark:hover:text-gray-200 text-gray-800 dark:text-gray-200">
                             <a href="{{ route('vendor.profile.edit') }}" href="pages/login.html">Profile</a>
                         </li>
-                        
-                        <li
-                            class="inline-flex items-center w-full gap-2 px-6 py-2 font-semibold text-gray-800 transition-colors duration-150 border border-none rounded hover:bg-gray-700 hover:text-white dark:hover:text-gray-200 dark:text-gray-200">
-                            <a href="{{ route('vendor.product.create') }}" href="pages/forgot-password.html">
-                                Payment
-                            </a>
-                        </li>
-
+                  
 
                 </template>
             </li>

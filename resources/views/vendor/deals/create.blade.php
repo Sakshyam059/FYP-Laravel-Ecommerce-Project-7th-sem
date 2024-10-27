@@ -19,16 +19,7 @@
                 </select>
 
             </div>
-           <div class="grid grid-cols-2 gap-6">
-            <div class="space-y-2">
-                <label for="" class="block">Discount Value</label>
-                <input type="text" class="w-full rounded bg-gray-60" >
-            </div>
-            <div class="space-y-2">
-                <label for="" class="block">Discount Type</label>
-                <input type="text" class="w-full rounded bg-gray-60" >
-            </div>
-           </div>
+          
 
 
             <div class="">

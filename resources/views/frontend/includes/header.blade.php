@@ -28,8 +28,9 @@
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
                 </span>
-                <input type="text" class="w-full pl-4 pr-16 border border-gray-200 rounded focus:ring-0"
+                <input type="text" id="search" class="w-full pl-4 pr-16 border border-gray-200 rounded focus:ring-0"
                     placeholder="Search">
+                <ul id="results" class="absolute left-0 right-0 hidden overflow-hidden border rounded-b bg-gray-50"></ul>
             </div>
 
             <!-- Cart Button -->
@@ -254,9 +255,9 @@
                 <div class="hidden space-x-4 text-sm lg:flex">
                     <a class="py-2 hover:text-blue-500" href="{{ route('homepage') }}">Home</a>
                     <a class="py-2 hover:text-blue-500" href="{{ route('products.index') }}">Shop</a>
-                    <a class="py-2 hover:text-blue-500" href="{{ route('products.index') }}">Product</a>
-                    <a class="py-2 hover:text-blue-500" href="{{ route('products.index') }}">Blog</a>
-                    <a class="py-2 hover:text-blue-500" href="{{ route('products.index') }}">Pages</a>
+                    {{-- <a class="py-2 hover:text-blue-500" href="{{ route('products.index') }}">Product</a> --}}
+                    {{-- <a class="py-2 hover:text-blue-500" href="{{ route('products.index') }}">Blog</a>
+                    <a class="py-2 hover:text-blue-500" href="{{ route('products.index') }}">Pages</a> --}}
                 </div>
             </div>
 

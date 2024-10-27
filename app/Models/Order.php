@@ -13,7 +13,7 @@ class Order extends Model
     public function orderItems(){
         return $this->hasMany(OrderDetail::class);
     }
-    public function transactions(){
-        return $this->hasMany(PaymentTransaction::class);
+    public function transaction(){
+        return $this->hasOne(PaymentTransaction::class);
     }
 }

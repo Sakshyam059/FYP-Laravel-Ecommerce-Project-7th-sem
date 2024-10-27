@@ -10,11 +10,11 @@
             </li>
             <li class="flex justify-between text-sm md:text-base">
                 <span>Shipping</span>
-                <span>NPR 10</span>
+                <span>NPR 0</span>
             </li>
             <li class="flex justify-between py-4 text-sm border-t md:text-base">
                 <span>Total Amount</span>
-                <span class="text-lg font-semibold md:text-xl">NPR 100</span>
+                <span class="text-lg font-semibold md:text-xl">NPR {{ number_format($user->cart->subtotal ?? session()->get('order')['subtotal'] ?? 0, 2) }}</span>
             </li>
         </ul>
     </div>

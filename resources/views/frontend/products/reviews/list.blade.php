@@ -23,7 +23,7 @@
                     @else
                         <span>Purchase Unverified</span>
                     @endif
-                    <span>Aug 2020</span>
+                    <span>{{\Carbon\Carbon::parse($review->created_at)->format('M d')}}</span>
                 </p>
                 <div class="col-span-2 py-2">
                     <h4 class="text-base font-medium">{{ $review->review_title }}</h4>

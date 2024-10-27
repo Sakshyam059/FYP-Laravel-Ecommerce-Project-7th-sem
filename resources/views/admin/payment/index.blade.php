@@ -2,58 +2,25 @@
 @section('styles')
     <link href="https://cdn.datatables.net/2.1.3/css/dataTables.dataTables.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/3.0.2/css/responsive.dataTables.min.css">
-    <link rel="stylesheet" href="{{ asset('asset/css/custom-datatables.css') }}">
+    <link rel="stylesheet" href="{{asset('asset/css/custom-datatables.css')}}">
 @endsection
 @section('content')
     <div class=" dark:text-white">
         <div class="items-center justify-between px-2 pt-3 lg:py-3 lg:px-0 lg:flex dark:border-gray-800">
             <div>
-                <h4 class='text-xl font-semibold '>Vendor List</h4>
-                <p class="py-1 text-sm text-gray-400">Showing vendors added recently.</p>
+                <h4 class='text-xl font-semibold '>Payment List</h4>
+                <p class="py-1 text-sm text-gray-400">Showing payments received recently.</p>
             </div>
-
+            <div class="flex items-center justify-between gap-2 mt-2 lg:my-0" id="buttons"></div>
         </div>
         <div>
-            <button id="bulkDelete"
-                class="hidden px-4 py-2 text-sm text-white bg-red-600 rounded cursor-pointer hover:bg-sky-100">
-                <span class="inline-flex items-center gap-2 text-sm"><i class='bx bx-trash'></i> <span>Delete
-                        all</span></span>
-            </button>
-            <div class="flex items-center gap-3" id="table-options">
-                <div x-data="{ open: false }" class="relative text-sm">
-                    <button @click="open = ! open"
-                        class="inline-flex items-center gap-2 px-4 py-2 bg-white border rounded focus:outline-none">
-                        <i class='bx bx-filter-alt'></i><span> Filter By</span>
-                    </button>
-                    <div x-cloak x-show="open" @click.away="open = false"
-                        class="absolute right-0 z-10 w-64 bg-white border border-gray-200 shadow ">
-                        <div class="p-3">
-                            <label for="">Status</label>
-                            <select id="status" class="w-full py-1 mt-2 text-sm bg-transparent rounded">
-                                <option selected disabled>Status</option>
-                                <option value="1">Active</option>
-                                <option value="0">Inactive</option>
-                            </select>
-                        </div>
-                        <div class="flex items-center justify-between gap-3 p-3 border-t">
-                            <button class="w-full py-2 bg-gray-100 rounded-md" id="filterReset">Reset</button>
-                            <button class="w-full py-2 text-white bg-blue-600 rounded-md" id="filterButton">Apply
-                                Now</button>
-                        </div>
-
-                    </div>
-                </div>
-
-            </div>
             <table class="text-left bg-white border dark:border-gray-800 dark:bg-gray-700" id="data-table">
                 <thead class=" bg-gray-50/75 dark:bg-gray-900">
-                    <tr class="border-b">
-                        <th><input class="mx-3 rounded lg:mx-1" name="select_all" value="1" id="select_all" type="checkbox" />
-                        </th>
-                        <th>Vendor Name</th>
-                        <th>No. of Products</th>
-                        <th>Status</th>
-                        <th>Action</th>
+                    <tr class="border-b">                  
+                        <th>Payment No.</th>
+                        <th>Order No.</th>
+                        <th>Payment Method</th>
+                        <th>Payment Status</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -64,38 +31,37 @@
 @endsection
 
 @section('scripts')
-    @include('backend.includes.datatables-scripts')
+   @include('backend.includes.datatables-scripts')
     <script type="text/javascript">
         $(document).ready(function() {
             var table = $("#data-table").DataTable({
                 processing: true,
                 serverSide: true,
                 ajax: {
-                    url: "{{ route('admin.vendor.index') }}",
+                    url: "{{ route('admin.payment.index') }}",
                     data: function(d) {
                         d.status = $('#status').val(),
                             d.search = $('.dt-search input').val()
                     }
                 },
-                columns: [{
-                        "data": 'select_all'
-
+                columns: [
+                    {
+                        "data": "id"
                     },
                     {
-                        "data": "name",
+                        "data": "order_id"
                     },
+                  
                     {
-                        "data": "product",
+                        "data": "payment_method"
                     },
+                  
                     {
-                        "data": "status",
-                        sortable: false
+                        "data": "status"
                     },
-                    {
-                        "data": "action"
-                    },
+                   
                 ],
-                
+             
                 order: [],
                 layout: {
                     topStart: {
@@ -117,7 +83,7 @@
                     }
                 },
                 paging: true,
-                ordering: false,
+                ordering: true,
                 info: false,
                 searching: true,
                 responsive: true,
@@ -139,24 +105,17 @@
             });
             $('#table-options').prepend($("#bulkDelete"));
 
-            $('#select_all').on('change', function() {
-                var rows = table.rows({
-                    'search': 'applied'
-                }).nodes();
-                $('input[type="checkbox"]', rows).prop('checked', this.checked);
-                let count = $('.select-all:checked').length;
+           
 
-                if (count > 0) {
-                    $('#bulkDelete').show();
-                } else {
-                    $('#bulkDelete').hide();
-                }
-            });
-
+            // Handle click on checkbox to set state of "Select all" control
             $('#data-table tbody').on('change', 'input[type="checkbox"]', function() {
+                // If checkbox is not checked
                 if (!this.checked) {
                     var el = $('#select_all').get(0);
+                    // If "Select all" control is checked and has 'indeterminate' property
                     if (el && el.checked && ('indeterminate' in el)) {
+                        // Set visual state of "Select all" control
+                        // as 'indeterminate'
                         el.indeterminate = true;
                     }
 
@@ -169,7 +128,7 @@
                 } else {
                     $('#bulkDelete').hide();
                 }
-
+            
             });
 
             $(document).on('click', '.deleteBtn', function() {
@@ -177,7 +136,7 @@
                 var deleteRoute = $(this).data('route');
                 Swal.fire({
                     title: 'Are you sure?',
-                    text: 'You will not recover this product details!',
+                    text: 'You will not recover this category details!',
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#d33',
@@ -231,7 +190,7 @@
                         id.push($(this).val());
                     });
                     if (id.length > 0) {
-
+                        
                         $.ajax({
                             url: "{{ route('admin.product.bulk-delete') }}",
                             headers: {
@@ -249,7 +208,7 @@
                             },
                             error: function(data) {
                                 var errors = data.responseJSON;
-
+                                
                             }
                         });
                     } else {

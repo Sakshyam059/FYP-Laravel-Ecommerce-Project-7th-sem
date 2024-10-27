@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\ColorController;
 use App\Http\Controllers\Admin\DealController;
 use App\Http\Controllers\Admin\NewsletterController;
 use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\SitesettingController;
@@ -45,6 +46,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('newsletter', NewsletterController::class);
 
     Route::get('orders',[OrderController::class,'index'])->name('order.index');
+    Route::get('payments',[PaymentController::class,'index'])->name('payment.index');
     
     Route::get('profile/setting', [ProfileController::class, 'edit'])->name('profile.edit');
     

@@ -4,14 +4,14 @@
             <h5 class="text-gray-500">Showing latest products </h5>
         </div>
         <div class="flex items-center justify-end gap-3 text-sm">
-            <div class="flex items-center gap-2">
+            {{-- <div class="flex items-center gap-2">
                 <label for="" class="">Sort By:</label>
                 <select name="" id="sortBy" class="text-sm bg-gray-100 rounded-lg ">
                     <option value="">Best Match</option>
                     <option value="">Top Sales</option>
                     <option value="">Newest Arrival</option>
                 </select>
-            </div>
+            </div> --}}
 
             <div class="flex items-center justify-end gap-2">
                 <span>View: </span>
@@ -55,6 +55,7 @@
                 $('#products').removeClass('grid-cols-4');
                 $('#grid').removeClass('bg-gray-100');
                 $('#list').addClass('bg-gray-100');
+                $('.product-card').addClass('flex space-x-2');
             });
         });
     </script>

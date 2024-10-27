@@ -28,14 +28,14 @@
                 <li>
                     <a href="{{ route('admin.dashboard') }}"
                         class="block px-3 py-1 whitespace-no-wrap hover:bg-gray-200">
-                        USD
+                        NPR
                     </a>
                 </li>
-                <li>
+                {{-- <li>
                     <a href="{{ route('profile.edit') }}" class="block px-3 py-1 whitespace-no-wrap hover:bg-gray-200">
                         NRS
                     </a>
-                </li>
+                </li> --}}
 
             </ul>
         </div>
@@ -54,11 +54,11 @@
                         English
                     </a>
                 </li>
-                <li>
+                {{-- <li>
                     <a href="{{ route('profile.edit') }}" class="block px-3 py-1 whitespace-no-wrap hover:bg-gray-200">
                         Nepali
                     </a>
-                </li>
+                </li> --}}
 
             </ul>
         </div>
