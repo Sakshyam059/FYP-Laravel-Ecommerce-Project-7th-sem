@@ -21,7 +21,7 @@
                         Total products
                     </p>
                     <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                        6389
+                        {{Auth::user()->vendor->products()->count()??0}}
                     </p>
                 </div>
             </div>
@@ -36,10 +36,10 @@
                 </div>
                 <div>
                     <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                        Total Revenue
+                        Remaining Amount
                     </p>
                     <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                        $ 46,760.89
+                        Rs. {{Auth::user()->vendor->totalPaymentsForCompletedOrders()??0}}
                     </p>
                 </div>
             </div>
@@ -54,15 +54,18 @@
                 </div>
                 <div>
                     <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                        New sales
+                        Total Orders
                     </p>
                     <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                        376
+                        {{\App\Models\OrderDetail::whereHas('product', function ($query) {
+                            $query->where('vendor_id', Auth::user()->vendor->id);
+                        })
+                        ->count()}}
                     </p>
                 </div>
             </div>
             <!-- Card -->
-            <div class="flex items-center p-4 rounded-lg shadow-xs dark:bg-gray-800">
+            {{-- <div class="flex items-center p-4 rounded-lg shadow-xs dark:bg-gray-800">
                 <div class="p-3 mr-4 text-teal-500 bg-teal-100 rounded-full dark:text-teal-100 dark:bg-teal-500">
                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                         <path fill-rule="evenodd"
@@ -78,7 +81,7 @@
                         35
                     </p>
                 </div>
-            </div>
+            </div> --}}
         </div>
 
         <!-- New Table -->

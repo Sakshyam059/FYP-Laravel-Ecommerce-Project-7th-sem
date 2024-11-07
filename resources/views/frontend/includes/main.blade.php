@@ -8,6 +8,7 @@
         @include("frontend.includes.top-header")
         @include("frontend.includes.header")
     </header>
+    @include('frontend.includes.message')
     <main class="mt-10 bg-white lg:mt-44">
         @yield("content")
     </main>

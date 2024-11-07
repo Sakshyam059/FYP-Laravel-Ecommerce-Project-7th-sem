@@ -71,6 +71,8 @@ class VendorController extends Controller
                     return '<input class="mx-3 rounded select-all lg:mx-1" type="checkbox" name="vendors[]" value="' . $row->id . '"/>';
                 })->addColumn('product',function($row){
                     return $row->vendor->products->count();
+                })->addColumn('amount',function($row){
+                    return $row->vendor->vendor_payments()->sum('remaining_amount');
                 })->editColumn('status', function ($row) {
                     if ($row->status === 1) {
                         $status_class = 'bg-green-400';
@@ -86,12 +88,15 @@ class VendorController extends Controller
                     return $status_btn;
                 })->addColumn('action', function ($row) {
                     $show = route('admin.vendor.show', $row->id);
-                    $delete = route('admin.product.subcategory.destroy', $row->id);
-
+                    $pay = route('admin.vendor.pay', $row->vendor->id);
                     $btn = '
                         <a href=' . $show . ' class="inline-flex items-center gap-1 px-2 py-1 mx-2 text-sm text-white bg-green-600 rounded cursor-pointer hover:bg-sky-100">
                             <i class="bx bx-badge-check"></i>
                             <span>Verify</span>
+                        </a>
+                        <a href=' . $pay . ' class="inline-flex items-center gap-1 px-2 py-1 mx-2 text-sm text-white bg-purple-600 rounded cursor-pointer hover:bg-sky-300">
+                            <i class="bx bx-credit-card"></i>
+                            <span>Pay</span>
                         </a>
                    ';
                     return $btn;

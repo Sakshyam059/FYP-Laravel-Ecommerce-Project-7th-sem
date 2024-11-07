@@ -51,9 +51,11 @@ Route::middleware('auth')->group(function () {
 
 
     Route::get('/checkout/complete-order', [CheckoutController::class, 'completeOrder'])->name('checkout.complete');
-
+    
     Route::post('/{product}/review',[ProductReviewController::class,'store'])->name('review.store');
-
+    
+    Route::get('/order/{detail}/delivery', [OrderController::class, 'orderDelivery'])->name('order.delivery');
+    Route::post('/order/{detail}/update-delivery', [OrderController::class, 'updateDelivery'])->name('order.delivery.update');
 });
 
 require __DIR__.'/auth.php';

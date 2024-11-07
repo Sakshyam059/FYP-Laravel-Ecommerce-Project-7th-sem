@@ -71,18 +71,18 @@
             </li>
             <li>
                 <a class="inline-flex items-center w-full gap-2 p-2 font-semibold text-gray-800 transition-colors duration-150 border border-none rounded hover:bg-gray-700 hover:text-white dark:hover:text-gray-200 dark:text-gray-200"
-                    href="{{ route('vendor.payment.index') }}">
-                    <i class='bx bx-credit-card'></i>
+                    href="{{ route('vendor.shippings.index') }}">
+                    <i class='bx bx-package'></i>
                     <span>Shippings</span>
                 </a>
             </li>
-            <li>
+            {{-- <li>
                 <a class="inline-flex items-center w-full gap-2 p-2 font-semibold text-gray-800 transition-colors duration-150 border border-none rounded hover:bg-gray-700 hover:text-white dark:hover:text-gray-200 dark:text-gray-200"
                     href="{{ route('vendor.dashboard') }}">
                     <i class='bx bx-star'></i>
                     <span>Review</span>
                 </a>
-            </li>
+            </li> --}}
             
             <li>
                 <button

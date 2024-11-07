@@ -2,15 +2,12 @@
 
 use App\Http\Controllers\Vendor\Auth\RegisteredUserController;
 use App\Http\Controllers\Vendor\Auth\VendorVerificationController;
-use App\Http\Controllers\Vendor\BrandController;
-use App\Http\Controllers\Vendor\CategoryController;
-use App\Http\Controllers\Vendor\ColorController;
 use App\Http\Controllers\Vendor\DealController;
 use App\Http\Controllers\Vendor\OrderController;
 use App\Http\Controllers\Vendor\PaymentController;
 use App\Http\Controllers\Vendor\ProductController;
 use App\Http\Controllers\Vendor\ProfileController;
-use App\Http\Controllers\Vendor\SizeController;
+use App\Http\Controllers\Vendor\ShippingController;
 use App\Http\Controllers\Vendor\SubcategoryController;
 use Illuminate\Support\Facades\Route;
 
@@ -38,4 +35,7 @@ Route::middleware(['auth', 'vendor','vendor_verified'])->group(function () {
     
     Route::get('profile/setting', [ProfileController::class, 'edit'])->name('profile.edit');
     
+    Route::get('/shippings',[ShippingController::class,'index'])->name('shippings.index');
+    Route::get('/shippings/{shipping}/manage',[ShippingController::class,'edit'])->name('shippings.edit');
+    Route::put('/shippings/{shipping}/update',[ShippingController::class,'update'])->name('shippings.update');
 });

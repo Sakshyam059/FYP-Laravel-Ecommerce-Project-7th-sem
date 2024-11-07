@@ -27,7 +27,7 @@
         </div>
         <ul class="flex items-center flex-shrink-0 space-x-6">
             <!-- Theme toggler -->
-            <li class="flex">
+            {{-- <li class="flex">
                 <button class="rounded-md focus:outline-none focus:shadow-outline-purple" @click="toggleTheme"
                     aria-label="Toggle color mode">
                     <template x-if="!dark">
@@ -91,7 +91,7 @@
                         </li>
                     </ul>
                 </template>
-            </li>
+            </li> --}}
             <!-- Profile menu -->
             <li class="relative">
                 <button class="align-middle rounded-full focus:shadow-outline-purple focus:outline-none"
@@ -121,7 +121,7 @@
                                 <span>Profile</span>
                             </a>
                         </li>
-                        <li class="flex">
+                        {{-- <li class="flex">
                             <a class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200"
                                 href="#">
                                 <svg class="w-4 h-4 mr-3" aria-hidden="true" fill="none" stroke-linecap="round"
@@ -134,7 +134,7 @@
                                 </svg>
                                 <span>Settings</span>
                             </a>
-                        </li>
+                        </li> --}}
                         <li class="flex">
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf

@@ -14,16 +14,20 @@
                 <span class="font-medium text-orange-600">Rs.{{ number_format($product->discount_price(), 2) }}</span>
                 <small class="text-gray-400 line-through ">Rs. {{ $product->price }}</small>     
             </li>
-            {{-- <li class="text-sm">
-                <span class="text-yellow-400">
-                    <i class="bx bxs-star"></i>
-                    <i class="bx bxs-star"></i>
-                    <i class="bx bxs-star"></i>
-                    <i class="bx bxs-star"></i>
-                    <i class="bx bxs-star"></i>
+            <li class="text-sm">
+                <span>
+                    @for ($i = 1; $i <= 5; $i++)
+                        <span
+                            class="star text-xl {{ $i <= $product->averageRating() ? 'text-yellow-400' : 'text-gray-400' }}">
+                            @if ($i == ceil($product->averageRating()) && $product->averageRating() - floor($product->averageRating()) > 0)
+                                &#9734;
+                            @else
+                                &#9733;
+                            @endif
+                        </span>
+                    @endfor
                 </span>
-                <span>(0)</span>
-            </li> --}}
+            </li>
         </ul>
     
     </div>

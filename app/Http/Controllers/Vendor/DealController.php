@@ -21,6 +21,6 @@ class DealController extends Controller
         ProductDeal::updateOrCreate([
             'product_id'=>$product->id
         ],$product_deal);
-        return to_route('vendor.product.index');
+        return to_route('vendor.product.index')->with('success','Deal has been created');
     }
 }

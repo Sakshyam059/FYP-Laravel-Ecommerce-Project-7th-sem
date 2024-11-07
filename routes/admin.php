@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\SitesettingController;
 use App\Http\Controllers\Admin\SizeController;
 use App\Http\Controllers\Admin\SubcategoryController;
 use App\Http\Controllers\Admin\VendorController;
+use App\Http\Controllers\Admin\VendorPaymentController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -25,6 +26,10 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('vendor/requests',[VendorController::class,'verificationRequest'])->name('vendor.request');
     Route::get('vendor/{id}/verify',[VendorController::class,'show'])->name('vendor.show');
     Route::put('vendor/{user}/verify', [VendorController::class, 'verifyVendor'])->name('vendor.verify');
+
+    Route::get('{vendor}/vendor/payment', [VendorPaymentController::class, 'index'])->name('vendor.pay');
+    Route::post('{vendor}/vendor/payment', [VendorPaymentController::class, 'pay'])->name('vendor.pay.amount');
+    Route::get('{vendor}/vendor/payment/verify', [VendorPaymentController::class, 'verify'])->name('vendor.pay.verify');
 
 
     Route::post('product/description/image',[ProductController::class,'storeDescriptionImage'])->name('product.description.image');

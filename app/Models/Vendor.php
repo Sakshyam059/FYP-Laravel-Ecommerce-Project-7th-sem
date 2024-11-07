@@ -22,4 +22,18 @@ class Vendor extends Model
     public function vendor_payment_modes(){
         return $this->hasMany(VendorPaymentMethod::class);
     }
+    public function vendor_payments(){
+        return $this->hasMany(VendorPayment::class);
+     }
+     public function totalPaymentsForCompletedOrders()
+    {
+        return $this->vendor_payments()
+            ->whereHas('order', function ($query) {
+                $query->where('is_completed', 1);
+            })
+            ->sum('remaining_amount');
+    }
+    public function vendor_khalti_payment_setting(){
+        return $this->hasOne(VendorPayementGatewaySetting::class)->where('vendor_payment_mode_id',1)->first();
+     }
 }

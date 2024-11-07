@@ -52,7 +52,7 @@ class CartController extends Controller
                     $cart->save();
                 }              
             }
-            return back();
+            return back()->with('success','Product has been added to cart');
         } catch (\Exception $e) {
             dd($e->getMessage());
         }
@@ -64,9 +64,9 @@ class CartController extends Controller
             $cart['subtotal']-=$price;
             $cart->update();
             $item->delete();
+            return back()->with('success','Product has been removed from cart');
         }catch(\Exception $e){
-            echo "failure";
+            return back()->with('error','Some error occured');
         }
-        return back();
     }
 }

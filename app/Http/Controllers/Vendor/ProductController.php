@@ -135,30 +135,30 @@ class ProductController extends Controller
             return response()->json(['fileName' => $fileName, 'uploaded' => 1, 'url' => $url]);
         }
     }
-    public function store(ProductPostRequest $request, ProductImagePostRequest $imgrequest,CategoryPostRequest $category, SubcategoryPostRequest $subcategory)
+    public function store(ProductPostRequest $request, ProductImagePostRequest $imgrequest)
     {
         $vendor=Vendor::where('user_id',Auth::id())->first();
         DB::beginTransaction();
         try {
             $validator = $request->validated();
             $validator['vendor_id']=$vendor['id'];
-            if($request->category_id==0){
-                $category->validated();
-                $cat=Category::create([
-                    'category_name'=>$category->category_name,
-                    'slug'=>Str::slug($category->category_name)
-                ]);
-                $validator['category_id']=$cat['id'];
-            }
-            if($request->subcategory_id==0){
-                $subcategory->validated();
-                $sub=Subcategory::create([
-                    'subcategory_name'=>$subcategory->subcategory_name,
-                    'category_id'=>$validator['category_id'],
-                    'slug'=>Str::slug($subcategory->subcategory_name)
-                ]);
-                $validator['subcategory_id']=$sub['id'];
-            }
+            // if($request->category_id==0){
+            //     $category->validated();
+            //     $cat=Category::create([
+            //         'category_name'=>$category->category_name,
+            //         'slug'=>Str::slug($category->category_name)
+            //     ]);
+            //     $validator['category_id']=$cat['id'];
+            // }
+            // if($request->subcategory_id==0){
+            //     $subcategory->validated();
+            //     $sub=Subcategory::create([
+            //         'subcategory_name'=>$subcategory->subcategory_name,
+            //         'category_id'=>$validator['category_id'],
+            //         'slug'=>Str::slug($subcategory->subcategory_name)
+            //     ]);
+            //     $validator['subcategory_id']=$sub['id'];
+            // }
             $validator['slug'] = Str::slug($request->name);
             $validator['trending'] = $request['trending'] ? 1 : 0;
 
@@ -197,7 +197,7 @@ class ProductController extends Controller
                 throw new \Exception("Image failure");
             }
             DB::commit();
-            return to_route('vendor.product.index')->with('success', 'Product Updated Successfully.');
+            return to_route('vendor.product.index')->with('success', 'Product saved Successfully.');
         } catch (\Exception $e) {
             DB::rollBack();
             dd($e->getMessage());
@@ -218,8 +218,22 @@ class ProductController extends Controller
             $validator['slug'] = Str::slug($request->name);
             $validator['trending'] = $request['trending'] ? 1 : 0;
 
-            $product->update($validator);
             try {
+                DB::beginTransaction();
+                $product->update($validator);
+                foreach ($request->skus as $sku) {
+                    if (!in_array(null, $sku, true)) {
+                        ProductSku::updateOrCreate([
+                            'product_id' => $product->id,
+                            'color_id' => $sku['color_id'],
+                            'size_id' => $sku['size_id'],
+                        ],[
+                            'quantity' => $sku['quantity'],
+                        ]);
+                    }else{
+                        throw new \Exception("Skus has null value");
+                    }
+                }
                 $product_image = $imgrequest->validated();
                 if ($imgrequest->hasFile('image')) {
                     $files = $imgrequest->file('image');
@@ -236,13 +250,13 @@ class ProductController extends Controller
                         ProductImage::create($product_image);
                     }
                 }
+                DB::commit();
+                return to_route('vendor.product.index')->with('success', 'Product saved successfully');
             } catch (\Exception $e) {
-                dd($e->getMessage());
+                DB::rollBack();
                 return redirect()->back()->with('error', 'Failed to store image. Please try again.');
             }
-            return to_route('vendor.product.index')->with('success', 'Product Created successfully');
         } catch (\Exception $e) {
-            dd($e->getMessage());
             return redirect()->back()->with('error', 'Failed to create product. Please try again.');
         }
         return Redirect::back();

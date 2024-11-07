@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html :class="{ 'theme-dark': dark }" x-data="data()" lang="en">
+<html  x-data="data()" lang="en">
 <head>
     @include('backend.includes.top')
     @yield('styles')
@@ -17,6 +17,7 @@
             </main>
         </div>
     </div>
+    @include('backend.includes.message')
     @include('backend.includes.bottom')
     @yield('scripts')
     @stack('script')

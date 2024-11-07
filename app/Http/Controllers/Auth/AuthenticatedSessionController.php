@@ -46,12 +46,12 @@ class AuthenticatedSessionController extends Controller
             'otp' => $otp,
             'expires_at' => Carbon::now()->addMinutes(10),
         ]);
-        // Send OTP via email
+       
         Mail::to($request->email)->send(new OtpMail($otp,$request->name));
         Session::put('email',$request->email);
         
 
-        return Redirect::route('otp.verify');
+        return Redirect::route('otp.verify')->with('success','A otp has been sent your email.');
     }
 
     /**

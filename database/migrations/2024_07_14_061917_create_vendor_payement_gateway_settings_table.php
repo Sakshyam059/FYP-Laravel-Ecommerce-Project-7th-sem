@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('vendor_payement_gateway_settings', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('vendor_id')->constrained('vendors')->cascadeOnDelete();
             $table->foreignId('vendor_payment_mode_id')->constrained('vendor_payment_methods')->cascadeOnDelete();
-            $table->string("APIkey");
+            $table->longText("APIkey");
             $table->timestamps();
         });
     }

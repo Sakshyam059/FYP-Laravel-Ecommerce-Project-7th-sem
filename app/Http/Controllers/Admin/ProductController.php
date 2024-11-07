@@ -50,21 +50,13 @@ class ProductController extends Controller
                     $status_btn = '<button class="px-4 py-1 text-sm text-white rounded w-fit ' . ($status_class === 'active' ? 'bg-green-500 ' : 'bg-red-500 ') . 'btn-sm "' . ' >' . $status . '</button>';
                     return $status_btn;
                 })->addColumn('action', function ($row) {
-                    $edit = route('admin.product.edit', $row->id);
                     $delete = route('admin.product.destroy', $row->id);
 
                     $btn = '<div x-data="{ open: false }" class="relative">
                                 <button @click="open = ! open" class=" focus:outline-none">
                                   <i class="bx bx-dots-vertical-rounded"></i> </button>
                                 <div x-cloak x-show="open" @click.away="open = false" class="absolute right-0 z-10 p-2 bg-white border border-gray-200 rounded-lg shadow ">
-                                    <a href=' . $edit . ' class="inline-flex items-center w-full gap-3 px-2 py-1 text-sm cursor-pointer hover:bg-sky-100">
-                                        <i class="bx bx-edit-alt"></i>    
-                                        <span>Edit</span>
-                                    </a>
-                                    <a href=' . $edit . ' class="inline-flex items-center w-full gap-3 px-2 py-1 text-sm cursor-pointer hover:bg-sky-100">
-                                        <i class="bx bx-show-alt"></i>
-                                        <span>View</span>
-                                    </a>
+                                    
                                     <button class="inline-flex items-center w-full gap-3 px-2 py-1 text-sm cursor-pointer deleteBtn hover:bg-sky-100"  data-route="' . $delete . '">
                                     <i class="bx bx-trash" ></i>   
                                     <span>Delete</span>

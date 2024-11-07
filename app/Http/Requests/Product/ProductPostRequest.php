@@ -35,7 +35,7 @@ class ProductPostRequest extends FormRequest
             'brand_id' => ['required'],
             'price' => ['required'],
             'discount_value' =>['required'],
-            'discount_type' =>['required'],
+            'discount_type' =>['nullable'],
             'tags' =>['nullable','string'],
             'trending'=>['nullable']
         ];

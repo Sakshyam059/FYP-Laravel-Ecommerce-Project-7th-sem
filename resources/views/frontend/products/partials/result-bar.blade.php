@@ -4,14 +4,15 @@
             <h5 class="text-gray-500">Showing latest products </h5>
         </div>
         <div class="flex items-center justify-end gap-3 text-sm">
-            {{-- <div class="flex items-center gap-2">
-                <label for="" class="">Sort By:</label>
-                <select name="" id="sortBy" class="text-sm bg-gray-100 rounded-lg ">
-                    <option value="">Best Match</option>
-                    <option value="">Top Sales</option>
-                    <option value="">Newest Arrival</option>
-                </select>
-            </div> --}}
+            <form action="{{route('products.index')}}" method="GET" id="sortForm">
+                <div class="flex items-center gap-2">
+                    <label for="" class="">Sort By:</label>
+                    <select name="sortBy" id="sortBy" class="text-sm bg-gray-100 rounded-lg ">
+                        <option value="1" {{ request('sortBy')==1?'selected':''}}>Newest Arrival</option>
+                        <option value="2" {{ request('sortBy')==2?'selected':''}}>Top Discounts</option>
+                    </select>
+                </div>
+            </form>
 
             <div class="flex items-center justify-end gap-2">
                 <span>View: </span>
@@ -49,6 +50,8 @@
                 $('#products').addClass('grid-cols-4');
                 $('#list').removeClass('bg-gray-100');
                 $('#grid').addClass('bg-gray-100');
+                $('.product-card').removeClass('flex space-x-2');
+
             });
             $('#list').click(function(event) {
                 event.preventDefault();
@@ -57,6 +60,11 @@
                 $('#list').addClass('bg-gray-100');
                 $('.product-card').addClass('flex space-x-2');
             });
+        });
+    </script>
+    <script>
+        document.getElementById('sortBy').addEventListener('change', function() {
+            document.getElementById('sortForm').submit();
         });
     </script>
 @endpush

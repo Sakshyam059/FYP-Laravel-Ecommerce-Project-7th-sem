@@ -36,7 +36,6 @@ class OtpController extends Controller
             $otp->delete();
 
             event(new Registered($user));
-            // Log in the user after OTP verification
             Auth::login($user);
             $request->session()->regenerate();
 
@@ -57,6 +56,6 @@ class OtpController extends Controller
             'otp' => $otp,
             'expires_at' => Carbon::now()->addMinutes(10),
         ]);
-        return back();
+        return back()->with('success','A new otp has been sent your email.');
     }
 }

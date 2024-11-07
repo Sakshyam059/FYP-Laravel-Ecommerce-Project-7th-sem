@@ -59,7 +59,7 @@
 
                 <!-- Terms and Conditions Checkbox -->
                 <div class="flex items-center gap-2">
-                    <input class="rounded bg-gray-50" type="checkbox" id="terms" />
+                    <input class="rounded bg-gray-50" type="checkbox" id="terms" required />
                     <label class="block" for="terms">
                         I agree to all statements in <a href="#!" class="text-green-600">terms and conditions.</a> 
                     </label>

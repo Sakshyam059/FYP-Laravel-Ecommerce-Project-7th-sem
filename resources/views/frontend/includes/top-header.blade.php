@@ -9,7 +9,9 @@
     </div>
 
 
-    <p>Best discounts and voucher codes for online stores</p>
+    <p>Best discounts 
+        {{-- <span>and voucher codes</span>  --}}
+        for online stores</p>
 
     <div class="flex items-center gap-3">
         <div x-data="{ userDropdown: false }" class="relative">
@@ -19,7 +21,7 @@
         </div>
         <div x-data="{ userDropdown: false }" class="relative">
             <button x-on:click="userDropdown = true" class="flex items-center gap-2" type="button">
-                <span>USD</span>
+                <span>NRS</span>
                 <i class='bx bx-chevron-down'></i>
             </button>
             <ul x-show="userDropdown" x-on:click.away="userDropdown = false" :class="userDropdown ? 'opacity-100' : ''"

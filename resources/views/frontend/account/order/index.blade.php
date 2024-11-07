@@ -27,13 +27,18 @@
                     @foreach ($orders as $order)
                         @foreach ($order->orderItems as $item)
                             <tr class="border-b">
-                                <td class="py-4" scope="row">{{ $loop->count }}</td>
+                                <td class="py-4" scope="row">{{ $order->id }}</td>
                                 <td class="py-4"><a href="{{route('product.show',$item->product->id)}}">{{$item->product->name}}</a></td>
                                 <td class="py-4">{{$item->color->color_name}}</td>
                                 <td class="py-4">{{$item->size->size_name}}</td>
                                 <td class="py-4">{{$item->quantity}}</td>
                                 <td class="py-4 text-xs text-white"><span class="px-4 py-1 rounded  {{$order->payment_status==1?'bg-green-600':'bg-red-600'}}">{{$order->payment_status==1?'Paid':'Pending'}}</span></td>
-                                <td class="py-4 text-xs text-white"><span class="px-4 py-1 rounded  {{$order->delivery_status==1?'bg-green-600':'bg-orange-400'}}">{{$order->delivery_status==1?'Delivered':'Pending'}}</span></td>
+                                <td class="py-4 text-xs text-white"><span class="px-4 py-1 rounded  {{$item->delivery_status==1?'bg-green-600':'bg-orange-400'}}">{{$item->delivery_status==1?'Delivered':'Processing'}}</span>
+                                   @if ($item->delivery_status==2)
+                                   <span><a href="{{route('order.delivery',$item->id)}}" class="px-3 py-1 text-xs text-white bg-green-400 rounded">Enter Otp</a></span>
+                                   @endif
+                                </td>
+            
                             </tr>
                         @endforeach
                     @endforeach

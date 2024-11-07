@@ -7,8 +7,8 @@
             <span>Choose an Image</span>
         </div>
         <input id="logo" type="file" name="logo" accept="image/*" class="hidden file-input" onchange="previewLogo(event)">
-        <div id="image-container" class="relative flex-col items-center hidden ">
-            <img id="image-preview" src="#" alt="Image Preview" class="max-w-xs rounded shadow-lg">
+        <div id="image-container" class="relative flex-col items-center {{$user->vendor->logo?'':'hidden'}}">
+             <img src="{{ asset('asset/images/vendor/logo/'.$user->vendor->logo)}}" id="image-preview" src="#" alt="Image Preview" class="max-w-xs rounded shadow-lg">
             <button id="delete-button" type="button"
                 class="absolute top-0 right-0 flex items-center justify-center p-2 text-white transition-colors duration-300 bg-red-500 rounded hover:bg-red-600"
                 onclick="deleteImage()">

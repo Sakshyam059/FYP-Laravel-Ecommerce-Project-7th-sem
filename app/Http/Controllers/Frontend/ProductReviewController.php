@@ -26,6 +26,6 @@ class ProductReviewController extends Controller
             ],
             $data
         );
-        return back();
+        return back()->with('success','Product review has been added. Thank you');
     }
 }

@@ -8,9 +8,16 @@
             <div class="grid w-full grid-cols-2">
                 <div class="flex items-center gap-4">
                     <div>
-                        <span class="text-yellow-400">
-                            @for ($i = 1; $i <= $review->rating; $i++)
-                                <i class="bx bxs-star"></i>
+                        <span>
+                            @for ($i = 1; $i <= 5; $i++)
+                                <span
+                                    class="star text-xl {{ $i <= $product->averageRating() ? 'text-yellow-400' : 'text-gray-400' }}">
+                                    @if ($i == ceil($product->averageRating()) && $product->averageRating() - floor($product->averageRating()) > 0)
+                                        &#9734;
+                                    @else
+                                        &#9733;
+                                    @endif
+                                </span>
                             @endfor
                         </span>
                         <h4 class="text-lg font-medium">{{ $review->user->name }}</h4>
@@ -18,7 +25,7 @@
                 </div>
 
                 <p class="space-x-4 text-right">
-                    @if ($review->isPurchased($review->user))
+                    @if (\App\Models\Order::hasUserOrderedProduct($review->user->id, $product->id))
                         <span class="font-medium text-blue-600">Purchase Verified</span>
                     @else
                         <span>Purchase Unverified</span>

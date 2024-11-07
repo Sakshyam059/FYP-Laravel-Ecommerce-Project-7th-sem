@@ -1,7 +1,7 @@
 <div class="px-5 py-3 space-y-2 border rounded ">
     <h5 class="space-y-2 font-semibold">Product Category</h2>
         <div class="flex items-center justify-between gap-12">
-            <label class="" for="category">Category Suggestions</label>
+            <label class="" for="category">Category </label>
             <div class="w-2/3" id="product-category">
                 <select name="category_id" class="w-full rounded" id="category">
                     <option selected  value="0">Choose a category</option>
@@ -14,13 +14,13 @@
             </div>
 
         </div>
-        <div class="flex items-center justify-between gap-12">
+        {{-- <div class="flex items-center justify-between gap-12">
             <label class="" for="category">Category <strong class="text-red-600">*</strong></label>
             <input type="text" name="category_name" value="{{old('category_name',$product->category->category_name??'')}}" class="w-2/3 border-gray-400 rounded bg-gray-50">
-        </div>
+        </div> --}}
 
         <div class="flex items-center justify-between gap-12">
-            <label class="block " for="subcategory">Subcategory Suggestions</label>
+            <label class="block " for="subcategory">Subcategory </label>
             <div  class="w-2/3 subcategory">
                 <select class="w-full rounded " name="subcategory_id" id="subcategory">
                     <option selected  value="0">Choose a subcategory</option>
@@ -34,11 +34,11 @@
                 </select>
             </div>
         </div>
-        <div class="flex items-center justify-between gap-12">
+        {{-- <div class="flex items-center justify-between gap-12">
 
             <label class="block " for="category">Subcategory <strong class="text-red-600">*</strong></label>
             <input type="text" value="{{old('subcategory_name',$product->subcategory->subcategory_name??'')}}" name="subcategory_name" class="w-2/3 border-gray-400 rounded bg-gray-50">
-        </div>
+        </div> --}}
 
 
 </div>

@@ -13,15 +13,15 @@ class PaymentMethodSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('payment_methods')->insert([[
-            'method_name' => "Cash",
-            'method_type' => '0',
-        ],[
-            'method_name' => "Esewa",
-            'method_type' => '1',
-        ],[
-            'method_name' => "Khalti",
-            'method_type' => '1',
-        ]]);
+        DB::table('payment_methods')->insert([
+            //     [
+            //     'method_name' => "Cash",
+            //     'method_type' => '0',
+            // ],
+            [
+                'method_name' => "Khalti",
+                'method_type' => '1',
+            ]
+        ]);
     }
 }

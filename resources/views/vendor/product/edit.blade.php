@@ -19,6 +19,26 @@
                 @include('vendor.product.partials.image-info')
                 @include('vendor.product.partials.brand-info')
                 @include('vendor.product.partials.size-and-color-info')
+                <div>
+                    <table class="table mt-2 text-center border" width="100%">
+                        <thead>
+                            <tr class="bg-gray-100 border-b">
+                                <th class="py-2">Color</th>
+                                <th class="py-2">Size</th>
+                                <th class="py-2">Quantity</th>
+                            </tr> 
+                        </thead>
+                        <tbody>
+                            @foreach ($product->product_skus as $sku)
+                               <tr>
+                                <td class="py-2"> {{$sku->color->color_name}}</td>
+                                <td class="py-2"> {{$sku->size->size_name}}</td>
+                                <td class="py-2"> {{$sku->quantity}}</td>
+                               </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
                 @include('vendor.product.partials.additional-info')
                 <div class="mt-3 ">
                     <div class="grid grid-cols-2 gap-5">

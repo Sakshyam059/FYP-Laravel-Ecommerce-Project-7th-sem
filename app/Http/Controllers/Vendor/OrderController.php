@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Vendor;
 use App\Http\Controllers\Controller;
 use App\Models\OrderDetail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\DataTables;
 
 class OrderController extends Controller
@@ -12,7 +13,10 @@ class OrderController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = OrderDetail::select('*');
+            $data = OrderDetail::with('product.vendor')
+            ->whereHas('product.vendor', function ($query) {
+                $query->where('id', Auth::user()->vendor->id);
+            })->select('*');
             return DataTables::of($data)->addIndexColumn()
                 ->addIndexColumn()
                 ->editColumn('user_id',function($row){
@@ -35,12 +39,15 @@ class OrderController extends Controller
                     $payment_status = '<button class="px-4 py-1 text-sm text-white rounded w-fit ' . ($status_class === 'active' ? 'bg-green-500 ' : 'bg-red-500 ') . 'btn-sm "' . ' >' . $status . '</button>';
                     return $payment_status;
                 })->editColumn('delivery_status', function ($row) {
-                    if ($row->order->delivery_status === 1) {
+                    if ($row->order->is_completed == 1) {
                         $status_class = 'active';
                         $status = 'Delivered';
+                    } elseif($row->order->is_completed == 2) {
+                        $status_class = 'danger';
+                        $status = 'Out for Delivery';     
                     } else {
                         $status_class = 'danger';
-                        $status = 'Pending';
+                        $status = 'Processing';
                     }
                     $delivery_status = '<button class="px-4 py-1 text-sm text-white rounded w-fit ' . ($status_class === 'active' ? 'bg-green-500 ' : 'bg-red-500 ') . 'btn-sm "' . ' >' . $status . '</button>';
                     return $delivery_status;

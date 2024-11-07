@@ -18,6 +18,8 @@ return new class extends Migration
             $table->foreignId('size_id')->constrained('sizes')->cascadeOnDelete();
             $table->foreignId('color_id')->constrained('colors')->cascadeOnDelete();
             $table->string('quantity');
+            $table->string('otp')->unique();
+            $table->boolean('delivery_status')->default(0);
             $table->timestamps();
         });
     }

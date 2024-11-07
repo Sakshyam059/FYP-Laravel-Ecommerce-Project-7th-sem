@@ -52,6 +52,7 @@
                         </th>
                         <th>Vendor Name</th>
                         <th>No. of Products</th>
+                        <th>Remaining Payments</th>
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
@@ -86,6 +87,9 @@
                     },
                     {
                         "data": "product",
+                    },
+                    {
+                        "data": "amount",
                     },
                     {
                         "data": "status",

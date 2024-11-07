@@ -1,5 +1,5 @@
 <link href="https://unpkg.com/swiper/swiper-bundle.min.css" rel="stylesheet" />
-@props(['products' => [], 'deal'])
+@props(['products' => []])
 <div x-data="{ swiper: null }" x-init="swiper = new Swiper($refs.container, {
     loop: true,
     slidesPerView: 1,
@@ -28,12 +28,6 @@
             <h3 class="text-2xl font-semibold ">{{ $slot }}</h3>
         </div>
         <div class="absolute right-0 z-10 flex items-center gap-6">
-            @if ($deal)
-                <div class="px-12 py-2 text-sm text-white bg-red-500">
-                    <span>Ends in: </span>
-                    <span class="font-medium" id="countdown-{{ $deal->id }}"></span>
-                </div>
-            @endif
             <div class="flex items-center gap-2">
                 <button @click="swiper.slidePrev()"
                     class="flex items-center justify-center p-2 border rounded-full focus:outline-none">
@@ -51,12 +45,12 @@
         <div class=" swiper-wrapper">
             <!-- Slides -->
             @foreach ($products as $product)
-                <x-product :product="$product->product" />
-                <x-product :product="$product->product" />
-                <x-product :product="$product->product" />
-                <x-product :product="$product->product" />
-                <x-product :product="$product->product" />
-                <x-product :product="$product->product" />
+                <x-product :product="$product" />
+                <x-product :product="$product" />
+                <x-product :product="$product" />
+                <x-product :product="$product" />
+                <x-product :product="$product" />
+                <x-product :product="$product" />
             @endforeach
         </div>
     </div>

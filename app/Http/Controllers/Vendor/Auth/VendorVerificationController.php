@@ -11,6 +11,7 @@ use App\Models\VendorPayementGatewaySetting;
 use App\Models\VendorPaymentMethod;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 
@@ -100,10 +101,12 @@ class VendorVerificationController extends Controller
                     if ($key !== 1) {
                         if ( $method['key'] !== null) {
                             VendorPayementGatewaySetting::updateOrCreate([
-                                'vendor_payment_mode_id' => $mode['id']
-                            ], [
+                                'vendor_id' => $vendor->id,
                                 'vendor_payment_mode_id' => $mode['id'],
-                                'APIkey' => $method['key'],
+                            ], [
+                                'vendor_id' => $vendor->id,
+                                'vendor_payment_mode_id' => $mode['id'],
+                                'APIkey' => Crypt::encrypt($method['key']),
                             ]);
                         }else{
                             throw new \Exception("Api Key is null");

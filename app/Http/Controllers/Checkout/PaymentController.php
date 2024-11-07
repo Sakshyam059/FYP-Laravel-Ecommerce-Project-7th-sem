@@ -9,6 +9,7 @@ use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Models\PaymentTransaction;
 use App\Models\Shipping;
+use App\Models\VendorPayment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
@@ -22,7 +23,6 @@ class PaymentController extends Controller
     private $user;
     private $cart;
     private $order_amount, $ref_id;
-    private $api_key;
     private $payment_url,$payment_status;
     public function __construct()
     {
@@ -46,7 +46,7 @@ class PaymentController extends Controller
                 'user_id' => $this->user->id,
                 'subtotal' => $this->cart->subtotal,
                 'payment_status' => $this->payment_status,
-                'ref_id' => $this->ref_id,
+                'ref_id' => $this->ref_id
             ]);   
             PaymentTransaction::create([
                 'order_id'=> $orderdata['id'],
@@ -66,15 +66,25 @@ class PaymentController extends Controller
                     'product_id' => $item['product_id'],
                     'size_id' => $size,
                     'color_id' => $color,
+                    'otp' => Str::random(6),
                     'quantity' => $item['quantity']
                 ];
                 OrderDetail::create($detail);
                 $inventory->quantity -= $quantity;
                 $inventory->save();
+                if( $this->payment_status==1){
+                    VendorPayment::create([
+                        'vendor_id'=>$item->product->vendor->id,
+                        'order_id'=>$orderdata->id,
+                        'remaining_amount'=>$item->product->discount_price(),
+                    ]);
+                }
+                $shipping_detail = Session::get('shipping_detail');
+                $shipping_detail['order_id'] = $orderdata['id'];
+                $shipping_detail['vendor_id'] = $item->product->vendor->id;
+                $shipping_detail['product_id'] = $item->product->id;
+                Shipping::create($shipping_detail);
             }
-            $shipping_detail = Session::get('shipping_detail');
-            $shipping_detail['order_id'] = $orderdata['id'];
-            Shipping::create($shipping_detail);
             $billing_information = Session::get('billing_information');
             $billing_information['user_id'] = $this->user->id;
             $billing_information['order_id'] = $orderdata['id'];
@@ -131,7 +141,9 @@ class PaymentController extends Controller
 
             $this->updateInventory();
 
-            return to_route('checkout.complete');
+            return to_route('checkout.complete')->with('success','Your order has been placed.');
+        }else{
+            return to_route('cart.index')->with('success','Failed to order');
         }
     }
 
