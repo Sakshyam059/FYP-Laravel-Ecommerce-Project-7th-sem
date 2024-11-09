@@ -22,19 +22,19 @@ class VendorVerificationController extends Controller
         DB::beginTransaction();
         try {
             $request->validate([
-                'name' => 'required',
-                'email' => 'required',
-                'description' => 'required',
-                'logo' => 'required|image|mimes:png,jpg',
-                'address' => 'required',
-                'district' => 'required',
-                'state' => 'required',
-                'account_type' => 'required',
-                'id_card_front' => 'required',
-                'id_card_back' => 'required',
-                'id_name' => 'required',
-                'id_number' => 'required',
-                'payment_methods' => 'required',
+                'name' => 'nullable',
+                'email' => 'nullable',
+                'description' => 'nullable',
+                'logo' => 'nullable|image|mimes:png,jpg',
+                'address' => 'nullable',
+                'district' => 'nullable',
+                'state' => 'nullable',
+                'account_type' => 'nullable',
+                'id_card_front' => 'nullable',
+                'id_card_back' => 'nullable',
+                'id_name' => 'nullable',
+                'id_number' => 'nullable',
+                'payment_methods' => 'nullable',
                 'esewa_api_key' => 'nullable',
                 'khalti_api_key' => 'nullable',
             ]);
@@ -58,14 +58,14 @@ class VendorVerificationController extends Controller
                 'address' => $request->address,
                 'district' => $request->district,
                 'state' => $request->state,
-                'logo'=> $imagepath
+                'logo'=> $imagepath??$vendor->logo
             ]);
 
             $vendor_id_detail = [
                 'vendor_id' => $vendor->id,
-                'account_type' => $request->account_type,
-                'id_name' => $request->id_name,
-                'id_number' => $request->id_number,
+                'account_type' => $request->account_type??$vendor->id_detail->account_type,
+                'id_name' => $request->id_name??$vendor->id_detail->id_name,
+                'id_number' => $request->id_number??$vendor->id_detail->id_number,
             ];
             if ($request->hasFile('id_card_front')) {
                 $file = $request->file('id_card_front');
@@ -73,7 +73,7 @@ class VendorVerificationController extends Controller
                 $imagepath = time() . '_' . $name;
                 File::delete(public_path('asset/images/vendor/card/' . $vendor->ID_Card_Front));
                 $file->move(public_path('asset/images/vendor/card/'), $imagepath);
-                $vendor_id_detail['ID_Card_Front'] = $imagepath;
+                $vendor_id_detail['ID_Card_Front'] = $imagepath??$vendor->ID_Card_Front;
             }
             if ($request->hasFile('id_card_back')) {
                 $file = $request->file('id_card_back');
@@ -81,7 +81,7 @@ class VendorVerificationController extends Controller
                 $imagepath = time() . '_' . $name;
                 File::delete(public_path('asset/images/vendor/card/' . $vendor->ID_Card_Back));
                 $file->move(public_path('asset/images/vendor/card/'), $imagepath);
-                $vendor_id_detail['ID_Card_Back'] = $imagepath;
+                $vendor_id_detail['ID_Card_Back'] = $imagepath??$vendor->ID_Card_Back;
             }
             VendorIdDetail::updateOrCreate(
                 [

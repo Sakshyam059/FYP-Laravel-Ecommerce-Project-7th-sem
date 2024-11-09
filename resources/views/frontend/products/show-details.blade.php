@@ -163,7 +163,9 @@
                             </div>
                         </div>
                         @include('frontend.products.reviews.list')
-                        @include('frontend.products.reviews.create')
+                        @if (\App\Models\Order::hasUserOrderedProduct(Auth::id(), $product->id))
+                            @include('frontend.products.reviews.create')
+                        @endif
                     </div>
                 </div>
             </div>

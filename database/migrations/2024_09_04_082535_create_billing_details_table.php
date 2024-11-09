@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('address');
             $table->string('city');
             $table->string('state');
-            $table->integer('zipcode');
+            $table->string('zipcode');
             $table->string('add_note')->nullable();
             $table->boolean('status')->default(1);
             $table->timestamps();

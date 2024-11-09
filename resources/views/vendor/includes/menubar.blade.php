@@ -16,8 +16,6 @@
                 </a>
             </li>
 
-
-
             <li>
                 <button
                     class="{{ Request::routeIs('vendor.product.*') ? 'border border-black/50 bg-green-500 text-white  dark:bg-gray-700 ' : '' }}relative p-2 inline-flex gap-2 items-center w-full rounded border-none   font-semibold  transition-colors duration-150 border  hover:bg-gray-700 hover:text-white dark:hover:text-gray-200 text-gray-800 dark:text-gray-200"

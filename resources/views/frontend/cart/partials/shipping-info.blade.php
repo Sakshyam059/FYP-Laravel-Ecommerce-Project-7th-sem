@@ -17,15 +17,15 @@
         <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
             <div class="space-y-2">
                 <label for="zipcode" class="block font-medium">Zip Code</label>
-                <input type="text" id="zipcode" name="zipcode" value="{{ session()->get('shipping_detail')['zipcode'] ?? old('zipcode') }}" class="w-full border-gray-400 rounded bg-gray-50">
+                <input type="number" minlength="6" id="zipcode" name="zipcode" value="{{ session()->get('shipping_detail')['zipcode'] ?? old('zipcode') }}" class="w-full border-gray-400 rounded bg-gray-50">
             </div>
             <div class="space-y-2">
                 <label for="state" class="block font-medium">State</label>
                 <select name="state" id="state" class="w-full border-gray-400 rounded bg-gray-50">
                     <option value="" disabled selected>Choose your state</option>
-                    <option value="ktm">Kathmandu</option>
-                    <option value="bht">Bharatpur</option>
-                    <option value="pok">Pokhara</option>
+                    <option value="ktm" {{session()->get('shipping_detail')['state']??''=='ktm'?'selected':''}}>Kathmandu</option>
+                    <option value="bht" {{session()->get('shipping_detail')['state']??''=='bht'?'selected':''}}>Bharatpur</option>
+                    <option value="pok" {{session()->get('shipping_detail')['state']??''=='pok'?'selected':''}}>Pokhara</option>
                 </select>
             </div>
         </div>

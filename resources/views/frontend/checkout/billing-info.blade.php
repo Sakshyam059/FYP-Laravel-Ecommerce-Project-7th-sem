@@ -86,17 +86,17 @@
                     <div class="grid grid-cols-2 gap-4">
                         <div class="space-y-2">
                             <label for="" class="block ">Zip Code</label>
-                            <input type="text" name="zipcode"
-                                value="{{ session()->get('billing_information')['city'] ?? old('city') }}"
+                            <input type="number" minlength="6" name="zipcode"
+                                value="{{ session()->get('billing_information')['zipcode'] ?? old('zipcode') }}"
                                 class="w-full border-gray-400 rounded bg-gray-50">
                         </div>
                         <div class="space-y-2">
                             <label for="" class="block ">State</label>
                             <select name="state" id="" class="w-full border-gray-400 rounded bg-gray-50">
                                 <option selected disabled>Choose your city</option>
-                                <option value="ktm">Kathmandu</option>
-                                <option value="bht">Bharatpur</option>
-                                <option value="pok">Pokhara</option>
+                                <option value="ktm" {{session()->get('billing_information')['state']??''=='ktm'?'selected':''}}>Kathmandu</option>
+                                <option value="bht" {{session()->get('billing_information')['state']??''=='ktm'?'selected':''}}>Bharatpur</option>
+                                <option value="pok" {{session()->get('billing_information')['state']??''=='ktm'?'selected':''}}>Pokhara</option>
                             </select>
                         </div>
                     </div>

@@ -12,7 +12,7 @@
             <div>
                 <label class="inline-block pb-3 " for="discount">Discount % <small class="text-gray-400">(Optional)</small>
                 </label>
-                <input type="text" value="{{ old('discount_value', $product->discount_value) }}"
+                <input type="number" min="0" value="{{ old('discount_value', $product->discount_value) }}"
                     class="w-full rounded bg-gray-100/40" name="discount_value">
             </div>
             {{-- <div>

@@ -4,7 +4,7 @@
         <h2 class="my-2 text-2xl font-semibold text-gray-700 dark:text-gray-200">
             Dashboard
         </h2>
-        
+
         <!-- Cards -->
         <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
             <!-- Card -->
@@ -21,7 +21,7 @@
                         Total products
                     </p>
                     <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                        {{Auth::user()->vendor->products()->count()??0}}
+                        {{ Auth::user()->vendor->products()->count() ?? 0 }}
                     </p>
                 </div>
             </div>
@@ -39,7 +39,7 @@
                         Remaining Amount
                     </p>
                     <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                        Rs. {{Auth::user()->vendor->totalPaymentsForCompletedOrders()??0}}
+                        Rs. {{ Auth::user()->vendor->totalPaymentsForCompletedOrders() ?? 0 }}
                     </p>
                 </div>
             </div>
@@ -57,10 +57,9 @@
                         Total Orders
                     </p>
                     <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                        {{\App\Models\OrderDetail::whereHas('product', function ($query) {
+                        {{ \App\Models\OrderDetail::whereHas('product', function ($query) {
                             $query->where('vendor_id', Auth::user()->vendor->id);
-                        })
-                        ->count()}}
+                        })->count() }}
                     </p>
                 </div>
             </div>
@@ -468,5 +467,29 @@
                 </div>
             </div>
         </div> --}}
+        <div class="grid grid-cols-2 gap-4">
+            <div class="p-3 border rounded">
+                <h2 class="text-lg font-semiboldbold">Orders Status</h2>
+                <canvas id="orderStatusChart" width="300" height="100"></canvas>
+            </div>
+        </div>
     </div>
+@endsection
+@section('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        new Chart(document.getElementById("orderStatusChart"), {
+            type: "doughnut",
+            data: {
+                labels: ['Completed', 'Pending'],
+                datasets: [{
+                    label: 'Order Status',
+                    data: [{{\App\Models\Order::where('is_completed',1)->count()}}, {{\App\Models\Order::where('is_completed',0)->count()}}],
+                    backgroundColor: ['#FFCD56', '#FF6384'],
+                    borderColor: ['#fff', '#fff'],
+                    borderWidth: 1
+                }]
+            }
+        });
+    </script>
 @endsection
