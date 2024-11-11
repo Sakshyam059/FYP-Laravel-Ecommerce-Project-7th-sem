@@ -12,6 +12,7 @@ use App\Http\Controllers\Frontend\ProductReviewController;
 use App\Http\Controllers\Frontend\SearchController;
 use App\Http\Controllers\Frontend\TransactionController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LocationController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,6 +29,9 @@ Route::get('/items', [SearchController::class, 'index'])->name('items.index');
 Route::get('/items/search', [SearchController::class, 'search'])->name('items.search');
 
 Route::middleware('auth')->group(function () {
+
+    Route::get('/districts/{province_id}', [LocationController::class, 'getDistricts'])->name('location.get');
+
     Route::get('/profile/setting', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::get('/profile/info', [ProfileController::class, 'info'])->name('profile.info');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

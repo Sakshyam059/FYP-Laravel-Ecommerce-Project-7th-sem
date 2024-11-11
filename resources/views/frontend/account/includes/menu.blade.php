@@ -18,13 +18,13 @@
                 <span>Transactions</span>
             </a>
         </li>
-        <li  class="p-2 rounded ">
+        {{-- <li  class="p-2 rounded ">
 
             <a href="{{route('order.index')}}" class="flex items-center gap-2 ">
                 <i class='bx bx-package'></i>
                 <span>Shipping</span>
             </a>
-        </li>
+        </li> --}}
         
         <li class="p-2 rounded {{Request::routeIs('profile.edit')?'text-white bg-blue-600':''}}">
             <a href="{{route('profile.edit')}}" class="flex items-center gap-2 ">

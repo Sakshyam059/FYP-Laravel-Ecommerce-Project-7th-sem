@@ -8,10 +8,10 @@
     <ul class="flex gap-2 px-6 py-3 -mt-2 text-sm font-medium text-green-700 border-b">
         <li class="flex items-center gap-2">
             <i class="bx bx-home"></i>
-            <span>Home</span>
+            <span><a href="{{route('homepage')}}">Home</a></span>
         </li>
         <li><small>></small></li>
-        <li><span>Product</li>
+        <li><span><a href="{{route('products.index')}}">Product</a></span></li>
         <li><small>></small></li>
 
         <li>{{ $product->slug }}</li>
@@ -42,7 +42,7 @@
                     </div>
                     <div class="py-2 space-y-4 ">
                         <p>{{ $product->short_description }}</p>
-                        <p class="text-xl font-medium"> <span> NPR
+                        <p class="text-xl font-medium"> <span> Rs.
                                 {{ $product->discount_price() }} </span>
                             <span class="text-sm text-gray-400 line-through">NPR {{ $product->price }}</span>
                             <span class="text-sm text-red-500 "> ({{ intval($product->discount_value) }}% off) </span>

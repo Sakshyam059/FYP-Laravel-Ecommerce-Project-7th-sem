@@ -14,7 +14,7 @@ class PaymentController extends Controller
     {
         $data = PaymentTransaction::whereHas('order.orderItems.product.vendor', function($query){
             $query->where('id', Auth::user()->vendor->id);
-        })->select('*');
+        })->select('*')->latest();
         if ($request->ajax()) {
             return DataTables::of($data)->addIndexColumn()
                 ->addIndexColumn()->editColumn('status', function ($row) {
@@ -27,21 +27,8 @@ class PaymentController extends Controller
                     }
                     $payment_status = '<button class="px-4 py-1 text-sm text-white rounded w-fit ' . ($status_class === 'active' ? 'bg-green-500 ' : 'bg-red-500 ') . 'btn-sm "' . ' >' . $status . '</button>';
                     return $payment_status;
-                })->addColumn('action', function ($row) {
-                    $edit = route('admin.product.brand.edit', $row->id);
-                    $action = '<div x-data="{ open: false }" class="relative">
-                <button @click="open = ! open" class=" focus:outline-none">
-                  <i class="bx bx-dots-vertical-rounded"></i> </button>
-                <div x-cloak x-show="open" @click.away="open = false" class="absolute right-0 z-10 p-2 bg-white border border-gray-200 rounded-lg shadow ">
-                    <a href=' . $edit . ' class="inline-flex items-center w-full gap-3 px-2 py-1 text-sm cursor-pointer hover:bg-sky-100">
-                        <i class="bx bx-edit-alt"></i>    
-                        <span>Manage Delivery</span>
-                    </a>
-                </div>
-            </div>';
-                    return $action;
                 })
-                ->rawColumns(['status', 'action'])
+                ->rawColumns(['status'])
                 ->make(true);
         }
         return view('vendor.payment.index');

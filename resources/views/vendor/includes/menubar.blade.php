@@ -61,14 +61,14 @@
                 </a>
             </li>
             <li>
-                <a class="inline-flex items-center w-full gap-2 p-2 font-semibold text-gray-800 transition-colors duration-150 border border-none rounded hover:bg-gray-700 hover:text-white dark:hover:text-gray-200 dark:text-gray-200"
+                <a class="{{ Request::routeIs('vendor.payment.index') ? 'border border-black/50 text-white bg-green-500 dark:bg-gray-700 ' : '' }} p-2 inline-flex gap-2 items-center w-full rounded border-none   font-semibold  transition-colors duration-150 border  hover:bg-gray-700 hover:text-white dark:hover:text-gray-200 text-gray-800 dark:text-gray-200"
                     href="{{ route('vendor.payment.index') }}">
                     <i class='bx bx-credit-card'></i>
                     <span>Payment</span>
                 </a>
             </li>
             <li>
-                <a class="inline-flex items-center w-full gap-2 p-2 font-semibold text-gray-800 transition-colors duration-150 border border-none rounded hover:bg-gray-700 hover:text-white dark:hover:text-gray-200 dark:text-gray-200"
+                <a class="{{ Request::routeIs('vendor.shippings.index') ? 'border border-black/50 text-white bg-green-500 dark:bg-gray-700 ' : '' }} p-2 inline-flex gap-2 items-center w-full rounded border-none   font-semibold  transition-colors duration-150 border  hover:bg-gray-700 hover:text-white dark:hover:text-gray-200 text-gray-800 dark:text-gray-200"
                     href="{{ route('vendor.shippings.index') }}">
                     <i class='bx bx-package'></i>
                     <span>Shippings</span>
@@ -110,13 +110,13 @@
                 </template>
             </li>
             
-            <li>
+            {{-- <li>
                 <a class="{{ Request::routeIs('vendor.profile') ? 'border border-black/50 text-white bg-green-500 dark:bg-gray-700 ' : '' }} inline-flex items-center w-full gap-2 p-2 font-semibold text-gray-800 transition-colors duration-150 border border-none rounded hover:bg-gray-700 hover:text-white dark:hover:text-gray-200 dark:text-gray-200"
                     href="{{ route('vendor.dashboard') }}">
                     <i class='bx bx-help-circle'></i>
                     <span>Help</span>
                 </a>
-            </li>
+            </li> --}}
 
         </ul>
     

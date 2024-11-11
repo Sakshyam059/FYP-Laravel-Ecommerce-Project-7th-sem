@@ -52,7 +52,7 @@
                         </label>
                         <input class="hidden" type="file" name="logo" id="logo">
                     </div>
-                    <div class="space-y-4">
+                    {{-- <div class="space-y-4">
                         <label class="block ">Favicon</label>             
                         <label  class="block px-6 py-2 bg-gray-100 border rounded" for="favicon" id="faviconImgLabel">
                             <img class="hidden object-contain p-3 rounded w-36 h-36" src="" id="preview-favicon"
@@ -60,7 +60,7 @@
                             <span>Choose a Favicon</span>
                         </label>
                         <input class="hidden" type="file" name="favicon" id="favicon">
-                    </div>
+                    </div> --}}
                 </div>
                 <div class="grid grid-cols-2 gap-6">
                     <div class="space-y-2">

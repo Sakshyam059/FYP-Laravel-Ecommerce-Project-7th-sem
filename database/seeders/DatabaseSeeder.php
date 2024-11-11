@@ -23,6 +23,10 @@ class DatabaseSeeder extends Seeder
             SizeSeeder::class,
             BrandSeeder::class,
             PaymentMethodSeeder::class,
+            CategorySeeder::class,
+            SubcategorySeeder::class,
+            ProvinceSeeder::class,
+            DistrictSeeder::class
         ]);
     }
 }

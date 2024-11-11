@@ -86,17 +86,17 @@
                     <div class="grid grid-cols-2 gap-4">
                         <div class="space-y-2">
                             <label for="" class="block ">Zip Code</label>
-                            <input type="number" minlength="6" name="zipcode"
+                            <input type="number" minlength="6" maxlength="6" name="zipcode"
                                 value="{{ session()->get('billing_information')['zipcode'] ?? old('zipcode') }}"
                                 class="w-full border-gray-400 rounded bg-gray-50">
                         </div>
                         <div class="space-y-2">
                             <label for="" class="block ">State</label>
                             <select name="state" id="" class="w-full border-gray-400 rounded bg-gray-50">
-                                <option selected disabled>Choose your city</option>
-                                <option value="ktm" {{session()->get('billing_information')['state']??''=='ktm'?'selected':''}}>Kathmandu</option>
-                                <option value="bht" {{session()->get('billing_information')['state']??''=='ktm'?'selected':''}}>Bharatpur</option>
-                                <option value="pok" {{session()->get('billing_information')['state']??''=='ktm'?'selected':''}}>Pokhara</option>
+                                <option selected disabled>Choose your state</option>
+                                <option value="gandaki" {{(session()->get('billing_information')['state']??'')=='gandaki'?'selected':''}}>Gandaki</option>
+                                <option value="bagmati" {{(session()->get('billing_information')['state']??'')=='bagmati'?'selected':''}}>Bagmati</option>
+                                <option value="lumbini" {{(session()->get('billing_information')['state']??'')=='lumbini'?'selected':''}}>Lumbini</option>
                             </select>
                         </div>
                     </div>

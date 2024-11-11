@@ -10,7 +10,7 @@
                 </div>
                 <div class="col-span-5 space-y-2">
                     <h5 class="text-xl font-bold">Order Completed</h5>
-                    <p><strong>Order No.</strong> <span>123-00-222</span></p>
+                    {{-- <p><strong>Order No.</strong> <span></span></p> --}}
                     <p>A confirmation email has been sent to you!</p>
                 </div>
             </div>

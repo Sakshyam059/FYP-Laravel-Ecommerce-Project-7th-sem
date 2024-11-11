@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('description')->nullable();
             $table->string('logo')->nullable();
             $table->string('address')->nullable();
-            $table->string('district')->nullable();
-            $table->string('state')->nullable();
+            $table->foreignId('province_id')->nullable()->constrained('provinces')->cascadeOnDelete();
+            $table->foreignId('district_id')->nullable()->constrained('districts')->cascadeOnDelete();
             $table->timestamps();
         });
     }

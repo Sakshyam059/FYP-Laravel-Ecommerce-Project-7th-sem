@@ -52,19 +52,10 @@ class OrderController extends Controller
                     $delivery_status = '<button class="px-4 py-1 text-sm text-white rounded w-fit ' . ($status_class === 'active' ? 'bg-green-500 ' : 'bg-red-500 ') . 'btn-sm "' . ' >' . $status . '</button>';
                     return $delivery_status;
                 })->filter(function ($instance) use ($request) {
-
-
-                    if ($request->get('payment_status') == '0' || $request->get('payment_status') == '1') {
-                        $instance->where('payment_status', $request->input('payment_status'));
+                    if ($request->get('delivery_status') == '0' || $request->get('delivery_status') == '1') {
+                        $instance->where('delivery_status', $request->input('delivery_status'));
                     }
 
-
-                    if (!empty($request->get('search'))) {
-                        $search = $request->get('search');
-                        $instance->where(function ($query) use ($search) {
-                            $query->where('category_name', 'like', '%' . $search . '%');
-                        });
-                    }
                 })
                 ->rawColumns(['payment_status','delivery_status'])
                 ->make(true);

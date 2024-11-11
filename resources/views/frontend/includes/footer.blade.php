@@ -25,10 +25,10 @@
             <div>
                 <h3 class="text-lg font-semibold">Shopping</h3>
                 <ul class="px-0 space-y-2 menu">
-                    <li><a class="block py-2" title="My Account">Products</a></li>
-                    <li><a class="block py-2" title="My Cart">My orders</a></li>
-                    <li><a class="block py-2" title="My Cart">My Cart</a></li>
-                    <li><a class="block py-2" title="Wishlist">Blog</a></li>
+                    <li><a class="block py-2" href="{{route('products.index')}}" title="Products">Products</a></li>
+                    <li><a class="block py-2" href="{{route('order.index')}}" title="My orders">My orders</a></li>
+                    <li><a class="block py-2" href="{{route('cart.index')}}" title="My Cart">My Cart</a></li>
+                    <li><a class="block py-2" title="Blog">Blog</a></li>
                 </ul>
             </div>
 

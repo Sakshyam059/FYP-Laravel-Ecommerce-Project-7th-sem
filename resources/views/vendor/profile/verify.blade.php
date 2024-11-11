@@ -12,3 +12,30 @@
             </div>
     </form>
 @endsection
+@section('scripts')
+<script>
+    $(document).ready(function() {
+        $('#province').change(function() {
+            var province_id = $(this).val();
+
+            if (province_id) {
+                $.ajax({
+                    url: '/districts/' + province_id,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(data) {
+                        $('#district').empty();
+                        $('#district').append('<option value="">Select District</option>');
+                        $.each(data, function(key, value) {
+                            $('#district').append('<option value="'+ value.id +'">'+ value.name +'</option>');
+                        });
+                    }
+                });
+            } else {
+                $('#district').empty();
+                $('#district').append('<option value="">Select District</option>');
+            }
+        });
+    });
+</script>
+@endsection

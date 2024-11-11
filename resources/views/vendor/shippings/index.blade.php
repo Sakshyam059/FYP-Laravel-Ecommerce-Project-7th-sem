@@ -26,9 +26,9 @@
                         <div class="p-3">
                             <label for="">Status</label>
                             <select id="status" class="w-full py-1 mt-2 text-sm bg-transparent rounded">
-                                <option selected disabled>Status</option>
-                                <option value="1">Active</option>
-                                <option value="0">Inactive</option>
+                                <option selected disabled>Delivery Status</option>
+                                <option value="1">Completed</option>
+                                <option value="0">Pending</option>
                             </select>
                         </div>
                         <div class="flex items-center justify-between gap-3 p-3 border-t">
@@ -51,8 +51,8 @@
                         <th>City</th>
                         <th>State</th>
                         <th>Zipcode</th>
-                        <th>Payment Status</th>
-                        <th>Delivery Status</th>
+                        <th>Payment</th>
+                        <th>Delivery</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -73,10 +73,7 @@
                 ajax: {
                     url: "{{ route('vendor.shippings.index') }}",
                     data: function(d) {
-                        d.status = $('#status').val(),
-                            d.min = $('#min').val(),
-                            d.max = $('#max').val(),
-                            d.search = $('.dt-search input').val()
+                        d.status = $('#status').val()
                     }
                 },
                 columns: [
@@ -134,20 +131,16 @@
                     }
                 },
                 paging: true,
-                ordering: true,
+                ordering: false,
                 info: false,
-                searching: true,
+                searching: false,
                 responsive: true,
                 bDestroy: true,
+                lengthChange:false
             });
             $(".dt-layout-row:first-child .dt-layout-cell.dt-layout-end").append($("#table-options"));
             $("#buttons").prepend($(".buttons-csv"));
-            $('.dt-search input').attr({
-                'type': 'text'
-            });
-            $('.dt-search').append(
-                '<svg class="absolute w-5 h-5 left-3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M15.7955 15.8111L21 21M18 10.5C18 14.6421 14.6421 18 10.5 18C6.35786 18 3 14.6421 3 10.5C3 6.35786 6.35786 3 10.5 3C14.6421 3 18 6.35786 18 10.5Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>'
-            );
+            
             $('#filterButton').click(function() {
                 table.draw();
             });

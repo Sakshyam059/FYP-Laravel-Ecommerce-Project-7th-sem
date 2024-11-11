@@ -17,15 +17,16 @@
         <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
             <div class="space-y-2">
                 <label for="zipcode" class="block font-medium">Zip Code</label>
-                <input type="number" minlength="6" id="zipcode" name="zipcode" value="{{ session()->get('shipping_detail')['zipcode'] ?? old('zipcode') }}" class="w-full border-gray-400 rounded bg-gray-50">
+                <input type="number" minlength="6"  maxlength="6" id="zipcode" name="zipcode" value="{{ session()->get('shipping_detail')['zipcode'] ?? old('zipcode') }}" class="w-full border-gray-400 rounded bg-gray-50">
             </div>
+            {{-- {{dd(session()->get('shipping_detail');)}} --}}
             <div class="space-y-2">
                 <label for="state" class="block font-medium">State</label>
                 <select name="state" id="state" class="w-full border-gray-400 rounded bg-gray-50">
                     <option value="" disabled selected>Choose your state</option>
-                    <option value="ktm" {{session()->get('shipping_detail')['state']??''=='ktm'?'selected':''}}>Kathmandu</option>
-                    <option value="bht" {{session()->get('shipping_detail')['state']??''=='bht'?'selected':''}}>Bharatpur</option>
-                    <option value="pok" {{session()->get('shipping_detail')['state']??''=='pok'?'selected':''}}>Pokhara</option>
+                    <option value="gandaki" {{(session()->get('shipping_detail')['state']??'')=='gandaki'?'selected':''}}>Gandaki</option>
+                    <option value="bagmati" {{(session()->get('shipping_detail')['state']??'')=='bagmati'?'selected':''}}>Bagmati</option>
+                    <option value="lumbini" {{(session()->get('shipping_detail')['state']??'')=='lumbini'?'selected':''}}>Lumbini</option>
                 </select>
             </div>
         </div>

@@ -1,18 +1,19 @@
 <div class="space-y-4 ">
     <h2 class='text-xl font-semibold '>Address Information</h2>
     <div class="grid grid-cols-2 gap-6">
-        <select name="state" id="" class="w-full rounded bg-gray-50">
+        <select name="state" id="province" class="w-full rounded bg-gray-50">
             <option selected disabled>Select State</option>
-            <option {{$user->vendor->state==="gandaki"?'selected':''}} value="gandaki">Gandaki</option>
-            <option {{$user->vendor->state==="bagmati"?'selected':''}} value="bagmati">Bagmati</option>
-            <option {{$user->vendor->state==="lumbini"?'selected':''}} value="lumbini">Lumbini</option>
+            @foreach (\App\Models\Province::get() as $province)
+            <option  value="{{$province->id}}" {{$user->vendor->province_id==$province->id?'selected':''}}>{{$province->name}}</option>
+            @endforeach
         </select>
-        <select name="district" id="" class="w-full rounded bg-gray-50">
+        <select name="district" id="district" class="w-full rounded bg-gray-50">
             <option selected disabled>Select District</option>
-            <option {{$user->vendor->district==="chitwan"?'selected':''}} value="chitwan">Chitwan</option>
-            <option {{$user->vendor->district==="nawalpur"?'selected':''}} value="nawalpur">Nawalpur</option>
-            <option {{$user->vendor->district==="kathmandu"?'selected':''}} value="kathmandu">Kathmandu</option>
-        </select>
+            @foreach (\App\Models\District::get() as $district)
+            <option  value="{{$district->id}}" {{$user->vendor->district_id==$district->id?'selected':''}}>{{$district->name}}</option>
+                
+            @endforeach
+         </select>
     </div>
     <div>
         <input type="text" name="address" value="{{ old('address',$user->vendor->address??'')}}" class="w-full rounded bg-gray-50" placeholder="Address Line">

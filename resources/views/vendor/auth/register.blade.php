@@ -34,7 +34,7 @@
                     </div>
                     <div class="space-y-2">
                         <label class="block font-semibold" for="phone">Company Phone <small class="text-red-600">*</small></label>
-                        <input type="text" id="phone" class="block w-full rounded-md bg-gray-50" name="phone" />
+                        <input type="text" id="phone" class="block w-full rounded-md bg-gray-50" name="phone" minlength="10" maxlength="14" />
                         @error('phone')
                             <span class="text-xs text-red-600">{{ $message }}</span>
                         @enderror

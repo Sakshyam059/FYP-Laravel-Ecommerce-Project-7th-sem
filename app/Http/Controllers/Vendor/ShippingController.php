@@ -51,17 +51,10 @@ class ShippingController extends Controller
                 })->filter(function ($instance) use ($request) {
 
 
-                    if ($request->get('payment_status') == '0' || $request->get('payment_status') == '1') {
-                        $instance->where('payment_status', $request->input('payment_status'));
+                    if ($request->get('status') == '0' || $request->get('status') == '1') {
+                        $instance->where('status', $request->input('status'));
                     }
 
-
-                    if (!empty($request->get('search'))) {
-                        $search = $request->get('search');
-                        $instance->where(function ($query) use ($search) {
-                            $query->where('category_name', 'like', '%' . $search . '%');
-                        });
-                    }
                 })
                 ->rawColumns(['payment_status', 'status', 'action'])
                 ->make(true);

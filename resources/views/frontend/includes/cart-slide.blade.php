@@ -64,7 +64,7 @@
                             </li>
                             <li class="inline-flex justify-between w-full">
                                 <span>Shipping Charge:</span>
-                                <span>NPR 50</span>
+                                <span>NPR 0</span>
                             </li>
                         </ul>
                     </div>

@@ -49,7 +49,8 @@ class ProductController extends Controller
                                         <span>Add to Deal</span>
                                     </a>';
                     if($row->productDeal){
-                        return $row->productDeal->deal->deal_name;
+                        
+                        return '<button class="p-2 text-xs text-white bg-orange-400 rounded">'.$row->productDeal->deal->deal_name.'</button>';
                     }
                     return $deal_btn;
                 })->editColumn('status', function ($row) {
@@ -94,9 +95,9 @@ class ProductController extends Controller
                         $instance->where('status', $request->input('status'));
                     }
 
-                    // if ($request->get('min') || $request->get('max')) {
-                    //     $instance->whereBetween('price', [$request->get('min') ?? 0, $request->get('max') ?? 199999]);
-                    // }
+                    if ($request->get('min') || $request->get('max')) {
+                        $instance->whereBetween('price', [$request->get('min') ?? 0, $request->get('max') ?? 199999]);
+                    }
 
                     if (!empty($request->get('search'))) {
                         $search = $request->get('search');

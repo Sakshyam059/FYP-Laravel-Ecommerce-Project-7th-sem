@@ -22,17 +22,15 @@
                 </thead>
                 <tbody>
                     @foreach ($orders as $order)
-                        @foreach ($order->transactions as $transaction)
                             <tr class="border-b">
-                                <td class="py-4" scope="row">{{ $transaction->id }}</td>
-                                <td class="py-4">{{ $transaction->order_id }}</td>
-                                <td class="py-4">{{ $transaction->payment_method }}</td>
+                                <td class="py-4" scope="row">{{ $order->transaction->id }}</td>
+                                <td class="py-4">{{ $order->transaction->order_id }}</td>
+                                <td class="py-4">{{ $order->transaction->payment_method }}</td>
                                 <td class="py-4 text-xs text-white"><span
-                                        class="px-4 py-1 rounded  {{ $transaction->payment_status == 1 ? 'bg-green-600' : 'bg-red-600' }}">{{ $transaction->payment_status == 1 ? 'Paid' : 'Pending' }}</span>
+                                        class="px-4 py-1 rounded  {{ $order->payment_status == 1 ? 'bg-green-600' : 'bg-red-600' }}">{{ $order->payment_status == 1 ? 'Paid' : 'Pending' }}</span>
                                 </td>
 
                             </tr>
-                        @endforeach
                     @endforeach
 
                 </tbody>

@@ -39,10 +39,10 @@ class OtpController extends Controller
             Auth::login($user);
             $request->session()->regenerate();
 
-            return redirect()->intended('/');
+            return redirect()->intended('/')->with('success','Login Success');
         }
 
-        return back()->withErrors(['otp' => 'Invalid OTP or OTP expired.']);
+        return back()->withErrors(['otp' => 'Invalid OTP or OTP expired.'])->with('error','Otp Failed');
 
     }
     public function resetOtp(){

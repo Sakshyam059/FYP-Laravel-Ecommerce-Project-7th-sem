@@ -36,7 +36,7 @@
                 </div>
                 <div>
                     <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                        Remaining Amount
+                        Balance Amount
                     </p>
                     <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
                         Rs. {{ Auth::user()->vendor->totalPaymentsForCompletedOrders() ?? 0 }}
@@ -467,9 +467,9 @@
                 </div>
             </div>
         </div> --}}
-        <div class="grid grid-cols-2 gap-4">
+        <div class="grid gap-4 lg:grid-cols-2">
             <div class="p-3 border rounded">
-                <h2 class="text-lg font-semiboldbold">Orders Status</h2>
+                <h2 class="text-lg font-semiboldbold">Orders Shipping</h2>
                 <canvas id="orderStatusChart" width="300" height="100"></canvas>
             </div>
         </div>
@@ -484,7 +484,7 @@
                 labels: ['Completed', 'Pending'],
                 datasets: [{
                     label: 'Order Status',
-                    data: [{{\App\Models\Order::where('is_completed',1)->count()}}, {{\App\Models\Order::where('is_completed',0)->count()}}],
+                    data: [{{$completed}}, {{$pending}}],
                     backgroundColor: ['#FFCD56', '#FF6384'],
                     borderColor: ['#fff', '#fff'],
                     borderWidth: 1

@@ -75,7 +75,7 @@
                         </label>
                     </div> --}}
                     <div >
-                        <input value="khalti" id="khalti" type="radio" name="payment_method" class="hidden">
+                        <input value="khalti" id="khalti" type="radio" name="payment_method" class="hidden" required>
                         <label for="khalti" class="block w-full p-6 border-2 rounded checkbox" >
                             <img class="h-16" src="https://imgs.search.brave.com/uFGwa8aM5mZkzVDHsfpqgZ6ZPQ7R0NP007egTQ-Klfw/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9pY29u/YXBlLmNvbS93cC1j/b250ZW50L3BuZ19s/b2dvX3ZlY3Rvci9r/aGFsdGktbG9nby5w/bmc"
                                  alt="">

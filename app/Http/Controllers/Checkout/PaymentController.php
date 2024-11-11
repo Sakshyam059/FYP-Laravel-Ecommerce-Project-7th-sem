@@ -106,20 +106,20 @@ class PaymentController extends Controller
 
     public function initiateKhaltiPayment()
     {
-        $return_url = "http://127.0.0.1:8000/payment/verify";
+        $return_url = route('payment.verify');
         $khalti = 'https://a.khalti.com/api/v2/';
         $data = ([
             "return_url" => $return_url,
             "website_url" => "https://example.com/",
             "amount" => $this->order_amount * 100,
-            "purchase_order_id" => 11,
+            "purchase_order_id" => 10,
             "purchase_order_name" => "test",
         ]);
 
         $response = Http::withHeaders([
             'Authorization' => env('KHALTI_SECRET_KEY'),
             'Content-Type' => 'application/json',
-        ])->post($khalti . "epayment/initiate/", $data);
+            ])->post($khalti . "epayment/initiate/", $data);
 
         $this->payment_url = $response['payment_url'];
     }
@@ -159,8 +159,6 @@ class PaymentController extends Controller
         } else {
             $this->cashPayment();
         }
-       
-
         return to_route('checkout.complete')->with('message', 'Order Successful');
     }
 }

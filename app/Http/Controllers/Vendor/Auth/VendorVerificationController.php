@@ -56,8 +56,8 @@ class VendorVerificationController extends Controller
             $vendor->update([
                 'description' => $request->description,
                 'address' => $request->address,
-                'district' => $request->district,
-                'state' => $request->state,
+                'district_id' => $request->district,
+                'province_id' => $request->state,
                 'logo'=> $imagepath??$vendor->logo
             ]);
 
@@ -98,7 +98,7 @@ class VendorVerificationController extends Controller
                         'vendor_id' => $vendor->id,
                         'payment_method_id' => $key
                     ]);
-                    if ($key !== 1) {
+                    // if ($key !== 1) {
                         if ( $method['key'] !== null) {
                             VendorPayementGatewaySetting::updateOrCreate([
                                 'vendor_id' => $vendor->id,
@@ -111,7 +111,7 @@ class VendorVerificationController extends Controller
                         }else{
                             throw new \Exception("Api Key is null");
                         }
-                    }
+                    // }
                 }
             }
             DB::commit();

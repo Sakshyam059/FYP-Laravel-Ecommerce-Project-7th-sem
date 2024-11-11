@@ -1,7 +1,5 @@
 @extends('frontend.includes.main')
-@section('title')
-    Khelretail
-@endsection
+
 @section('content')
     <section class="px-6 overflow-hidden" id="banners">
         @if ($banners->isNotEmpty())

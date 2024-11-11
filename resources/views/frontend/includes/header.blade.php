@@ -37,7 +37,7 @@
             <div class="absolute right-0 p-2 space-x-2 lg:relative lg:block">
                 @auth
                     <button @click="cartOpen = !cartOpen" class="inline-flex items-center focus:outline-none">
-                        <i class='bx bx-cart'></i>
+                        <i class='bx bx-cart' style="font-size: 1.2rem;"></i>
                         @if (!empty($mycart->cartItems))
                             @if ($mycart->cartItems->isNotEmpty())
                                 <div

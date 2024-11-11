@@ -29,7 +29,7 @@
 
 
     </div>
-    <div class="grid grid-cols-4 gap-6 py-2" id="products">
+    <div class="grid grid-cols-2 gap-6 py-2 lg:grid-cols-4" id="products">
         @foreach ($products as $product)
            <x-product :product="$product" />
            <x-product :product="$product" />

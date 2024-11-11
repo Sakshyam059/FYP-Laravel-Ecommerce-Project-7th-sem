@@ -1,4 +1,4 @@
-<aside x-data="{ isAvailabilityMenuOpen: true, isCategoryMenuOpen: true, isBrandsMenuOpen: true }" class="px-6 py-4 mb-3 border-r">
+<aside x-data="{ isAvailabilityMenuOpen: true, isCategoryMenuOpen: true, isBrandsMenuOpen: true }" class="hidden px-6 py-4 mb-3 border-r lg:block">
     <h4 class="text-2xl font-bold">Filters</h4>
 
     <form action="{{ route('products.index') }}" method="get">
@@ -18,11 +18,11 @@
                              class="space-y-2 overflow-hidden text-sm font-medium text-gray-800 rounded-b-md dark:text-gray-400 dark:bg-gray-900" aria-label="submenu">
                             <div class="flex items-center gap-2 px-2 py-2">
                                 <input type="checkbox">
-                                <label for="">In stock</label>
+                                <label for="" class="capitalize">In stock</label>
                             </div>
                             <div class="flex items-center gap-2 px-2 py-2">
                                 <input type="checkbox">
-                                <label for="">Out of stock</label>
+                                <label for="" class="capitalize">Out of stock</label>
                             </div>
                         </div>
                     </template>
@@ -45,11 +45,11 @@
                         x-transition:leave-start="opacity-100 max-h-xl" x-transition:leave-end="opacity-0 max-h-0"
                         class="space-y-2 overflow-hidden text-sm font-medium text-gray-800 rounded-b-md dark:text-gray-400 dark:bg-gray-900"
                         aria-label="submenu">
-                        @foreach (\App\Models\Category::all() as $category)
-                            <div class="px-2 py-2 transition-colors duration-150 hover:text-gray-800">
+                        @foreach (\App\Models\Category::has('products')->get() as $category)
+                            <div class="flex items-center gap-2 px-2 py-2 transition-colors duration-150 hover:text-gray-800">
                                 <input type="checkbox" class="rounded" name="categories[]" value="{{ $category->slug }}"
                                     {{ in_array($category->slug, request('categories', [])) ? 'checked' : '' }}>
-                                <label for="">{{ $category->category_name }}</label>
+                                <label for="" class="capitalize">{{ $category->category_name }}</label>
                                 {{-- <a href="{{ route('product.category-filter', $category->slug) }}" class="block">{{ $category->category_name }}</a> --}}
                             </div>
                         @endforeach
@@ -76,8 +76,8 @@
                         aria-label="submenu">
 
                         <div class="flex justify-between gap-2 px-2 py-2 transition-colors duration-150 hover:text-gray-800">
-                            <input type="number" class="w-1/2 rounded" name="min_price" min="0" placeholder="Min">
-                            <input type="number" class="w-1/2 rounded" name="max_price" max="9999" placeholder="Max">
+                            <input type="number" class="w-1/2 text-xs rounded" value="{{request('min_price'??'')}}" name="min_price" min="0" placeholder="Min">
+                            <input type="number" class="w-1/2 text-xs rounded" value="{{request('max_price'??'')}}" name="max_price" max="9999" placeholder="Max">
                         </div>
                     </div>
                 </template>
@@ -101,10 +101,10 @@
                         class="space-y-2 overflow-hidden text-sm font-medium text-gray-800 rounded-b-md dark:text-gray-400 dark:bg-gray-900"
                         aria-label="submenu">
                         @foreach (\App\Models\Brand::all() as $brand)
-                            <div class="px-2 py-2 transition-colors duration-150 hover:text-gray-800">
+                            <div class="flex items-center gap-2 px-2 py-2 transition-colors duration-150 hover:text-gray-800">
                                 <input type="checkbox" class="rounded" name="brands[]" value="{{ $brand->slug }}"
                                     {{ in_array($brand->slug, request('brands', [])) ? 'checked' : '' }}>
-                                <label for="">{{ $brand->brand_name }}</label>
+                                <label for="" class="capitalize">{{ $brand->brand_name }}</label>
                             </div>
                         @endforeach
                     </div>

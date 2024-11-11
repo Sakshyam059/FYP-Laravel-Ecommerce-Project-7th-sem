@@ -59,9 +59,9 @@ class CartController extends Controller
     }
     public function removeFromCart(CartItem $item){
         $cart=Cart::find($item->cart_id);
-        $price=$item->product->price-($item->product->price/$item->product->discount_value);
+        $price=$item->product->discount_price();
         try{
-            $cart['subtotal']-=$price;
+            $cart['subtotal']=$cart['subtotal']-$price;
             $cart->update();
             $item->delete();
             return back()->with('success','Product has been removed from cart');
