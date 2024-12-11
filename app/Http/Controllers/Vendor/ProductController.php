@@ -25,9 +25,9 @@ class ProductController extends Controller
 {
     public function index(Request $request)
     {
-        $vendor=Vendor::where('user_id',Auth::id())->first();
+        $vendor = Vendor::where('user_id', Auth::id())->first();
         if ($request->ajax()) {
-            $data = Product::where('vendor_id',$vendor->id)->with('mainImage')->select('id', 'name', 'category_id','brand_id','price','discount_value', 'status');
+            $data = Product::where('vendor_id', $vendor->id)->with('mainImage')->select('id', 'name', 'category_id', 'brand_id', 'price', 'discount_value', 'status');
             return DataTables::of($data)->addIndexColumn()
                 ->editColumn('select_all', function ($row) {
                     return '<input class="mx-3 border-gray-300 rounded select-all lg:mx-1" type="checkbox" name="products[]" value="' . $row->id . '"/>';
@@ -42,15 +42,14 @@ class ProductController extends Controller
                     return $row->category->category_name;
                 })->editColumn('brand_id', function ($row) {
                     return $row->brand->brand_name;
-                })->editColumn('status', function ($row) {
-                })->addColumn('deal', function ($row) {
+                })->editColumn('status', function ($row) {})->addColumn('deal', function ($row) {
                     $deal = route('vendor.product-deal.create', $row->id);
-                    $deal_btn='<a href=' . $deal . ' class="inline-flex items-center gap-3 px-2 py-1 text-sm text-white bg-yellow-400 rounded cursor-pointer hover:bg-sky-600">   
+                    $deal_btn = '<a href=' . $deal . ' class="inline-flex items-center gap-3 px-2 py-1 text-sm text-white bg-yellow-400 rounded cursor-pointer hover:bg-sky-600">   
                                         <span>Add to Deal</span>
                                     </a>';
-                    if($row->productDeal){
-                        
-                        return '<button class="p-2 text-xs text-white bg-orange-400 rounded">'.$row->productDeal->deal->deal_name.'</button>';
+                    if ($row->productDeal) {
+
+                        return '<button class="p-2 text-xs text-white bg-orange-400 rounded">' . $row->productDeal->deal->deal_name . '</button>';
                     }
                     return $deal_btn;
                 })->editColumn('status', function ($row) {
@@ -106,7 +105,7 @@ class ProductController extends Controller
                         });
                     }
                 })
-                ->rawColumns(['select_all', 'deal','name', 'status', 'action'])
+                ->rawColumns(['select_all', 'deal', 'name', 'status', 'action'])
                 ->make(true);
         }
         return view('vendor.product.index');
@@ -138,11 +137,11 @@ class ProductController extends Controller
     }
     public function store(ProductPostRequest $request, ProductImagePostRequest $imgrequest)
     {
-        $vendor=Vendor::where('user_id',Auth::id())->first();
+        $vendor = Vendor::where('user_id', Auth::id())->first();
         DB::beginTransaction();
         try {
             $validator = $request->validated();
-            $validator['vendor_id']=$vendor['id'];
+            $validator['vendor_id'] = $vendor['id'];
             // if($request->category_id==0){
             //     $category->validated();
             //     $cat=Category::create([
@@ -173,7 +172,7 @@ class ProductController extends Controller
                         'size_id' => $sku['size_id'],
                         'quantity' => $sku['quantity'],
                     ]);
-                }else{
+                } else {
                     throw new \Exception("Skus has null value");
                 }
             }
@@ -184,7 +183,7 @@ class ProductController extends Controller
                 foreach ($files as $key => $file) {
                     if ($key === 0) {
                         $product_image['is_main'] = 1;
-                    }else{
+                    } else {
                         $product_image['is_main'] = 0;
                     }
                     $product_image['product_id'] = $product['id'];
@@ -194,7 +193,7 @@ class ProductController extends Controller
                     $product_image['image'] = $imagepath;
                     ProductImage::create($product_image);
                 }
-            }else{
+            } else {
                 throw new \Exception("Image failure");
             }
             DB::commit();
@@ -214,27 +213,28 @@ class ProductController extends Controller
     }
     public function update(ProductPostRequest $request, ProductImagePostRequest $imgrequest, Product $product)
     {
+        $validator = $request->validated();
+        $skus = $request->skus;
         try {
-            $validator = $request->validated();
             $validator['slug'] = Str::slug($request->name);
             $validator['trending'] = $request['trending'] ? 1 : 0;
 
             try {
                 DB::beginTransaction();
                 $product->update($validator);
-                foreach ($request->skus as $sku) {
+                foreach ($skus as $sku) {
                     if (!in_array(null, $sku, true)) {
                         ProductSku::updateOrCreate([
                             'product_id' => $product->id,
                             'color_id' => $sku['color_id'],
                             'size_id' => $sku['size_id'],
-                        ],[
-                            'quantity' => $sku['quantity'],
+                        ], [
+                            'quantity' => $sku['quantity']??0,
                         ]);
-                    }else{
-                        throw new \Exception("Skus has null value");
                     }
+                
                 }
+
                 $product_image = $imgrequest->validated();
                 if ($imgrequest->hasFile('image')) {
                     $files = $imgrequest->file('image');
@@ -255,7 +255,7 @@ class ProductController extends Controller
                 return to_route('vendor.product.index')->with('success', 'Product saved successfully');
             } catch (\Exception $e) {
                 DB::rollBack();
-                return redirect()->back()->with('error', 'Failed to store image. Please try again.');
+                return redirect()->back()->with('error', 'Failed!. Please try again.');
             }
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Failed to create product. Please try again.');
@@ -290,4 +290,3 @@ class ProductController extends Controller
         }
     }
 }
-

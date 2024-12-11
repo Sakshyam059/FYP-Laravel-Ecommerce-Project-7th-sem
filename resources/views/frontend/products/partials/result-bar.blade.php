@@ -51,11 +51,10 @@
                 $('#list').removeClass('bg-gray-100');
                 $('#grid').addClass('bg-gray-100');
                 $('.product-card').removeClass('flex space-x-2');
-
             });
             $('#list').click(function(event) {
                 event.preventDefault();
-                $('#products').removeClass('grid-cols-4');
+                $('#products').removeClass('grid-cols-4 lg:grid-cols-4');
                 $('#grid').removeClass('bg-gray-100');
                 $('#list').addClass('bg-gray-100');
                 $('.product-card').addClass('flex space-x-2');

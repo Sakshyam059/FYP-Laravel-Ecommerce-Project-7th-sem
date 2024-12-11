@@ -18,7 +18,7 @@ class SearchController extends Controller
         $query = $request->input('query');
 
         $items = Product::when($query, function ($queryBuilder) use ($query) {
-            return $queryBuilder->where('name', 'like', "%{$query}%"); // Adjust field as needed
+            return $queryBuilder->where('name', 'like', "%{$query}%"); 
         })->get();
 
         return response()->json($items);
